@@ -113,12 +113,14 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: _listSchedule(context, key: "encours"),
+              child: ConsultingsViewer(future: viewRdvs("encours")),
             ),
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: _listSchedule(context, key: "anterieur"),
+              child: ConsultingsViewer(
+                future: viewRdvs("anterieur"),
+              ),
             ),
           ],
         ),
@@ -255,37 +257,59 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
               );
             },
             child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0)),
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      CupertinoIcons.person_circle_fill,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0)),
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Icon(
+                    CupertinoIcons.person_circle_fill,
+                    color: primaryColor,
+                    size: 18.0,
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    "Se connecter",
+                    style: style1(
+                      fontWeight: FontWeight.w700,
                       color: primaryColor,
-                      size: 18.0,
                     ),
-                    const SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
-                      "Se connecter",
-                      style: style1(
-                        fontWeight: FontWeight.w700,
-                        color: primaryColor,
-                      ),
-                    )
-                  ],
-                )),
+                  )
+                ],
+              ),
+            ),
           ),
       ],
     );
   }
 
-  Widget _listSchedule(context, {String key}) {
+  Future<List<ConsultationsRdv>> viewRdvs(String type) async {
+    var rdvs = await PatientApi.voirRdvEnLigne(key: type);
+    if (rdvs != null) {
+      var data = rdvs.consultationsRdv;
+      return data;
+    } else {
+      return null;
+    }
+  }
+}
+
+class ConsultingsViewer extends StatefulWidget {
+  final Future<List<ConsultationsRdv>> future;
+  const ConsultingsViewer({Key key, this.future}) : super(key: key);
+
+  @override
+  State<ConsultingsViewer> createState() => _ConsultingsViewerState();
+}
+
+class _ConsultingsViewerState extends State<ConsultingsViewer> {
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
-      future: patientController.viewRdvs(key: key),
+      future: widget.future,
       builder: (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
         if (snapshot.data != null) {
           if (snapshot.data.isEmpty) {
@@ -299,7 +323,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                     height: 10.0,
                   ),
                   Text(
-                    "Aucun rendez-vous $key !",
+                    "Aucun rendez-vous !",
                     style: GoogleFonts.lato(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w400,
@@ -308,60 +332,78 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                 ],
               ),
             );
-          }
-          return ListView.builder(
-            padding: const EdgeInsets.only(top: 10.0),
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              var data = snapshot.data[index];
-              return ClientScheduleCard(
-                data: data,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.leftToRightWithFade,
-                      alignment: Alignment.topCenter,
-                      child: PageScheduleDetailView(
-                        data: data,
+          } else {
+            return ListView.builder(
+              padding: const EdgeInsets.only(top: 10.0),
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                var data = snapshot.data[index];
+                return ClientScheduleCard(
+                  data: data,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.leftToRightWithFade,
+                        alignment: Alignment.topCenter,
+                        child: PageScheduleDetailView(
+                          data: data,
+                        ),
                       ),
-                    ),
-                  );
-                },
-                onCancelled: () async {
-                  XDialog.show(
-                      context: context,
-                      icon: Icons.help,
-                      title: "Annulation rdv!",
-                      content:
-                          "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
-                      onValidate: () async {
-                        Xloading.showLottieLoading(context);
-                        var res = await PatientApi.annulerRdvEnLigne(
-                            consultId: data.consultationRdvId);
-                        if (res != null) {
-                          Xloading.dismiss();
-                          XDialog.showSuccessAnimation(context);
-                          patientController.viewRdvs(key: key);
-                        } else {
-                          Xloading.dismiss();
-                          XDialog.showErrorMessage(context,
-                              title: "Echec!",
-                              color: Colors.amber[900],
-                              message:
-                                  "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
-                        }
-                      });
-                },
-              );
-            },
-          );
+                    );
+                  },
+                  onCancelled: () async {
+                    XDialog.show(
+                        context: context,
+                        icon: Icons.help,
+                        title: "Annulation rdv!",
+                        content:
+                            "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
+                        onValidate: () async {
+                          Xloading.showLottieLoading(context);
+                          var res = await PatientApi.annulerRdvEnLigne(
+                              consultId: data.consultationRdvId);
+                          if (res != null) {
+                            Xloading.dismiss();
+                            XDialog.showSuccessAnimation(context);
+                            setState(() {});
+                          } else {
+                            Xloading.dismiss();
+                            XDialog.showErrorMessage(context,
+                                title: "Echec!",
+                                color: Colors.amber[900],
+                                message:
+                                    "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
+                          }
+                        });
+                  },
+                );
+              },
+            );
+          }
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.topCenter,
+                  height: 100,
+                  width: 100.0,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: SpinKitWave(
+                      color: Colors.black.withOpacity(.8),
+                      duration: const Duration(seconds: 1),
+                    ),
+                  ),
+                ),
+                const Text("Chargement en cours ...")
+              ],
+            ),
           );
         }
       },

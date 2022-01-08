@@ -21,7 +21,7 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg3p.png"),
+              image: AssetImage("assets/images/shapes/bg5p.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -29,7 +29,8 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.blue[900].withOpacity(.9),
+                  primaryColor,
+                  primaryColor.withOpacity(.5),
                   Colors.white.withOpacity(.8),
                   Colors.white.withOpacity(.8),
                 ],
@@ -185,92 +186,84 @@ class AgendaCard extends StatelessWidget {
       children: [
         Container(
           height: 110.0,
-          margin: const EdgeInsets.only(bottom: 15.0),
+          margin: const EdgeInsets.only(bottom: 8.0),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            image: const DecorationImage(
-              image: AssetImage("assets/images/shapes/bg3p.png"),
-              fit: BoxFit.cover,
-            ),
+            color: Colors.white.withOpacity(.8),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 12.0,
+                color: Colors.black.withOpacity(.1),
+                offset: const Offset(0, 8),
+              )
+            ],
           ),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Colors.white.withOpacity(.8),
-              boxShadow: [
-                const BoxShadow(
-                  blurRadius: 12.0,
-                  color: Colors.black26,
-                  offset: Offset(0, 3),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 80.0,
+                  width: 80.0,
+                  decoration: BoxDecoration(
+                    color: primaryColor.withOpacity(.5),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        "assets/icons/schedule-svgrepo-com.svg",
+                        color: Colors.white,
+                        height: 50.0,
+                        width: 50.0,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20.0,
+                ),
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${strDateLongFr(date)} ",
+                          style: GoogleFonts.lato(
+                            color: primaryColor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              for (int i = 0; i < heures.length; i++) ...[
+                                TimeCard(
+                                  start: heures.first.heure,
+                                  end: heures.last.heure,
+                                )
+                              ]
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 )
               ],
-            ),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 80.0,
-                    width: 80.0,
-                    decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(.5),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SvgPicture.asset(
-                          "assets/icons/schedule-svgrepo-com.svg",
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${strDateLongFr(date)} ",
-                            style: GoogleFonts.lato(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 18.0,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10.0,
-                          ),
-                          SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                for (int i = 0; i < heures.length; i++) ...[
-                                  TimeCard(
-                                    start: heures.first.heure,
-                                    end: heures.last.heure,
-                                  )
-                                ]
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
             ),
           ),
         ),
@@ -324,13 +317,13 @@ class TimeCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
       margin: const EdgeInsets.only(right: 8.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(5.0),
+        color: Colors.white.withOpacity(.7),
+        borderRadius: BorderRadius.circular(20.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5.0),
+            color: Colors.grey.withOpacity(.3),
+            blurRadius: 12,
+            offset: const Offset(0, 3),
           )
         ],
       ),
@@ -340,7 +333,7 @@ class TimeCard extends StatelessWidget {
             children: [
               Icon(
                 CupertinoIcons.time_solid,
-                color: Colors.black,
+                color: primaryColor,
                 size: 16.0,
               ),
               const SizedBox(
@@ -356,18 +349,17 @@ class TimeCard extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(
-            width: 8.0,
-          ),
-          Container(width: 10.0, height: 2, color: Colors.white),
-          const SizedBox(
-            width: 8.0,
+          Container(
+            width: 15.0,
+            height: 2,
+            color: primaryColor,
+            margin: const EdgeInsets.symmetric(horizontal: 5.0),
           ),
           Row(
             children: [
               Icon(
                 CupertinoIcons.time_solid,
-                color: Colors.black,
+                color: Colors.cyan[800],
                 size: 16.0,
               ),
               const SizedBox(

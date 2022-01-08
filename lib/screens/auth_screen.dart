@@ -128,7 +128,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       height: 0,
                     ),
                   Container(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       left: 10.0,
                       right: 10.0,
                     ),

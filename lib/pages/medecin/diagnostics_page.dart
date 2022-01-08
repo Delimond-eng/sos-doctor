@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:sos_docteur/models/medecins/medecins_examens_diagnostics_model.dart';
+import 'package:sos_docteur/widgets/user_session_widget.dart';
 
 import '../../index.dart';
 import 'diagnostic_make_page.dart';
@@ -24,16 +25,18 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image:
-                    AssetImage("assets/images/vector/undraw_medicine_b1ol.png"),
-                fit: BoxFit.cover),
+              image: AssetImage("assets/images/shapes/bg5p.png"),
+              fit: BoxFit.cover,
+            ),
           ),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Colors.blue[900].withOpacity(.9),
-                  Colors.white.withOpacity(.9)
+                  primaryColor,
+                  primaryColor.withOpacity(.5),
+                  Colors.white.withOpacity(.8),
+                  Colors.white.withOpacity(.8)
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
@@ -44,7 +47,7 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 15.0),
+                        horizontal: 16.0, vertical: 16.0),
                     child: _header(),
                   ),
                   Expanded(
@@ -59,10 +62,10 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
                                       horizontal: 16.0, vertical: 10.0),
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 0.8,
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 5.0,
-                                    mainAxisSpacing: 5.0,
+                                    childAspectRatio: 1.50,
+                                    crossAxisCount: 1,
+                                    crossAxisSpacing: 8.0,
+                                    mainAxisSpacing: 8.0,
                                   ),
                                   itemCount:
                                       medecinController.medecinsExamens.length,
@@ -153,6 +156,7 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
             )
           ],
         ),
+        UserSession()
       ],
     );
   }
@@ -183,12 +187,19 @@ class MedDiagnosticCard extends StatelessWidget {
               tag: examen.examenId,
               child: Container(
                 decoration: BoxDecoration(
-                    image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: MemoryImage(
-                    base64Decode(examen.examenDocument),
-                  ),
-                )),
+                  image: examen.examenDocument != null &&
+                          examen.examenDocument.length > 200
+                      ? DecorationImage(
+                          fit: BoxFit.cover,
+                          image: MemoryImage(
+                            base64Decode(examen.examenDocument),
+                          ),
+                        )
+                      : const DecorationImage(
+                          image: AssetImage("assets/images/vector/doctor3.png"),
+                          fit: BoxFit.fill,
+                        ),
+                ),
                 child: Center(
                   child: Container(
                     color: Colors.blue[900].withOpacity(.6),

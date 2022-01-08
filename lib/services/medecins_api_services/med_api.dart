@@ -440,6 +440,7 @@ class MedecinApi {
     } catch (err) {
       print("error from medecin voir agenda $err");
     }
+
     if (response != null) {
       var res = jsonDecode(response);
       if (res["error"] != null) {

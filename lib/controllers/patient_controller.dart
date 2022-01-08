@@ -31,20 +31,6 @@ class PatientController extends GetxController {
     refreshDatas();
   }
 
-  Future<List<ConsultationsRdv>> viewRdvs({String key}) async {
-    var rdvs = await PatientApi.voirRdvEnLigne(key: key);
-    if (rdvs != null) {
-      var data = rdvs.consultationsRdv;
-      if (data.isEmpty) {
-        return [];
-      } else {
-        return data;
-      }
-    } else {
-      return null;
-    }
-  }
-
   Future<List<HomeMedecins>> get medecinsList async {
     var homeDatas = await PatientApi.viewHomeContents();
     if (homeDatas != null) {

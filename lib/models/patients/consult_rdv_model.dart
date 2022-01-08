@@ -29,7 +29,7 @@ class ConsultationsRdv {
   String heureDebut;
   String heureFin;
   MedecinRdv medecin;
-  Consulting consultation;
+  List<Consulting> consultations;
 
   ConsultationsRdv({
     this.consultationRdvId,
@@ -38,7 +38,7 @@ class ConsultationsRdv {
     this.heureDebut,
     this.heureFin,
     this.medecin,
-    this.consultation,
+    this.consultations,
   });
 
   ConsultationsRdv.fromJson(Map<String, dynamic> json) {
@@ -50,9 +50,12 @@ class ConsultationsRdv {
     medecin = json['medecin'] != null
         ? new MedecinRdv.fromJson(json['medecin'])
         : null;
-    consultation = json['consultation'] != null
-        ? new Consulting.fromJson(json['consultation'])
-        : null;
+    if (json['consultation'] != null) {
+      consultations = <Consulting>[];
+      json['consultation'].forEach((v) {
+        consultations.add(new Consulting.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -65,8 +68,8 @@ class ConsultationsRdv {
     if (this.medecin != null) {
       data['medecin'] = this.medecin.toJson();
     }
-    if (this.consultation != null) {
-      data['consultation'] = this.consultation.toJson();
+    if (this.consultations != null) {
+      data['consultation'] = this.consultations.map((v) => v.toJson()).toList();
     }
     return data;
   }

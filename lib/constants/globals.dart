@@ -26,6 +26,7 @@ class Specialities {
 
 Future<PickedFile> takePhoto({ImageSource source}) async {
   final ImagePicker _picker = ImagePicker();
+  // ignore: deprecated_member_use
   final pickedFile = await _picker.getImage(
     source: source,
   );
@@ -51,6 +52,7 @@ void showScrollableSheet(context, {List<Widget> childrens}) {
           return Padding(
             padding: MediaQuery.of(context).viewInsets,
             child: Stack(
+              // ignore: deprecated_member_use
               overflow: Overflow.visible,
               children: [
                 Container(

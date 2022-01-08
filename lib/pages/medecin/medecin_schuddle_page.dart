@@ -131,11 +131,15 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: _listSchedule(context, key: "encours"),
+              child: AgendaViewer(
+                future: rdvs("encours"),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: _listSchedule(context, key: "anterieur"),
+              child: AgendaViewer(
+                future: rdvs("anterieur"),
+              ),
             ),
           ],
         ),
@@ -180,11 +184,11 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.calendar_today,
                       size: 16.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8.0,
                     ),
                     const Text("En cours"),
@@ -202,14 +206,14 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       CupertinoIcons.calendar,
                       size: 16.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8.0,
                     ),
-                    const Text("Antérieures"),
+                    const Text("Antérieurs"),
                   ],
                 ),
               ],
@@ -220,11 +224,49 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
     );
   }
 
-  Widget _listSchedule(context, {String key}) {
+  Future<List<ConsultationsRdv>> rdvs(String type) async {
+    var result = await MedecinApi.voirRdvs(key: type);
+    if (result != null) {
+      var data = result.consultationsRdv;
+      return data;
+    } else {
+      return null;
+    }
+  }
+}
+
+class AgendaViewer extends StatelessWidget {
+  final Future<List<ConsultationsRdv>> future;
+  const AgendaViewer({Key key, this.future}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return FutureBuilder(
-      future: medecinController.rdvsMedecin(key: key),
+      future: future,
       builder: (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
-        if (snapshot.data != null) {
+        if (snapshot.data == null) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.topCenter,
+                  height: 100,
+                  width: 100.0,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: SpinKitWave(
+                      color: Colors.black.withOpacity(.8),
+                      duration: const Duration(seconds: 1),
+                    ),
+                  ),
+                ),
+                const Text("Chargement en cours ...")
+              ],
+            ),
+          );
+        } else {
           if (snapshot.data.isEmpty) {
             return Center(
               child: Column(
@@ -236,7 +278,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                     height: 10.0,
                   ),
                   Text(
-                    "Aucun rendez-vous $key !",
+                    "Aucun rendez-vous !",
                     style: GoogleFonts.lato(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w400,
@@ -245,63 +287,63 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                 ],
               ),
             );
-          }
-          return Scrollbar(
-            radius: const Radius.circular(5),
-            thickness: 5.0,
-            child: ListView.builder(
-              padding: const EdgeInsets.only(
-                  bottom: 60.0, right: 15.0, left: 15.0, top: 10.0),
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                var data = snapshot.data[index];
-                return MedScheduleCard(
-                  data: data,
-                  onCalling: () async {
-                    // update input validation
-                    await handleCameraAndMic(Permission.camera);
-                    await handleCameraAndMic(Permission.microphone);
+          } else {
+            return Scrollbar(
+              radius: const Radius.circular(5),
+              thickness: 5.0,
+              child: ListView.builder(
+                padding: const EdgeInsets.only(
+                    bottom: 60.0, right: 15.0, left: 15.0, top: 10.0),
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  var data = snapshot.data[index];
+                  return MedScheduleCard(
+                    data: data,
+                    onCalling: () async {
+                      // update input validation
+                      await handleCameraAndMic(Permission.camera);
+                      await handleCameraAndMic(Permission.microphone);
 
-                    String uid = storage.read("medecin_id");
-                    String uName = storage.read('medecin_nom');
-                    String uPic = storage.read('photo');
+                      String uid = storage.read("medecin_id");
+                      String uName = storage.read('medecin_nom');
+                      String uPic = storage.read('photo');
 
-                    Call call = Call(
-                      callerId: uid,
-                      callerName: uName,
-                      callerPic: uPic,
-                      callerType: "medecin",
-                      receiverName: data.nom,
-                      receiverPic: "",
-                      receiverType: "medecin",
-                      receiverId: data.patientId,
-                      channelId:
-                          '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
-                      consultId: data.consultationRdvId,
-                    );
-                    Xloading.showLottieLoading(context);
-                    await MedecinApi.consulting(
-                      consultRef:
-                          '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
-                      consultId: data.consultationRdvId,
-                      key: "start",
-                    ).then((result) async {
-                      Xloading.dismiss();
-                      print(result);
-                      await CallMethods.makeCall(call: call);
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CallScreen(
-                            role: ClientRole.Broadcaster,
-                            call: call,
-                            hasCaller: true,
-                          ),
-                        ),
+                      Call call = Call(
+                        callerId: uid,
+                        callerName: uName,
+                        callerPic: uPic,
+                        callerType: "medecin",
+                        receiverName: data.nom,
+                        receiverPic: "",
+                        receiverType: "medecin",
+                        receiverId: data.patientId,
+                        channelId:
+                            '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                        consultId: data.consultationRdvId,
                       );
-                      /*if (result != null) {
+                      Xloading.showLottieLoading(context);
+                      await MedecinApi.consulting(
+                        consultRef:
+                            '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                        consultId: data.consultationRdvId,
+                        key: "start",
+                      ).then((result) async {
+                        Xloading.dismiss();
+                        print(result);
+                        await CallMethods.makeCall(call: call);
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CallScreen(
+                              role: ClientRole.Broadcaster,
+                              call: call,
+                              hasCaller: true,
+                            ),
+                          ),
+                        );
+                        /*if (result != null) {
                         
                       } else {
                         Get.snackbar(
@@ -314,17 +356,14 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                           borderRadius: 10,
                         );
                       }*/
-                    });
-                  },
-                  onCancelled: () {},
-                );
-              },
-            ),
-          );
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+                      });
+                    },
+                    onCancelled: () {},
+                  );
+                },
+              ),
+            );
+          }
         }
       },
     );

@@ -5,7 +5,7 @@ class ScheduleModel {
 
   ScheduleModel.fromJson(Map<String, dynamic> json) {
     if (json['consultations_rdv'] != null) {
-      consultationsRdv = <ConsultationsRdv>[];
+      consultationsRdv = List<ConsultationsRdv>();
       json['consultations_rdv'].forEach((v) {
         consultationsRdv.add(new ConsultationsRdv.fromJson(v));
       });
@@ -30,7 +30,7 @@ class ConsultationsRdv {
   String consultationDate;
   String heureDebut;
   String heureFin;
-  Consultation consultation;
+  List<Consultation> consultations;
 
   ConsultationsRdv(
       {this.consultationRdvId,
@@ -40,7 +40,7 @@ class ConsultationsRdv {
       this.consultationDate,
       this.heureDebut,
       this.heureFin,
-      this.consultation});
+      this.consultations});
 
   ConsultationsRdv.fromJson(Map<String, dynamic> json) {
     consultationRdvId = json['consultation_rdv_id'];
@@ -50,9 +50,12 @@ class ConsultationsRdv {
     consultationDate = json['consultation_date'];
     heureDebut = json['heure_debut'];
     heureFin = json['heure_fin'];
-    consultation = json['consultation'] != null
-        ? new Consultation.fromJson(json['consultation'])
-        : null;
+    /*if (json['consultation'] != null) {
+      consultations = List<Consultation>();
+      json['consultation'].forEach((v) {
+        consultations.add(new Consultation.fromJson(v));
+      });
+    }*/
   }
 
   Map<String, dynamic> toJson() {
@@ -64,8 +67,8 @@ class ConsultationsRdv {
     data['consultation_date'] = this.consultationDate;
     data['heure_debut'] = this.heureDebut;
     data['heure_fin'] = this.heureFin;
-    if (this.consultation != null) {
-      data['consultation'] = this.consultation.toJson();
+    if (this.consultations != null) {
+      data['consultation'] = this.consultations.map((v) => v.toJson()).toList();
     }
     return data;
   }

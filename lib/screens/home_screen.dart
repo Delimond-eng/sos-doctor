@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
   initData() {
     setState(() {
       langues.addAll(patientController.langues);
+      selectedSpeech = langues[0];
       selectLangueId = langues[0].langueId;
     });
   }
@@ -656,7 +657,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       alignment: Alignment.centerRight,
                       borderRadius: BorderRadius.circular(4.0),
                       style: GoogleFonts.lato(color: Colors.black),
-                      value: langues[0],
+                      value: selectedSpeech,
                       underline: const SizedBox(),
                       hint: Text(
                         "Langue",
@@ -746,7 +747,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 });
               },
               hideOnLoading: true,
-              direction: AxisDirection.up,
               hideOnError: true,
               loadingBuilder: (context) {
                 return const Text("Chargement...");
@@ -822,8 +822,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Specialites> getSpecialities(String query) {
     List<Specialites> matches = List();
     matches.addAll(patientController.specialities);
-    matches.retainWhere(
-        (s) => s.specialite.toLowerCase().contains(query.toLowerCase()));
+    matches.retainWhere((s) => removeAccent(s.specialite)
+        .toLowerCase()
+        .contains(removeAccent(query).toLowerCase()));
     return matches;
   }
 }
@@ -972,9 +973,13 @@ class CurrentMedCard extends StatelessWidget {
                     ),
                   ),
                   Flexible(
-                    child: Text(medecin.specialite,
-                        style: style1(
-                            color: Colors.grey, fontWeight: FontWeight.w400)),
+                    child: Text(
+                        (medecin.specialite != null) &&
+                                (medecin.specialite.isNotEmpty)
+                            ? medecin.specialite
+                            : "aucune spécialité",
+                        style: GoogleFonts.lato(
+                            color: primaryColor, fontWeight: FontWeight.w400)),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1265,9 +1270,4 @@ class Banner extends StatelessWidget {
       ],
     );
   }
-}
-
-class Medecin {
-  final String nom, specialite, photo;
-  Medecin({this.nom, this.specialite, this.photo});
 }
