@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">10729441147-qghd6fklfqdoadpd6scb0hh6qk7ncq9n.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">10729441147</string>
+    <string name="google_api_key" translatable="false">AIzaSyDJodQ745hmjevopF8zhtygbUaBXYfH4vU</string>
+    <string name="google_app_id" translatable="false">1:10729441147:android:ed7e6c720c480e3f221fde</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDJodQ745hmjevopF8zhtygbUaBXYfH4vU</string>
+    <string name="google_storage_bucket" translatable="false">sosdocteur-7feba.appspot.com</string>
+    <string name="project_id" translatable="false">sosdocteur-7feba</string>
+</resources>
