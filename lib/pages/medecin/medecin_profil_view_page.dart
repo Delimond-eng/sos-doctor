@@ -89,17 +89,19 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                     child: _header(),
                   ),
                   Expanded(
-                    child: Container(child: Obx(() {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          tabHeader(),
-                          tabBody(),
-                        ],
-                      );
-                    })),
+                    child: Container(
+                      child: Obx(() {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            tabBody(),
+                          ],
+                        );
+                      }),
+                    ),
                   ),
+                  tabHeader(),
                 ],
               ),
             ),
@@ -113,8 +115,8 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
     return Container(
       width: double.infinity,
       height: 60,
-      decoration: BoxDecoration(
-        image: const DecorationImage(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
           image: AssetImage("assets/images/shapes/bg10.jpg"),
           fit: BoxFit.cover,
           scale: 1.5,
@@ -129,19 +131,19 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
           isScrollable: true,
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: const BubbleTabIndicator(
-            indicatorHeight: 60.0,
+            indicatorHeight: 50.0,
             indicatorColor: Colors.cyan,
-            tabBarIndicatorSize: TabBarIndicatorSize.label,
-            indicatorRadius: 0,
+            tabBarIndicatorSize: TabBarIndicatorSize.tab,
+            indicatorRadius: 50,
           ),
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white,
           labelStyle: GoogleFonts.mulish(
-            fontSize: 15,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
           unselectedLabelStyle: GoogleFonts.mulish(
-            fontSize: 15,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
           ),
           tabs: [
@@ -152,12 +154,12 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 children: [
                   SvgPicture.asset(
                     "assets/icons/user-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
+                    height: 15.0,
+                    width: 15.0,
                     color: Colors.white,
                   ),
                   const SizedBox(
-                    width: 5.0,
+                    width: 8.0,
                   ),
                   const Text("Accueil"),
                 ],
@@ -170,12 +172,12 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 children: [
                   SvgPicture.asset(
                     "assets/images/vector/medical-specialist-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
+                    height: 15.0,
+                    width: 15.0,
                     color: Colors.white,
                   ),
-                  SizedBox(
-                    width: 5.0,
+                  const SizedBox(
+                    width: 8.0,
                   ),
                   const Text("Spécialités"),
                 ],
@@ -188,12 +190,12 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 children: [
                   SvgPicture.asset(
                     "assets/images/vector/university-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
+                    height: 15.0,
+                    width: 15.0,
                     color: Colors.white,
                   ),
-                  SizedBox(
-                    width: 5.0,
+                  const SizedBox(
+                    width: 8.0,
                   ),
                   const Text("Etudes"),
                 ],
@@ -207,12 +209,12 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 children: [
                   SvgPicture.asset(
                     "assets/images/vector/professional-profile-with-image-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
+                    height: 15.0,
+                    width: 15.0,
                     color: Colors.white,
                   ),
-                  SizedBox(
-                    width: 5.0,
+                  const SizedBox(
+                    width: 8.0,
                   ),
                   const Text("Expériences"),
                 ],
@@ -265,11 +267,11 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                               base64Decode(avatar),
                             ),
                             fit: BoxFit.cover),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black38,
                             blurRadius: 12.0,
-                            offset: const Offset(0, 5),
+                            offset: Offset(0, 5),
                           )
                         ],
                       ),
@@ -312,14 +314,14 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                       child: Container(
                         height: 50.0,
                         width: 50.0,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.blue,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black45,
                               blurRadius: 12.0,
-                              offset: const Offset(0, 3),
+                              offset: Offset(0, 3),
                             )
                           ],
                         ),

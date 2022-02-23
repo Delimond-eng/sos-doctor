@@ -14,6 +14,8 @@ import 'package:sos_docteur/widgets/form_input_field.dart';
 import '../../index.dart';
 
 class MedecinProfilPage extends StatefulWidget {
+  const MedecinProfilPage({Key key}) : super(key: key);
+
   @override
   _MedecinProfilPageState createState() => _MedecinProfilPageState();
 }
@@ -64,7 +66,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
   @override
   void initState() {
     super.initState();
-    controller = TabController(vsync: this, length: 4);
+    controller = TabController(vsync: this, length: 5);
 
     setState(() {
       avatar = medPhoto ?? "";
@@ -110,12 +112,12 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          tabHeader(),
                           tabBody(),
                         ],
                       ),
                     ),
                   ),
+                  tabHeader(),
                 ],
               ),
             ),
@@ -130,112 +132,126 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
       width: double.infinity,
       height: 60,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage("assets/images/shapes/bg10.jpg"),
-          fit: BoxFit.cover,
-          scale: 1.5,
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: primaryColor.withOpacity(.9),
-        ),
-        child: TabBar(
-          controller: controller,
-          isScrollable: true,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: const BubbleTabIndicator(
-            indicatorHeight: 60.0,
-            indicatorColor: Colors.cyan,
-            tabBarIndicatorSize: TabBarIndicatorSize.label,
-            indicatorRadius: 0,
-          ),
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.white,
-          labelStyle: GoogleFonts.mulish(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-          unselectedLabelStyle: GoogleFonts.mulish(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-          ),
-          tabs: [
-            Tab(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/icons/user-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 5.0,
-                  ),
-                  const Text("Accueil"),
-                ],
-              ),
-            ),
-            Tab(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/images/vector/medical-specialist-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 5.0,
-                  ),
-                  const Text("Spécialités"),
-                ],
-              ),
-            ),
-            Tab(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/images/vector/university-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 5.0,
-                  ),
-                  const Text("Etudes"),
-                ],
-              ),
-            ),
-            //
-            Tab(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    "assets/images/vector/professional-profile-with-image-svgrepo-com.svg",
-                    height: 20,
-                    width: 20.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 5.0,
-                  ),
-                  const Text("Expériences"),
-                ],
-              ),
-            ),
+        gradient: LinearGradient(
+          colors: [
+            primaryColor,
+            Colors.black87,
           ],
         ),
+      ),
+      child: TabBar(
+        controller: controller,
+        isScrollable: true,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicator: const BubbleTabIndicator(
+          indicatorHeight: 50.0,
+          indicatorColor: Colors.pink,
+          tabBarIndicatorSize: TabBarIndicatorSize.tab,
+          indicatorRadius: 50,
+        ),
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.white,
+        labelStyle: GoogleFonts.mulish(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+        unselectedLabelStyle: GoogleFonts.mulish(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+        tabs: [
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/user-svgrepo-com.svg",
+                  height: 20,
+                  width: 20.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 5.0,
+                ),
+                const Text("Accueil"),
+              ],
+            ),
+          ),
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/images/vector/medical-specialist-svgrepo-com.svg",
+                  height: 15.0,
+                  width: 15.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                const Text("Spécialités"),
+              ],
+            ),
+          ),
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/images/vector/university-svgrepo-com.svg",
+                  height: 15.0,
+                  width: 15.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                const Text("Etudes"),
+              ],
+            ),
+          ),
+          //
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/images/vector/professional-profile-with-image-svgrepo-com.svg",
+                  height: 15.0,
+                  width: 15.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                const Text("Expériences"),
+              ],
+            ),
+          ),
+          Tab(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  "assets/icons/medical-svgrepo-com.svg",
+                  height: 15.0,
+                  width: 15.0,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                const Text("Services"),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -251,6 +267,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             _profilSpecialites(context),
             _profilEtudes(context),
             _profilExperience(context),
+            _profilService(context)
           ],
         ),
       ),
@@ -447,15 +464,16 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                              image: MemoryImage(
-                                base64Decode(avatar),
-                              ),
-                              fit: BoxFit.cover),
-                          boxShadow: [
+                            image: MemoryImage(
+                              base64Decode(avatar),
+                            ),
+                            fit: BoxFit.cover,
+                          ),
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.black38,
                               blurRadius: 12.0,
-                              offset: const Offset(0, 5),
+                              offset: Offset(0, 5),
                             )
                           ],
                         ),
@@ -501,11 +519,11 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.amber[800],
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black45,
                                 blurRadius: 12.0,
-                                offset: const Offset(0, 3),
+                                offset: Offset(0, 3),
                               )
                             ],
                           ),
@@ -555,19 +573,12 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       height: 10.0,
                     ),
                     Container(
-                      height: 50.0,
+                      height: 60.0,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         color: Colors.white30,
                         border: Border.all(color: Colors.blue, width: 1),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(.3),
-                            blurRadius: 12.0,
-                            offset: const Offset(0, 3),
-                          )
-                        ],
                       ),
                       child: Row(
                         children: [
@@ -590,9 +601,10 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                     hint: Text(
                                       "   Sélectionnez une langue",
                                       style: GoogleFonts.mulish(
-                                          color: Colors.grey[600],
-                                          fontSize: 15.0,
-                                          fontStyle: FontStyle.italic),
+                                        color: Colors.grey[600],
+                                        fontSize: 15.0,
+                                        fontStyle: FontStyle.italic,
+                                      ),
                                     ),
                                     isExpanded: true,
                                     items: langues.map((e) {
@@ -618,61 +630,71 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                               },
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () async {
-                              if (selectedLangue == null ||
-                                  selectedLangue == langues[0]) {
-                                Get.snackbar(
-                                  "champs obligatoire!",
-                                  "vous devez sélectionner une langue dans la liste !",
-                                  snackPosition: SnackPosition.TOP,
-                                  colorText: Colors.white,
-                                  backgroundColor: Colors.amber[900],
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width - 4,
-                                  borderRadius: 2,
-                                  duration: const Duration(seconds: 3),
-                                );
-                                return;
-                              }
-                              Medecins medecin =
-                                  Medecins(langue: selectedLangue);
-                              Xloading.showLottieLoading(context);
-                              var res = await MedecinApi.configProfil(
-                                  key: "langue", medecin: medecin);
-                              if (res != null) {
-                                Xloading.dismiss();
-                                if (res["reponse"]["status"] == "success") {
-                                  XDialog.showSuccessAnimation(context);
-                                  setState(() {
-                                    selectedLangue = langues[0];
-                                  });
-                                  await medecinController.refreshProfil();
-                                }
-                              } else {
-                                Xloading.dismiss();
-                                Get.snackbar(
-                                  "Echec!",
-                                  "echec survenu lors de l'envoi de données au serveur!,\nveuillez réessayer svp!",
-                                  snackPosition: SnackPosition.TOP,
-                                  colorText: Colors.white,
-                                  backgroundColor: Colors.pinkAccent,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width - 4,
-                                  borderRadius: 10,
-                                  duration: const Duration(seconds: 3),
-                                );
-                              }
-                            },
-                            child: Container(
-                              height: 50.0,
-                              width: 70.0,
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(8.0)),
-                              child: const Center(
-                                child: Icon(CupertinoIcons.add,
-                                    color: Colors.white, size: 18.0),
+                          Container(
+                            margin: const EdgeInsets.all(5.0),
+                            height: 40.0,
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(50.0),
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(50.0),
+                                onTap: () async {
+                                  if (selectedLangue == null ||
+                                      selectedLangue == langues[0]) {
+                                    Get.snackbar(
+                                      "champs obligatoire!",
+                                      "vous devez sélectionner une langue dans la liste !",
+                                      snackPosition: SnackPosition.TOP,
+                                      colorText: Colors.white,
+                                      backgroundColor: Colors.amber[900],
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width - 4,
+                                      borderRadius: 2,
+                                      duration: const Duration(seconds: 3),
+                                    );
+                                    return;
+                                  }
+                                  Medecins medecin =
+                                      Medecins(langue: selectedLangue);
+                                  Xloading.showLottieLoading(context);
+                                  var res = await MedecinApi.configProfil(
+                                      key: "langue", medecin: medecin);
+                                  if (res != null) {
+                                    Xloading.dismiss();
+                                    if (res["reponse"]["status"] == "success") {
+                                      XDialog.showSuccessAnimation(context);
+                                      setState(() {
+                                        selectedLangue = langues[0];
+                                      });
+                                      await medecinController.refreshProfil();
+                                    }
+                                  } else {
+                                    Xloading.dismiss();
+                                    Get.snackbar(
+                                      "Echec!",
+                                      "echec survenu lors de l'envoi de données au serveur!,\nveuillez réessayer svp!",
+                                      snackPosition: SnackPosition.TOP,
+                                      colorText: Colors.white,
+                                      backgroundColor: Colors.pinkAccent,
+                                      maxWidth:
+                                          MediaQuery.of(context).size.width - 4,
+                                      borderRadius: 10,
+                                      duration: const Duration(seconds: 3),
+                                    );
+                                  }
+                                },
+                                child: const Center(
+                                  child: Icon(
+                                    CupertinoIcons.add,
+                                    color: Colors.white,
+                                    size: 15.0,
+                                  ),
+                                ),
                               ),
                             ),
                           )
@@ -682,7 +704,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   ],
                 ),
                 const SizedBox(
-                  height: 20.0,
+                  height: 10.0,
                 ),
                 CustomFormField(
                   hintText: "Entrez votre numéro d'ordre...",
@@ -731,7 +753,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       }
                     },
                     child: Text(
-                      "Insérer",
+                      "Insérer n° Ordre",
                       style: GoogleFonts.lato(color: Colors.white),
                     ),
                   ),
@@ -750,35 +772,19 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: [
-          Shimmer.fromColors(
-            enabled: true,
-            baseColor: Colors.black,
-            highlightColor: Colors.cyan,
-            child: Text(
-              "Veuillez personnaliser votre ou vos spécialités !",
-              style: GoogleFonts.lato(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+          const DescCard(
+            title: "Veuillez personnaliser votre ou vos spécialités !",
           ),
           const SizedBox(
-            height: 40.0,
+            height: 15.0,
           ),
           Container(
-            height: 50.0,
+            height: 60.0,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: Colors.white54,
               border: Border.all(color: Colors.blue, width: 1),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.1),
-                  blurRadius: 12.0,
-                  offset: const Offset(0, 3),
-                )
-              ],
             ),
             child: Row(
               children: [
@@ -828,17 +834,18 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   ),
                 ),
                 Container(
-                  height: 50.0,
-                  width: 70.0,
+                  height: 40.0,
+                  width: 40.0,
+                  margin: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                     color: Colors.blue,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
                   child: Material(
                     color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(50.0),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(50.0),
                       onTap: selectedSpeciality != null
                           ? () {
                               if (selectedSpeciality != null) {
@@ -937,9 +944,9 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                 ),
                                 child: const Center(
                                   child: Icon(
-                                    CupertinoIcons.clear,
+                                    CupertinoIcons.trash,
                                     color: Colors.white,
-                                    size: 15.0,
+                                    size: 12.0,
                                   ),
                                 ),
                               ),
@@ -956,67 +963,69 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
           const SizedBox(
             height: 10.0,
           ),
-          Container(
-            width: double.infinity,
-            height: 60.0,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              elevation: 10.0,
-              color: Colors.green[700],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(
-                    CupertinoIcons.add,
-                    color: Colors.white,
-                    size: 15,
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Text(
-                    "Insérer",
-                    style: GoogleFonts.lato(color: Colors.white),
-                  ),
-                ],
-              ),
-              onPressed: () async {
-                if (selectedSpeciality == null) {
-                  Get.snackbar(
-                    "champs obligatoire !",
-                    "vous devez sélectionner une spécialité dans la liste !",
-                    snackPosition: SnackPosition.TOP,
-                    colorText: Colors.white,
-                    backgroundColor: Colors.black87,
-                    maxWidth: MediaQuery.of(context).size.width - 4,
-                    borderRadius: 10,
-                    duration: const Duration(seconds: 3),
-                  );
-                  return;
-                }
-                Xloading.showLottieLoading(context);
-                for (int i = 0; i < specialitesList.length; i++) {
-                  Medecins medecin = Medecins(
-                    specialite: specialitesList[i].specialiteId,
-                  );
+          if (specialitesList.isNotEmpty) ...[
+            Container(
+              width: double.infinity,
+              height: 60.0,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 10.0,
+                color: Colors.green[700],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      CupertinoIcons.add,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(
+                      "Insérer",
+                      style: GoogleFonts.lato(color: Colors.white),
+                    ),
+                  ],
+                ),
+                onPressed: () async {
+                  if (selectedSpeciality == null) {
+                    Get.snackbar(
+                      "champs obligatoire !",
+                      "vous devez sélectionner une spécialité dans la liste !",
+                      snackPosition: SnackPosition.TOP,
+                      colorText: Colors.white,
+                      backgroundColor: Colors.black87,
+                      maxWidth: MediaQuery.of(context).size.width - 4,
+                      borderRadius: 10,
+                      duration: const Duration(seconds: 3),
+                    );
+                    return;
+                  }
+                  Xloading.showLottieLoading(context);
+                  for (int i = 0; i < specialitesList.length; i++) {
+                    Medecins medecin = Medecins(
+                      specialite: specialitesList[i].specialiteId,
+                    );
 
-                  await MedecinApi.configProfil(
-                    key: "specialite",
-                    medecin: medecin,
-                  );
-                }
-                Xloading.dismiss();
-                XDialog.showSuccessAnimation(context);
-                setState(() {
-                  specialitesList.clear();
-                });
-                await medecinController.refreshProfil();
-              },
-            ),
-          )
+                    await MedecinApi.configProfil(
+                      key: "specialite",
+                      medecin: medecin,
+                    );
+                  }
+                  Xloading.dismiss();
+                  XDialog.showSuccessAnimation(context);
+                  setState(() {
+                    specialitesList.clear();
+                  });
+                  await medecinController.refreshProfil();
+                },
+              ),
+            )
+          ]
         ],
       ),
     );
@@ -1028,20 +1037,11 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: [
-          Shimmer.fromColors(
-            enabled: true,
-            baseColor: Colors.black,
-            highlightColor: Colors.cyan,
-            child: Text(
-              "Veuillez personnaliser vos études faites !",
-              style: GoogleFonts.lato(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+          const DescCard(
+            title: "Veuillez personnaliser vos études faites !",
           ),
-          SizedBox(
-            height: 15.0,
+          const SizedBox(
+            height: 10.0,
           ),
           Form(
             key: _formEtudes,
@@ -1190,7 +1190,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   title: "Adresse",
                   controller: textAdresse,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 Container(
@@ -1319,20 +1319,12 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
       child: Column(
         children: [
-          Shimmer.fromColors(
-            enabled: true,
-            baseColor: Colors.black,
-            highlightColor: Colors.cyan,
-            child: Text(
-              "Veuillez personnaliser votre ou vos expériences professionnelles !",
-              style: GoogleFonts.lato(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+          const DescCard(
+            title:
+                "Veuillez personnaliser votre ou vos expériences professionnelles !",
           ),
-          SizedBox(
-            height: 15.0,
+          const SizedBox(
+            height: 10.0,
           ),
           Form(
             key: _formExperiences,
@@ -1559,6 +1551,434 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             ),
           )
         ],
+      ),
+    );
+  }
+
+  bool selectTeleConsult = false;
+  bool selectInterpretation = false;
+  String selectedExamen;
+  List<String> biologicList = [
+    "Hématologie",
+    "Biochimie",
+    "immunologie",
+    "Parasitologie",
+    "Autres"
+  ];
+  List<String> immagerieList = [
+    "Echographie",
+    "Echo-Doppler",
+    "Radiographie",
+    "Mammographie",
+    "Scanner",
+    "IRM",
+    "Phlebographie",
+    "Angéographie numerisée",
+    "Autres"
+  ];
+  List<String> medicalList = ["Endoscope", "EEG", "ECG"];
+  List<String> selectedList = [];
+
+  Widget _profilService(context) {
+    return Column(
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(15),
+          child: DescCard(
+            title: "Choisissez un service que vous voudriez proposer !",
+          ),
+        ),
+        Expanded(
+          child: Container(
+            child: SingleChildScrollView(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Flexible(
+                        child: SelectChoiceCard(
+                          hasSelected: selectTeleConsult,
+                          title: "Télé-consultation",
+                          onSelected: () {
+                            setState(() {
+                              selectTeleConsult = !selectTeleConsult;
+                              selectInterpretation = false;
+                            });
+                            cleanSelected();
+                            selectedList.clear();
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Flexible(
+                        child: SelectChoiceCard(
+                          hasSelected: selectInterpretation,
+                          title: "Interpretation des résultats",
+                          onSelected: () {
+                            setState(() {
+                              selectInterpretation = !selectInterpretation;
+                              selectTeleConsult = false;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+                  if ((!selectInterpretation) && (!selectTeleConsult)) ...[
+                    const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Center(
+                        child: Text(
+                          "Veuillez séléctionner un type de service que vous voudriez proposer !",
+                        ),
+                      ),
+                    )
+                  ],
+                  if (selectInterpretation) ...[
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Container(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8.0),
+                              border: Border.all(color: primaryColor),
+                            ),
+                            padding: const EdgeInsets.all(10.0),
+                            child: DropdownButton(
+                              menuMaxHeight: 300,
+                              alignment: Alignment.bottomCenter,
+                              dropdownColor: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(8.0),
+                              style: GoogleFonts.lato(color: Colors.black54),
+                              value: selectedExamen,
+                              underline: const SizedBox(),
+                              hint: Text(
+                                "  Sélectionnez un type d'examen",
+                                style: GoogleFonts.mulish(
+                                  color: Colors.grey[700],
+                                  fontSize: 15.0,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                              isExpanded: true,
+                              items: [
+                                "Examens biologiques",
+                                "Examens d'immagerie médicales",
+                                "Autres examens médicaux",
+                              ].map((e) {
+                                return DropdownMenuItem(
+                                  value: e,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Text(
+                                      e,
+                                      style: GoogleFonts.lato(
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (String value) {
+                                setState(() {
+                                  selectedExamen = value;
+                                });
+                                selectedList.clear();
+                                switch (value) {
+                                  case "Examens biologiques":
+                                    setState(() {
+                                      selectedList.addAll(biologicList);
+                                    });
+                                    break;
+                                  case "Examens d'immagerie médicales":
+                                    setState(() {
+                                      selectedList.addAll(immagerieList);
+                                    });
+                                    break;
+                                  case "Autres examens médicaux":
+                                    setState(() {
+                                      selectedList.addAll(medicalList);
+                                    });
+                                    break;
+                                  default:
+                                    setState(() {
+                                      selectedList.clear();
+                                    });
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (selectedList.isNotEmpty) ...[
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      Column(
+                        children: selectedList
+                            .map(
+                              (e) => ExamenCard(
+                                label: e,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        height: 60.0,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          elevation: 10.0,
+                          color: Colors.blue,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                CupertinoIcons.checkmark_alt,
+                                color: Colors.white,
+                                size: 15,
+                              ),
+                              const SizedBox(
+                                width: 8.0,
+                              ),
+                              Text(
+                                "Valider",
+                                style: GoogleFonts.lato(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                          onPressed: () async {
+                            cleanSelected();
+                          },
+                        ),
+                      )
+                    ]
+                  ]
+                ],
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  cleanSelected({String value}) {
+    setState(() {
+      selectedExamen = value;
+    });
+  }
+}
+
+class ExamenCard extends StatefulWidget {
+  const ExamenCard({
+    Key key,
+    this.label,
+  }) : super(key: key);
+  final String label;
+
+  @override
+  State<ExamenCard> createState() => _ExamenCardState();
+}
+
+class _ExamenCardState extends State<ExamenCard> {
+  bool isActive = false;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 8.0),
+      height: 50.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.white,
+        border: Border.all(
+          color: primaryColor,
+        ),
+      ),
+      child: Material(
+        borderRadius: BorderRadius.circular(8.0),
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(8.0),
+          onTap: () {
+            setState(() {
+              isActive = !isActive;
+            });
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Icon(
+                  isActive
+                      ? CupertinoIcons.checkmark_alt_circle_fill
+                      : CupertinoIcons.checkmark_alt_circle,
+                  size: 18.0,
+                  color: isActive ? Colors.green[700] : Colors.grey,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Container(
+                  height: 20.0,
+                  width: 1.0,
+                  color: primaryColor,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        widget.label,
+                        style: GoogleFonts.lato(
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87,
+                          fontSize: 15.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SelectChoiceCard extends StatelessWidget {
+  const SelectChoiceCard({
+    Key key,
+    this.hasSelected = false,
+    this.title,
+    this.onSelected,
+  }) : super(key: key);
+
+  final bool hasSelected;
+  final String title;
+  final Function onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: 55.0,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(.3),
+                blurRadius: 12.0,
+                offset: const Offset(0, 3),
+              )
+            ],
+          ),
+          child: Material(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(10.0),
+              onTap: onSelected,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30.0, right: 10.0),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: GoogleFonts.lato(fontSize: 14.0),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 15.0,
+          left: 8.0,
+          child: Center(
+            child: Icon(
+              hasSelected
+                  ? CupertinoIcons.checkmark_alt_circle_fill
+                  : CupertinoIcons.checkmark_alt_circle,
+              size: 20.0,
+              color: hasSelected ? Colors.blue : Colors.grey,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class DescCard extends StatelessWidget {
+  const DescCard({
+    Key key,
+    this.title,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 60.0,
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.pink,
+            primaryColor,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 10.0,
+            color: Colors.black.withOpacity(.1),
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: Center(
+        child: Text(
+          title,
+          style: GoogleFonts.lato(
+            fontSize: 16.0,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

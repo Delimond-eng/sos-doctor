@@ -183,15 +183,15 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
+                  children: const [
+                    Icon(
                       Icons.calendar_today,
                       size: 16.0,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 8.0,
                     ),
-                    const Text("En cours"),
+                    Text("En cours"),
                   ],
                 ),
               ],
@@ -205,15 +205,15 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(
+                  children: const [
+                    Icon(
                       CupertinoIcons.calendar,
                       size: 16.0,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       width: 8.0,
                     ),
-                    const Text("Antérieurs"),
+                    Text("Antérieurs"),
                   ],
                 ),
               ],

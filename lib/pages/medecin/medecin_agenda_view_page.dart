@@ -114,7 +114,8 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
                                               .rightToLeftWithFade,
                                           alignment: Alignment.topCenter,
                                           curve: Curves.easeIn,
-                                          child: MedecinAgendaConfigPage(),
+                                          child:
+                                              const MedecinAgendaConfigPage(),
                                         ),
                                       );
                                     },

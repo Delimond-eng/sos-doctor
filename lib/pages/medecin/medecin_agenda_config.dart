@@ -12,6 +12,8 @@ import 'package:sos_docteur/video_calls/pages/pickup_layout.dart';
 import 'package:sos_docteur/widgets/standard_button.dart';
 
 class MedecinAgendaConfigPage extends StatefulWidget {
+  const MedecinAgendaConfigPage({Key key}) : super(key: key);
+
   @override
   _MedecinAgendaConfigPageState createState() =>
       _MedecinAgendaConfigPageState();
