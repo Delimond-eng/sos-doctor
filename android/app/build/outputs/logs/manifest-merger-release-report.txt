@@ -15,49 +15,32 @@ MERGED from [:path_provider] /home/delimond/Documents/Development/flutter design
 MERGED from [:connectivity] /home/delimond/Documents/Development/flutter design/sos_docteur/build/connectivity/intermediates/library_manifest/release/AndroidManifest.xml:2:1-9:12
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:2:1-15:12
 MERGED from [:permission_handler] /home/delimond/Documents/Development/flutter design/sos_docteur/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:2:1-7:12
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:2:1-15:12
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:15:1-38:12
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:17:1-83:12
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:15:1-39:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] /home/delimond/.gradle/caches/transforms-2/files-2.1/07f9d14af53544ef34db11cff9a4b226/jetified-firebase-appcheck-interop-16.0.0-beta04/AndroidManifest.xml:15:1-26:12
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/867cefbce86fe3765761587151477db0/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /home/delimond/.gradle/caches/transforms-2/files-2.1/ebea82813f209b6050dffaab48536715/jetified-firebase-auth-interop-19.0.2/AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-common:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2231355395102d5b4540a49df67e11df/jetified-firebase-common-20.0.0/AndroidManifest.xml:15:1-40:12
 MERGED from [androidx.exifinterface:exifinterface:1.3.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/c17f1f96d8937515c55c8b52df9b7629/exifinterface-1.3.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-components:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/22c7d29e8488704df77991bee9ca323b/jetified-firebase-components-17.0.0/AndroidManifest.xml:15:1-23:12
 MERGED from [com.google.firebase:firebase-database-collection:18.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e9924b20dec7310d07d9f2c78fe642f6/jetified-firebase-database-collection-18.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bc655c786aefe635e6324ec5662e16f8/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e04ad2707cb6a4902e6f2b726c2c7c00/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:17:1-29:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2c7f71c68a176b38520dc3f4115027f4/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:2:1-9:12
-MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:17:1-28:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/58d49391c99c8fa078ce1a35c23ed3f2/fragment-1.1.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.browser:browser:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b841fcc388bfa10d92daccd34a58d829/browser-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b30be3854f254848e4f46d3c03d46299/legacy-support-core-ui-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e48527d1d04291f1820d5b9b97ed62ce/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/034960cf931e4c960f901b8f10b6b9f4/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/73ecb294ffd4937648772c7db907fef2/loader-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/0c3f73dbb389d44b413677a6445f53da/jetified-activity-1.0.0/AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/4bb572760fc02be452733fd2cee2ef8f/coordinatorlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/38b0a08977858529517cdaaa54f0eadd/drawerlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ee0c68bb1194f5a4822249643f85d877/slidingpanelayout-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/9e6a725870b1adacc4c5530bc70c23c8/customview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/750fe44d17816eadcb438257d816f523/swiperefreshlayout-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/95a5184be75a42c8c690925ba4d321bf/asynclayoutinflater-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/37c9812e6f3e3678d1d9ceef3b4c9f33/core-1.1.0/AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/43700261f24c8936b14589855c71f776/lifecycle-runtime-2.2.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/6b06ccda3c5213348ada72712181025e/jetified-savedstate-1.0.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2537682233eea5545071b59e4b6bae75/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ef1e5161a32b3a126864a88611a39a8f/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36fe8f458febf6583a73ddad1b40f2c0/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/5ca98e00260d599b882ee2fac2514fa6/core-runtime-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a97c8ef19496f238b73db26f0d21c12e/versionedparcelable-1.1.0/AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/402ef82ce7bbec0f1d6bad5c846a948b/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/93b007f9551108b13694433390094302/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/00d2a1b45aff0803105c7abd5f687e28/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a184aa3e56d869afa36335a2ea784c08/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.print:print:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bbfafba53f2d2139ae5db473d82e883a/print-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.agorabuilder:native-full-sdk:3.5.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/012b17811b6a6f2cba6471af62da4c1c/jetified-native-full-sdk-3.5.0.3/AndroidManifest.xml:2:1-11:12
 MERGED from [io.grpc:grpc-android:1.41.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/0748bc40af9eec12c7d5136eeb0787f7/jetified-grpc-android-1.41.0/AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/f8970fc8b2c922742609e7cb3a3f5aff/jetified-protolite-well-known-types-18.0.0/AndroidManifest.xml:2:1-11:12
@@ -84,8 +67,6 @@ MERGED from [:agora_rtc_engine] /home/delimond/Documents/Development/flutter des
 MERGED from [:agora_rtc_engine] /home/delimond/Documents/Development/flutter design/sos_docteur/build/agora_rtc_engine/intermediates/library_manifest/release/AndroidManifest.xml:11:5-67
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:26:5-67
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:26:5-67
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:23:5-67
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:23:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:14:5-67
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:14:5-67
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:27:5-67
@@ -124,8 +105,6 @@ MERGED from [:connectivity] /home/delimond/Documents/Development/flutter design/
 MERGED from [:connectivity] /home/delimond/Documents/Development/flutter design/sos_docteur/build/connectivity/intermediates/library_manifest/release/AndroidManifest.xml:7:5-79
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:25:5-79
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:25:5-79
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:24:5-79
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:24:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:26:5-79
@@ -142,32 +121,26 @@ MERGED from [:image_picker] /home/delimond/Documents/Development/flutter design/
 MERGED from [:image_picker] /home/delimond/Documents/Development/flutter design/sos_docteur/build/image_picker/intermediates/library_manifest/release/AndroidManifest.xml:7:5-17:19
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:7:5-13:19
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:28:5-36:19
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:28:5-36:19
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:26:5-81:19
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:26:5-81:19
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:16:5-24:19
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:29:5-37:19
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:29:5-37:19
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] /home/delimond/.gradle/caches/transforms-2/files-2.1/07f9d14af53544ef34db11cff9a4b226/jetified-firebase-appcheck-interop-16.0.0-beta04/AndroidManifest.xml:24:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] /home/delimond/.gradle/caches/transforms-2/files-2.1/07f9d14af53544ef34db11cff9a4b226/jetified-firebase-appcheck-interop-16.0.0-beta04/AndroidManifest.xml:24:5-20
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/867cefbce86fe3765761587151477db0/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/867cefbce86fe3765761587151477db0/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /home/delimond/.gradle/caches/transforms-2/files-2.1/ebea82813f209b6050dffaab48536715/jetified-firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /home/delimond/.gradle/caches/transforms-2/files-2.1/ebea82813f209b6050dffaab48536715/jetified-firebase-auth-interop-19.0.2/AndroidManifest.xml:7:5-8:19
 MERGED from [com.google.firebase:firebase-common:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2231355395102d5b4540a49df67e11df/jetified-firebase-common-20.0.0/AndroidManifest.xml:25:5-38:19
 MERGED from [com.google.firebase:firebase-common:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2231355395102d5b4540a49df67e11df/jetified-firebase-common-20.0.0/AndroidManifest.xml:25:5-38:19
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e04ad2707cb6a4902e6f2b726c2c7c00/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e04ad2707cb6a4902e6f2b726c2c7c00/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2c7f71c68a176b38520dc3f4115027f4/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2c7f71c68a176b38520dc3f4115027f4/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:7:5-20
-MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
-MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.core:core:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/37c9812e6f3e3678d1d9ceef3b4c9f33/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/37c9812e6f3e3678d1d9ceef3b4c9f33/core-1.1.0/AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a97c8ef19496f238b73db26f0d21c12e/versionedparcelable-1.1.0/AndroidManifest.xml:24:5-25:19
@@ -246,22 +219,18 @@ MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter desi
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:permission_handler] /home/delimond/Documents/Development/flutter design/sos_docteur/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:permission_handler] /home/delimond/Documents/Development/flutter design/sos_docteur/build/permission_handler/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:21:5-44
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:21:5-44
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] /home/delimond/.gradle/caches/transforms-2/files-2.1/07f9d14af53544ef34db11cff9a4b226/jetified-firebase-appcheck-interop-16.0.0-beta04/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] /home/delimond/.gradle/caches/transforms-2/files-2.1/07f9d14af53544ef34db11cff9a4b226/jetified-firebase-appcheck-interop-16.0.0-beta04/AndroidManifest.xml:19:5-21:41
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/867cefbce86fe3765761587151477db0/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/867cefbce86fe3765761587151477db0/jetified-firebase-auth-interop-20.0.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /home/delimond/.gradle/caches/transforms-2/files-2.1/ebea82813f209b6050dffaab48536715/jetified-firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.2] /home/delimond/.gradle/caches/transforms-2/files-2.1/ebea82813f209b6050dffaab48536715/jetified-firebase-auth-interop-19.0.2/AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2231355395102d5b4540a49df67e11df/jetified-firebase-common-20.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-common:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2231355395102d5b4540a49df67e11df/jetified-firebase-common-20.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.exifinterface:exifinterface:1.3.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/c17f1f96d8937515c55c8b52df9b7629/exifinterface-1.3.0/AndroidManifest.xml:20:5-22:41
@@ -270,42 +239,22 @@ MERGED from [com.google.firebase:firebase-components:17.0.0] /home/delimond/.gra
 MERGED from [com.google.firebase:firebase-components:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/22c7d29e8488704df77991bee9ca323b/jetified-firebase-components-17.0.0/AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e9924b20dec7310d07d9f2c78fe642f6/jetified-firebase-database-collection-18.0.0/AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-database-collection:18.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e9924b20dec7310d07d9f2c78fe642f6/jetified-firebase-database-collection-18.0.0/AndroidManifest.xml:5:5-7:41
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bc655c786aefe635e6324ec5662e16f8/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bc655c786aefe635e6324ec5662e16f8/jetified-play-services-auth-api-phone-17.4.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e04ad2707cb6a4902e6f2b726c2c7c00/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e04ad2707cb6a4902e6f2b726c2c7c00/jetified-play-services-safetynet-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2c7f71c68a176b38520dc3f4115027f4/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2c7f71c68a176b38520dc3f4115027f4/jetified-play-services-tasks-17.0.0/AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/58d49391c99c8fa078ce1a35c23ed3f2/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/58d49391c99c8fa078ce1a35c23ed3f2/fragment-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.browser:browser:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b841fcc388bfa10d92daccd34a58d829/browser-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.browser:browser:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b841fcc388bfa10d92daccd34a58d829/browser-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b30be3854f254848e4f46d3c03d46299/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/b30be3854f254848e4f46d3c03d46299/legacy-support-core-ui-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e48527d1d04291f1820d5b9b97ed62ce/viewpager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/e48527d1d04291f1820d5b9b97ed62ce/viewpager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/034960cf931e4c960f901b8f10b6b9f4/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/034960cf931e4c960f901b8f10b6b9f4/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/73ecb294ffd4937648772c7db907fef2/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/73ecb294ffd4937648772c7db907fef2/loader-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/0c3f73dbb389d44b413677a6445f53da/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/0c3f73dbb389d44b413677a6445f53da/jetified-activity-1.0.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/4bb572760fc02be452733fd2cee2ef8f/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/4bb572760fc02be452733fd2cee2ef8f/coordinatorlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/38b0a08977858529517cdaaa54f0eadd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/38b0a08977858529517cdaaa54f0eadd/drawerlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ee0c68bb1194f5a4822249643f85d877/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ee0c68bb1194f5a4822249643f85d877/slidingpanelayout-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/9e6a725870b1adacc4c5530bc70c23c8/customview-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/9e6a725870b1adacc4c5530bc70c23c8/customview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/750fe44d17816eadcb438257d816f523/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/750fe44d17816eadcb438257d816f523/swiperefreshlayout-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/95a5184be75a42c8c690925ba4d321bf/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/95a5184be75a42c8c690925ba4d321bf/asynclayoutinflater-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/37c9812e6f3e3678d1d9ceef3b4c9f33/core-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/37c9812e6f3e3678d1d9ceef3b4c9f33/core-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/43700261f24c8936b14589855c71f776/lifecycle-runtime-2.2.0/AndroidManifest.xml:20:5-22:41
@@ -316,22 +265,12 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/delimond/.gradle
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/2537682233eea5545071b59e4b6bae75/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ef1e5161a32b3a126864a88611a39a8f/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/ef1e5161a32b3a126864a88611a39a8f/lifecycle-livedata-core-2.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36fe8f458febf6583a73ddad1b40f2c0/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36fe8f458febf6583a73ddad1b40f2c0/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/5ca98e00260d599b882ee2fac2514fa6/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/5ca98e00260d599b882ee2fac2514fa6/core-runtime-2.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a97c8ef19496f238b73db26f0d21c12e/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a97c8ef19496f238b73db26f0d21c12e/versionedparcelable-1.1.0/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/402ef82ce7bbec0f1d6bad5c846a948b/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/402ef82ce7bbec0f1d6bad5c846a948b/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/93b007f9551108b13694433390094302/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/93b007f9551108b13694433390094302/lifecycle-viewmodel-2.1.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/00d2a1b45aff0803105c7abd5f687e28/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/00d2a1b45aff0803105c7abd5f687e28/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a184aa3e56d869afa36335a2ea784c08/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.documentfile:documentfile:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/a184aa3e56d869afa36335a2ea784c08/documentfile-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bbfafba53f2d2139ae5db473d82e883a/print-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.print:print:1.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/bbfafba53f2d2139ae5db473d82e883a/print-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [com.github.agorabuilder:native-full-sdk:3.5.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/012b17811b6a6f2cba6471af62da4c1c/jetified-native-full-sdk-3.5.0.3/AndroidManifest.xml:7:5-9:41
 MERGED from [com.github.agorabuilder:native-full-sdk:3.5.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/012b17811b6a6f2cba6471af62da4c1c/jetified-native-full-sdk-3.5.0.3/AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.41.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/0748bc40af9eec12c7d5136eeb0787f7/jetified-grpc-android-1.41.0/AndroidManifest.xml:7:5-9:41
@@ -352,14 +291,10 @@ service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:firebase_storage] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_storage/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
-MERGED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:29:9-35:19
 MERGED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:29:9-35:19
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:74:9-80:19
-MERGED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:74:9-80:19
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:17:9-23:19
 MERGED from [com.google.firebase:firebase-storage:20.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1a78f652c7a914b252132b3f6b78665e/jetified-firebase-storage-20.0.0/AndroidManifest.xml:30:9-36:19
@@ -420,12 +355,6 @@ ADDED from [:cloud_firestore] /home/delimond/Documents/Development/flutter desig
 		ADDED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
 	android:name
 		ADDED from [:cloud_firestore] /home/delimond/Documents/Development/flutter design/sos_docteur/build/cloud_firestore/intermediates/library_manifest/release/AndroidManifest.xml:10:17-134
-meta-data#com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar
-ADDED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
-	android:value
-		ADDED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:11:17-82
-	android:name
-		ADDED from [:firebase_auth] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_auth/intermediates/library_manifest/release/AndroidManifest.xml:10:17-124
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar
 ADDED from [:firebase_core] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_core/intermediates/library_manifest/release/AndroidManifest.xml:9:13-11:85
 	android:value
@@ -438,74 +367,6 @@ ADDED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle
 		ADDED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:34:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-database:20.0.3] /home/delimond/.gradle/caches/transforms-2/files-2.1/6aa22eb96954a6d9889e12d943c1de7b/jetified-firebase-database-20.0.3/AndroidManifest.xml:33:17-109
-activity#com.google.firebase.auth.internal.GenericIdpActivity
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:27:9-44:20
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:29:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:31:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:30:13-36
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:32:13-72
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:28:13-80
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:33:13-43:29
-action#android.intent.action.VIEW
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:34:17-69
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:34:25-66
-category#android.intent.category.DEFAULT
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:36:17-76
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:36:27-73
-category#android.intent.category.BROWSABLE
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:37:17-78
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:37:27-75
-data
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:39:17-42:51
-	android:path
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:41:21-37
-	android:host
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:40:21-49
-	android:scheme
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:42:21-48
-activity#com.google.firebase.auth.internal.RecaptchaActivity
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:45:9-62:20
-	android:excludeFromRecents
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:47:13-46
-	android:launchMode
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:49:13-44
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:48:13-36
-	android:theme
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:50:13-72
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:46:13-79
-intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:51:13-61:29
-service#com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:64:9-73:19
-	android:enabled
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:66:13-35
-	android:exported
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:67:13-37
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:65:13-101
-intent-filter#action:name:com.google.firebase.auth.api.gms.service.START+category:name:android.intent.category.DEFAULT
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:68:13-72:29
-action#com.google.firebase.auth.api.gms.service.START
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:69:17-89
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:69:25-86
-meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
-ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:77:13-79:85
-	android:value
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:79:17-82
-	android:name
-		ADDED from [com.google.firebase:firebase-auth:21.0.1] /home/delimond/.gradle/caches/transforms-2/files-2.1/1b2269d0532324bc3375dd7d5fef8c48/jetified-firebase-auth-21.0.1/AndroidManifest.xml:78:17-109
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
 ADDED from [com.google.firebase:firebase-firestore:24.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/1fb89a2895a8f6da19c96c8f5877440c/jetified-firebase-firestore-24.0.0/AndroidManifest.xml:20:13-22:85
 	android:value
@@ -539,8 +400,8 @@ ADDED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gr
 	android:name
 		ADDED from [com.google.android.gms:play-services-base:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/169f868ff4a46669c47b19d2adeb7cc6/jetified-play-services-base-17.1.0/AndroidManifest.xml:24:13-79
 meta-data#com.google.android.gms.version
-ADDED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:23:9-25:69
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
 	android:value
-		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:25:13-66
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
 	android:name
-		ADDED from [com.google.android.gms:play-services-basement:17.1.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/36f71fe24b265f0b44ba9ca30d2ea096/jetified-play-services-basement-17.1.0/AndroidManifest.xml:24:13-58
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /home/delimond/.gradle/caches/transforms-2/files-2.1/548e4e5b124d434714f9024e4e655abc/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58

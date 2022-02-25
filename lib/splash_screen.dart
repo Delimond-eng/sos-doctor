@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'data_connection_screen.dart';
 import 'index.dart';
 import 'screens/home_screen.dart';
 import 'screens/home_screen_for_medecin.dart';
@@ -12,7 +10,7 @@ import 'services/db_service.dart';
 import 'video_calls/permissions.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -91,88 +89,43 @@ class _SplashScreenState extends State<SplashScreen> {
             color: Colors.white.withOpacity(.4),
           ),
           child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.topCenter,
-                    height: 100,
-                    width: 100.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: SpinKitWave(
-                        color: Colors.black.withOpacity(.8),
-                        duration: const Duration(seconds: 1),
-                      ),
-                    ),
+                    child: Lottie.asset("assets/lotties/90464-loading.json"),
                   ),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Center(
-                      child: Shimmer.fromColors(
-                        enabled: true,
-                        baseColor: primaryColor,
-                        highlightColor: Colors.cyan,
-                        child: RichText(
-                          text: TextSpan(
-                            style: GoogleFonts.lato(
-                              fontSize: 20.0,
-                              color: Colors.white,
-                              shadows: [
-                                const Shadow(
-                                    color: Colors.black26,
-                                    blurRadius: 10.0,
-                                    offset: Offset(0, 2))
-                              ],
-                            ),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'SOS',
-                                style: GoogleFonts.lato(
-                                  letterSpacing: 1.20,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const TextSpan(text: "  "),
-                              TextSpan(
-                                text: 'Docteur',
-                                style: GoogleFonts.lato(
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.blue[800],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10.0,
-                  ),
-                  Shimmer.fromColors(
-                    direction: ShimmerDirection.ltr,
-                    enabled: true,
-                    baseColor: primaryColor,
-                    highlightColor: Colors.cyan,
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 5.0,
-                      width: 120.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.blue[700],
+                ),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Center(
+                    child: Shimmer.fromColors(
+                      enabled: true,
+                      baseColor: primaryColor,
+                      highlightColor: Colors.white,
+                      child: Text(
+                        "SOS docteur",
+                        style: GoogleFonts.bowlbyOne(
+                          fontSize: 18.0,
+                          color: Colors.white,
+                          letterSpacing: 2.0,
+                          fontWeight: FontWeight.w900,
+                          shadows: [
+                            const Shadow(
+                              color: Colors.black26,
+                              blurRadius: 10.0,
+                              offset: Offset(0, 2),
+                            )
                           ],
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

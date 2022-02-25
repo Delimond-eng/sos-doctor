@@ -1834,7 +1834,7 @@ class _ExamenCardState extends State<ExamenCard> {
                 Icon(
                   isActive
                       ? CupertinoIcons.checkmark_alt_circle_fill
-                      : CupertinoIcons.checkmark_alt_circle,
+                      : CupertinoIcons.circle,
                   size: 18.0,
                   color: isActive ? Colors.green[700] : Colors.grey,
                 ),
@@ -1929,7 +1929,7 @@ class SelectChoiceCard extends StatelessWidget {
             child: Icon(
               hasSelected
                   ? CupertinoIcons.checkmark_alt_circle_fill
-                  : CupertinoIcons.checkmark_alt_circle,
+                  : CupertinoIcons.circle,
               size: 20.0,
               color: hasSelected ? Colors.blue : Colors.grey,
             ),
