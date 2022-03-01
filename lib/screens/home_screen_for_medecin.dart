@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
@@ -27,6 +26,8 @@ import 'widgets/custom_header_widget7.dart';
 import 'widgets/menu_card.dart';
 
 class MedecinHomeScreen extends StatefulWidget {
+  const MedecinHomeScreen({Key key}) : super(key: key);
+
   @override
   _MedecinHomeScreenState createState() => _MedecinHomeScreenState();
 }
@@ -73,7 +74,7 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 30.0, left: 10.0, right: 10, bottom: 10.0),
+                        top: 15.0, left: 10.0, right: 10, bottom: 10.0),
                     child: Header2(
                       onOpenMenu: () {
                         _globalKey.currentState.openDrawer();
@@ -136,7 +137,7 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
                                       RichText(
                                         text: TextSpan(
                                           text:
-                                              "Bienvenu Dr. ${storage.read('medecin_nom')} sur ",
+                                              "Bienvenue Dr. ${storage.read('medecin_nom')} sur ",
                                           style: GoogleFonts.lato(
                                             fontSize: 17.0,
                                             color: Colors.white,
@@ -564,11 +565,11 @@ class SideMenu extends StatelessWidget {
                       (Route<dynamic> route) => false);
                 },
               ),
-              MenuItem(
+              /*MenuItem(
                 icon: const Icon(CupertinoIcons.info, color: Colors.cyan),
                 label: 'Aide',
                 onPressed: () {},
-              ),
+              ),*/
             ],
           ),
         ),

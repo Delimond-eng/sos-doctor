@@ -54,6 +54,16 @@ class DBService {
     }
   }
 
+  static Future deleteAllMedecin() async {
+    var dbClient = await initDb();
+    try {
+      await dbClient.delete("medecins");
+      await patientController.refreshCurrents();
+    } catch (err) {
+      print("error from medecin insert to local $err");
+    }
+  }
+
   static Future<List<IMedecins>> getCurrentSearch() async {
     var dbClient = await initDb();
     List<Map> medecinsResults;

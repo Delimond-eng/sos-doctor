@@ -6,6 +6,8 @@ import 'package:sos_docteur/screens/pages/register_page.dart';
 import '../index.dart';
 
 class AuthScreen extends StatefulWidget {
+  const AuthScreen({Key key}) : super(key: key);
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }
@@ -46,78 +48,62 @@ class _AuthScreenState extends State<AuthScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    height: 50.0,
-                    width: MediaQuery.of(context).size.width,
-                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 12.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "SOS  Docteur",
-                                style: style1(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 16.0,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 2.0,
-                              ),
-                              Shimmer.fromColors(
-                                enabled: true,
-                                baseColor: Colors.red,
-                                highlightColor: Colors.white,
-                                child: Text(
-                                  "24h/24, 7j/7",
-                                  style: style1(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                  Stack(
+                    overflow: Overflow.visible,
+                    children: [
+                      Container(
+                        height: 50.0,
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AuthButton(
-                              isActive: isLoginScreen,
-                              icon: CupertinoIcons.lock_fill,
-                              label: "Connexion",
-                              onPressed: () {
-                                setState(() {
-                                  isLoginScreen = true;
-                                  isSignUpScreen = false;
-                                });
-                              },
-                            ),
-                            const SizedBox(
-                              width: 20.0,
-                            ),
-                            AuthButton(
-                              icon: CupertinoIcons.person_circle_fill,
-                              label: "Créer compte",
-                              isActive: isSignUpScreen,
-                              onPressed: () {
-                                setState(() {
-                                  isLoginScreen = false;
-                                  isSignUpScreen = true;
-                                });
-                              },
+                            const SizedBox(),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                AuthButton(
+                                  isActive: isLoginScreen,
+                                  icon: CupertinoIcons.lock_fill,
+                                  label: "Connexion",
+                                  onPressed: () {
+                                    setState(() {
+                                      isLoginScreen = true;
+                                      isSignUpScreen = false;
+                                    });
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 20.0,
+                                ),
+                                AuthButton(
+                                  icon: CupertinoIcons.person_circle_fill,
+                                  label: "Créer compte",
+                                  isActive: isSignUpScreen,
+                                  onPressed: () {
+                                    setState(() {
+                                      isLoginScreen = false;
+                                      isSignUpScreen = true;
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Positioned(
+                        top: 0,
+                        left: 15.0,
+                        child: Image.asset(
+                          "assets/icons/ic_icon_transparent.png",
+                          height: 100.0,
+                          width: 100.0,
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                    ],
                   ),
                   if (isLoginScreen)
                     SizedBox(

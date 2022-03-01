@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -30,6 +31,8 @@ import 'package:sos_docteur/widgets/menu_item_widget.dart';
 import '../index.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -60,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedSpeech = langues[0];
       selectLangueId = langues[0].langueId;
     });
+    DBService.deleteAllMedecin();
   }
 
   @override
@@ -120,11 +124,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             );
                           },
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 15.0, right: 15.0, bottom: 10.0),
-                          child: _searchBar(), //SearchInput(),
-                        ),
                         Expanded(
                           child: Scrollbar(
                             hoverThickness: 5.0,
@@ -141,12 +140,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   child: _banner(),
                                 ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 15.0, right: 15.0, bottom: 10.0),
+                                  child: _searchBar(), //SearchInput(),
+                                ),
                                 if (patientController
-                                    .currentMedecins.isNotEmpty)
-                                  Container(
-                                    height: 250.0,
-                                    child: currentMedecinsListView(),
-                                  ),
+                                    .currentMedecins.isNotEmpty) ...[
+                                  if (searchMedecinsList.isEmpty) ...[
+                                    Container(
+                                      height: 250.0,
+                                      child: currentMedecinsListView(),
+                                    ),
+                                  ]
+                                ],
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     left: 15.0,
@@ -169,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       if (searchMedecinsList.isNotEmpty) ...[
                                         // ignore: deprecated_member_use
                                         RaisedButton(
-                                          color: primaryColor.withOpacity(.7),
+                                          color: Colors.orange,
                                           child: Text(
                                             "Voir plus",
                                             style: GoogleFonts.lato(
@@ -209,25 +216,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                       bottom: 10.0,
                                       right: 15.0,
                                     ),
-                                    child: Text(
-                                      "Médecins trouvés(${searchMedecinsList.length})",
-                                      style: GoogleFonts.lato(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 16.0,
+                                    child: Badge(
+                                      alignment: Alignment.centerLeft,
+                                      position: const BadgePosition(
+                                          start: -5, top: -18),
+                                      badgeContent: Text(
+                                        "${searchMedecinsList.length}",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.white,
+                                            fontSize: 12.0),
+                                      ),
+                                      child: Text(
+                                        "Médecins trouvés",
+                                        style: GoogleFonts.lato(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.redAccent,
+                                          fontSize: 16.0,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ],
                                 if (searchMedecinsList.isEmpty) ...[
-                                  Container(
-                                    width: _size.width,
-                                    child: medecinsListView(),
-                                  )
+                                  medecinsListView()
                                 ] else ...[
-                                  Container(
-                                    width: _size.width,
-                                    child: foundSearchMedecins(),
-                                  )
+                                  foundSearchMedecins()
                                 ]
                               ],
                             ),
@@ -571,7 +584,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: RichText(
                   text: TextSpan(
                     text:
-                        "Bienvenu ${(storage.read('patient_name') != null) ? storage.read('patient_name') : ''} sur ",
+                        "Bienvenue ${(storage.read('patient_name') != null) ? storage.read('patient_name') : ''} sur ",
                     style: GoogleFonts.lato(
                       fontSize: 20.0,
                       color: Colors.white,
@@ -682,7 +695,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: primaryColor.withOpacity(.8),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Icon(
+                                  child: const Icon(
                                     CupertinoIcons.location,
                                     size: 12,
                                     color: Colors.white,
@@ -773,8 +786,8 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  primaryColor,
-                  Colors.cyan,
+                  Colors.orange[900],
+                  Colors.orange[300],
                 ],
               ),
               borderRadius: const BorderRadius.horizontal(
@@ -820,7 +833,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Specialites> getSpecialities(String query) {
-    List<Specialites> matches = List();
+    List<Specialites> matches = <Specialites>[];
     matches.addAll(patientController.specialities);
     matches.retainWhere((s) => removeAccent(s.specialite)
         .toLowerCase()
@@ -912,12 +925,10 @@ class Btn extends StatelessWidget {
           borderRadius: BorderRadius.circular(5.0),
           splashColor: Colors.cyan[200],
           onTap: onPressed,
-          child: Container(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: const Text("Voir tout"),
-              ),
+          child: const Center(
+            child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Text("Voir tout"),
             ),
           ),
         ),
@@ -1205,11 +1216,11 @@ class SideMenu extends StatelessWidget {
                 indent: 50.0,
                 endIndent: 50.0,
               ),
-              MenuItem(
+              /*MenuItem(
                 icon: const Icon(CupertinoIcons.info, color: Colors.cyan),
                 label: 'Aide',
                 onPressed: () {},
-              ),
+              ),*/
             ],
           ),
         ),

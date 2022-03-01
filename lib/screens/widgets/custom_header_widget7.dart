@@ -14,47 +14,30 @@ class Header1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Stack(
+            overflow: Overflow.visible,
             children: [
-              MenuButton(onPressed: onOpenMenu),
-              const SizedBox(
-                width: 8.0,
-              ),
-              Column(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "SOS Docteur",
-                    style: style1(
-                      color: primaryColor,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18.0,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 2.0,
-                  ),
-                  Shimmer.fromColors(
-                    enabled: true,
-                    baseColor: Colors.red,
-                    highlightColor: Colors.white,
-                    child: Text(
-                      "24h/24, 7j/7",
-                      style: style1(
-                        color: Colors.red,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
+                  MenuButton(onPressed: onOpenMenu),
                 ],
               ),
+              Positioned(
+                top: -10,
+                left: 35.0,
+                child: Image.asset(
+                  "assets/icons/ic_icon_transparent.png",
+                  height: 70.0,
+                  width: 70.0,
+                  alignment: Alignment.center,
+                ),
+              )
             ],
           ),
           if (storage.read("isPatient") == false ||
@@ -65,8 +48,8 @@ class Header1 extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.cyan,
-                      primaryColor,
+                      Colors.orange[300],
+                      Colors.orange[900],
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20.0),
@@ -116,19 +99,24 @@ class Header2 extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          child: Row(
+          child: Stack(
+            overflow: Overflow.visible,
             children: [
-              MenuButton(onPressed: onOpenMenu),
-              const SizedBox(
-                width: 8.0,
+              Row(
+                children: [
+                  MenuButton(onPressed: onOpenMenu),
+                ],
               ),
-              Text(
-                "SOS Docteur",
-                style: style1(
-                    color: Colors.blue[800],
-                    fontWeight: FontWeight.w900,
-                    fontSize: 18.0),
-              ),
+              Positioned(
+                top: -10,
+                left: 35.0,
+                child: Image.asset(
+                  "assets/icons/ic_icon_transparent.png",
+                  height: 70.0,
+                  width: 70.0,
+                  alignment: Alignment.center,
+                ),
+              )
             ],
           ),
         ),

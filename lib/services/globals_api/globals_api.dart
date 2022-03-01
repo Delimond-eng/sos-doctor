@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:sos_docteur/index.dart';
 import 'package:sos_docteur/models/configs_model.dart';
 
 import '../api_service.dart';
@@ -7,6 +8,7 @@ import '../api_service.dart';
 class GlobalApi {
   static Future<ContentConfig> viewHomeConfigs() async {
     var response;
+
     try {
       response = await DApi.request(
         method: "get",

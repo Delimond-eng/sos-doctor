@@ -101,25 +101,30 @@ class XDialog {
     // set up the buttons
     // ignore: deprecated_member_use
     Widget cancelButton = FlatButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      color: Colors.grey,
       child: Text(
-        "Annuler",
+        "Annuler".toUpperCase(),
         style: GoogleFonts.mulish(
-            fontWeight: FontWeight.w700,
-            fontSize: 14,
-            letterSpacing: 1.0,
-            color: Colors.red[400]),
+          fontWeight: FontWeight.w700,
+          fontSize: 10,
+          letterSpacing: 1.0,
+          color: Colors.white,
+        ),
       ),
       onPressed: onCancel ?? () => Get.back(),
     );
     // ignore: deprecated_member_use
     Widget continueButton = FlatButton(
+      color: Colors.green,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: Text(
-        "Valider",
+        "Valider".toUpperCase(),
         style: GoogleFonts.mulish(
           fontWeight: FontWeight.w700,
-          fontSize: 14,
+          fontSize: 10,
           letterSpacing: 1.0,
-          color: Colors.green[700],
+          color: Colors.white,
         ),
       ),
       onPressed: () {
@@ -131,6 +136,9 @@ class XDialog {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

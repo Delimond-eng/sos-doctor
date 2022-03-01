@@ -151,23 +151,37 @@ class PatientApi {
 
   static Future<HomeContent> viewHomeContents() async {
     var response;
-    try {
-      response = await DApi.request(
-        method: "get",
-        url: "content/home",
-      );
-    } catch (err) {
-      print("error from annulation consultation $err");
-    }
+    DateTime _now =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    int nowTimestamp = _now.microsecondsSinceEpoch;
 
-    if (response != null) {
-      var json = jsonDecode(response);
-      if (json["error"] != null) {
+    if (storage.read('$nowTimestamp') == null) {
+      try {
+        response = await DApi.request(
+          method: "get",
+          url: "content/home",
+        );
+      } catch (err) {
+        print("error from annulation consultation $err");
+      }
+      if (response != null) {
+        var json = jsonDecode(response);
+        storage.write('$nowTimestamp', json);
+
+        if (json["error"] != null) {
+          return null;
+        }
+        return HomeContent.fromJson(json);
+      } else {
         return null;
       }
-      return HomeContent.fromJson(json);
     } else {
-      return null;
+      DateTime _lastDate = _now.subtract(const Duration(days: 1));
+      int _lastTimestamp = _lastDate.microsecondsSinceEpoch;
+      //print(_lastTimestamp);
+      storage.remove('$_lastTimestamp');
+      var data = storage.read('$nowTimestamp');
+      return HomeContent.fromJson(data);
     }
   }
 

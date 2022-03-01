@@ -36,6 +36,8 @@ class SpecialityCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   height: 50.0,
@@ -56,28 +58,11 @@ class SpecialityCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "spécialité",
-                      style: style1(
-                        color: isActive ? Colors.white : primaryColor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 4.0,
-                    ),
-                    Text(
-                      title,
-                      style: style1(
-                          color: isActive ? Colors.white : primaryColor,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
+                Text(
+                  title,
+                  style: style1(
+                      color: isActive ? Colors.white : primaryColor,
+                      fontWeight: FontWeight.w600),
                 ),
               ],
             ),

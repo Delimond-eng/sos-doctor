@@ -516,7 +516,7 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
               height: 50.0,
               decoration: BoxDecoration(
                 color: Colors.white54,
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(5.0),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(.3),
@@ -837,7 +837,7 @@ class StudyCard extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.only(bottom: 8.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
               image: AssetImage("assets/images/shapes/bg3.png"),
               fit: BoxFit.cover,
@@ -852,7 +852,7 @@ class StudyCard extends StatelessWidget {
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               color: Colors.white.withOpacity(.7),
               boxShadow: [
                 BoxShadow(
@@ -879,8 +879,8 @@ class StudyCard extends StatelessWidget {
                               height: 25.0,
                               width: 25.0,
                               decoration: BoxDecoration(
-                                color: primaryColor.withOpacity(.5),
-                              ),
+                                  color: primaryColor.withOpacity(.5),
+                                  shape: BoxShape.circle),
                               padding: const EdgeInsets.all(5.0),
                               child: SvgPicture.asset(
                                 "assets/icons/study.svg",
@@ -920,8 +920,8 @@ class StudyCard extends StatelessWidget {
                               height: 25.0,
                               width: 25.0,
                               decoration: BoxDecoration(
-                                color: Colors.cyan[900].withOpacity(.5),
-                              ),
+                                  color: Colors.cyan[900].withOpacity(.5),
+                                  shape: BoxShape.circle),
                               padding: const EdgeInsets.all(5.0),
                               child: SvgPicture.asset(
                                 "assets/icons/study.svg",
@@ -1033,7 +1033,7 @@ class ExperiencesCard extends StatelessWidget {
           width: double.infinity,
           margin: const EdgeInsets.only(bottom: 8.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
               image: AssetImage("assets/images/shapes/bg3.png"),
               fit: BoxFit.cover,
@@ -1048,7 +1048,7 @@ class ExperiencesCard extends StatelessWidget {
           ),
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               color: Colors.white.withOpacity(.7),
               boxShadow: [
                 BoxShadow(
@@ -1073,8 +1073,8 @@ class ExperiencesCard extends StatelessWidget {
                           height: 25.0,
                           width: 25.0,
                           decoration: BoxDecoration(
-                            color: primaryColor.withOpacity(.5),
-                          ),
+                              color: primaryColor.withOpacity(.5),
+                              shape: BoxShape.circle),
                           padding: const EdgeInsets.all(5.0),
                           child: SvgPicture.asset(
                             "assets/icons/medical-svgrepo-com.svg",
@@ -1106,8 +1106,8 @@ class ExperiencesCard extends StatelessWidget {
                               height: 25.0,
                               width: 25.0,
                               decoration: BoxDecoration(
-                                color: Colors.cyan[900].withOpacity(.5),
-                              ),
+                                  color: Colors.cyan[900].withOpacity(.5),
+                                  shape: BoxShape.circle),
                               padding: const EdgeInsets.all(5.0),
                               child: const Icon(CupertinoIcons.flag,
                                   color: Colors.white),

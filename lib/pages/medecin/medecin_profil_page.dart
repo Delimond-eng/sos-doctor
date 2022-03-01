@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sos_docteur/constants/globals.dart';
 import 'package:sos_docteur/models/configs_model.dart';
 import 'package:sos_docteur/widgets/form_input_field.dart';
@@ -42,7 +41,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
   final textAdresse = TextEditingController();
   final textEtude = TextEditingController();
   Specialites selectedSpeciality;
-  String selectedLangue;
+  Langues selectedLangue;
 
   //numero d'ordre
   final textNumOrdre = TextEditingController();
@@ -589,7 +588,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                   height: 50,
                                   width: MediaQuery.of(context).size.width,
                                   padding: const EdgeInsets.only(right: 5),
-                                  child: DropdownButton<String>(
+                                  child: DropdownButton(
                                     menuMaxHeight: 300,
                                     alignment: Alignment.centerRight,
                                     dropdownColor: Colors.grey[100],
@@ -607,14 +606,14 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                       ),
                                     ),
                                     isExpanded: true,
-                                    items: langues.map((e) {
-                                      return DropdownMenuItem<String>(
+                                    items: patientController.langues.map((e) {
+                                      return DropdownMenuItem(
                                           value: e,
                                           child: Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 10.0),
                                             child: Text(
-                                              "$e",
+                                              e.langue,
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w400),
                                             ),
@@ -644,14 +643,13 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(50.0),
                                 onTap: () async {
-                                  if (selectedLangue == null ||
-                                      selectedLangue == langues[0]) {
+                                  if (selectedLangue == null) {
                                     Get.snackbar(
                                       "champs obligatoire!",
                                       "vous devez sélectionner une langue dans la liste !",
                                       snackPosition: SnackPosition.TOP,
-                                      colorText: Colors.white,
-                                      backgroundColor: Colors.amber[900],
+                                      colorText: Colors.amber[100],
+                                      backgroundColor: Colors.black87,
                                       maxWidth:
                                           MediaQuery.of(context).size.width - 4,
                                       borderRadius: 2,
@@ -660,7 +658,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                     return;
                                   }
                                   Medecins medecin =
-                                      Medecins(langue: selectedLangue);
+                                      Medecins(langue: selectedLangue.langueId);
                                   Xloading.showLottieLoading(context);
                                   var res = await MedecinApi.configProfil(
                                       key: "langue", medecin: medecin);
@@ -668,9 +666,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                     Xloading.dismiss();
                                     if (res["reponse"]["status"] == "success") {
                                       XDialog.showSuccessAnimation(context);
-                                      setState(() {
-                                        selectedLangue = langues[0];
-                                      });
+                                      cleanSpeach();
                                       await medecinController.refreshProfil();
                                     }
                                   } else {
@@ -680,7 +676,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                       "echec survenu lors de l'envoi de données au serveur!,\nveuillez réessayer svp!",
                                       snackPosition: SnackPosition.TOP,
                                       colorText: Colors.white,
-                                      backgroundColor: Colors.pinkAccent,
+                                      backgroundColor: Colors.black87,
                                       maxWidth:
                                           MediaQuery.of(context).size.width - 4,
                                       borderRadius: 10,
@@ -764,6 +760,12 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
         ],
       ),
     );
+  }
+
+  cleanSpeach({Langues value}) {
+    setState(() {
+      selectedLangue = value;
+    });
   }
 
   List<Specialites> specialitesList = [];
@@ -1604,7 +1606,6 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                           onSelected: () {
                             setState(() {
                               selectTeleConsult = !selectTeleConsult;
-                              selectInterpretation = false;
                             });
                             cleanSelected();
                             selectedList.clear();
@@ -1621,7 +1622,6 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                           onSelected: () {
                             setState(() {
                               selectInterpretation = !selectInterpretation;
-                              selectTeleConsult = false;
                             });
                           },
                         ),
@@ -1663,7 +1663,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                               value: selectedExamen,
                               underline: const SizedBox(),
                               hint: Text(
-                                "  Sélectionnez un type d'examen",
+                                " Sélectionnez un type d'examen",
                                 style: GoogleFonts.mulish(
                                   color: Colors.grey[700],
                                   fontSize: 15.0,
@@ -1911,11 +1911,14 @@ class SelectChoiceCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10.0),
               onTap: onSelected,
               child: Padding(
-                padding: const EdgeInsets.only(left: 30.0, right: 10.0),
+                padding: const EdgeInsets.only(left: 35.0, right: 10.0),
                 child: Center(
                   child: Text(
                     title,
-                    style: GoogleFonts.lato(fontSize: 14.0),
+                    style: GoogleFonts.lato(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ),
@@ -1925,13 +1928,21 @@ class SelectChoiceCard extends StatelessWidget {
         Positioned(
           top: 15.0,
           left: 8.0,
-          child: Center(
-            child: Icon(
-              hasSelected
-                  ? CupertinoIcons.checkmark_alt_circle_fill
-                  : CupertinoIcons.circle,
-              size: 20.0,
-              color: hasSelected ? Colors.blue : Colors.grey,
+          child: Container(
+            height: 25.0,
+            width: 25.0,
+            decoration: BoxDecoration(
+              color: hasSelected ? Colors.green : Colors.grey,
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Center(
+              child: Icon(
+                hasSelected
+                    ? CupertinoIcons.checkmark_alt
+                    : CupertinoIcons.circle,
+                size: 20.0,
+                color: hasSelected ? Colors.white : Colors.transparent,
+              ),
             ),
           ),
         )

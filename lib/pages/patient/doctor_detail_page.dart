@@ -96,7 +96,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           if ((widget.profil.langues != null) &&
                               (widget.profil.langues.isNotEmpty)) ...[
                             const HeaderTiles(
-                              title: "Langues parlées",
+                              title: "Langues de consultation",
                             ),
                             GridView.builder(
                               shrinkWrap: true,
@@ -602,8 +602,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                             Colors.blue[800],
                           ],
                         ),
-                        boxShadow: [
-                          const BoxShadow(
+                        boxShadow: const [
+                          BoxShadow(
                             blurRadius: 12.0,
                             color: Colors.black26,
                             offset: Offset(0, 3),
@@ -746,8 +746,8 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30.0),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   blurRadius: 12.0,
                   color: Colors.black12,
                   offset: Offset(0, 3),
@@ -820,8 +820,7 @@ class SpecCard extends StatelessWidget {
             height: 30.0,
             width: 30.0,
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(.5),
-            ),
+                color: primaryColor.withOpacity(.5), shape: BoxShape.circle),
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: Center(
@@ -869,7 +868,7 @@ class SpeechCard extends StatelessWidget {
       height: 50.0,
       decoration: BoxDecoration(
         color: Colors.white54,
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(15.0),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(.3),
@@ -1040,6 +1039,7 @@ class ExpCard extends StatelessWidget {
                       width: 25.0,
                       decoration: BoxDecoration(
                         color: primaryColor.withOpacity(.5),
+                        shape: BoxShape.circle,
                       ),
                       padding: const EdgeInsets.all(5.0),
                       child: SvgPicture.asset(
@@ -1053,7 +1053,7 @@ class ExpCard extends StatelessWidget {
                       height: 8.0,
                     ),
                     Text(
-                      "A Travailler chez ${data.entite}",
+                      data.entite,
                       style: GoogleFonts.lato(
                         color: primaryColor,
                         fontWeight: FontWeight.w900,
@@ -1073,6 +1073,7 @@ class ExpCard extends StatelessWidget {
                           width: 25.0,
                           decoration: BoxDecoration(
                             color: Colors.cyan[900].withOpacity(.5),
+                            shape: BoxShape.circle,
                           ),
                           padding: const EdgeInsets.all(5.0),
                           child: const Icon(CupertinoIcons.flag,
@@ -1179,8 +1180,8 @@ class ECard extends StatelessWidget {
                                 height: 25.0,
                                 width: 25.0,
                                 decoration: BoxDecoration(
-                                  color: primaryColor.withOpacity(.5),
-                                ),
+                                    color: primaryColor.withOpacity(.5),
+                                    shape: BoxShape.circle),
                                 padding: const EdgeInsets.all(5.0),
                                 child: SvgPicture.asset(
                                   "assets/icons/study.svg",
@@ -1220,8 +1221,8 @@ class ECard extends StatelessWidget {
                                 height: 25.0,
                                 width: 25.0,
                                 decoration: BoxDecoration(
-                                  color: Colors.cyan[900].withOpacity(.5),
-                                ),
+                                    color: Colors.cyan[900].withOpacity(.5),
+                                    shape: BoxShape.circle),
                                 padding: const EdgeInsets.all(5.0),
                                 child: SvgPicture.asset(
                                   "assets/icons/study.svg",

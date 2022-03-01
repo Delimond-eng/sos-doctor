@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.blue[800],
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

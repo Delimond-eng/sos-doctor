@@ -2,7 +2,6 @@
 import 'package:get/get.dart';
 import 'package:sos_docteur/models/configs_model.dart';
 import 'package:sos_docteur/models/inernal_data_model.dart';
-import 'package:sos_docteur/models/patients/consult_rdv_model.dart';
 import 'package:sos_docteur/models/patients/home_model.dart';
 import 'package:sos_docteur/models/patients/patient_diagnostics_model.dart';
 import 'package:sos_docteur/models/patients/patient_profile_model.dart';
@@ -13,15 +12,15 @@ import 'package:sos_docteur/utilities/utilities.dart';
 
 class PatientController extends GetxController {
   static PatientController instance = Get.find();
-  // ignore: deprecated_member_use, prefer_collection_literals
-  var platformMedecins = List<HomeMedecins>().obs;
 
-  var specialities = List<Specialites>().obs;
-  var langues = List<Langues>().obs;
+  var platformMedecins = <HomeMedecins>[].obs;
 
-  var currentMedecins = List<IMedecins>().obs;
+  var specialities = <Specialites>[].obs;
+  var langues = <Langues>[].obs;
 
-  var diagnostics = List<ExamensPatient>().obs;
+  var currentMedecins = <IMedecins>[].obs;
+
+  var diagnostics = <ExamensPatient>[].obs;
 
   var user = PatientProfile().obs;
 

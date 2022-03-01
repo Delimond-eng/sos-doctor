@@ -228,7 +228,7 @@ class MedecinApi {
           response = await DApi.request(
             body: <String, dynamic>{
               "medecin_id": medecinId,
-              "langue": medecin.langue,
+              "langue_id": medecin.langue,
             },
             method: "post",
             url: "medecins/profile/configuration/langues",
@@ -237,7 +237,7 @@ class MedecinApi {
           print("error from medecin profil config langue : $err");
         }
     }
-
+    print(response);
     if (response != null) {
       var json = jsonDecode(response);
       if (json["error"] != null) {
