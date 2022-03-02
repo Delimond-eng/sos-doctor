@@ -259,9 +259,9 @@ class MedecinApi {
         method: "post",
         url: "medecins/profile/voir",
       );
-
       if (response != null) {
         var res = jsonDecode(response);
+        print(medecinId);
         if (res["error"] != null) {
           return null;
         }

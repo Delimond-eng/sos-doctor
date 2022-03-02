@@ -52,10 +52,9 @@ class MedScheduleCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Container(
-                    padding: const EdgeInsets.all(8.0),
                     width: _size.width,
                     decoration: BoxDecoration(
-                      color: primaryColor.withOpacity(.5),
+                      color: primaryColor,
                       borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(5.0),
                       ),
@@ -68,10 +67,12 @@ class MedScheduleCard extends StatelessWidget {
                       ],
                     ),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Icon(
                                 CupertinoIcons.calendar,
@@ -85,14 +86,14 @@ class MedScheduleCard extends StatelessWidget {
                                 strDateLongFr(data.consultationDate),
                                 style: GoogleFonts.lato(
                                   color: Colors.yellow[200],
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w700,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                               const SizedBox(
                                 width: 8.0,
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.timer,
                                 size: 15.0,
                                 color: Colors.white,
@@ -105,7 +106,7 @@ class MedScheduleCard extends StatelessWidget {
                                 style: GoogleFonts.lato(
                                   color: Colors.white,
                                   fontSize: 14.0,
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               )
                             ],
@@ -156,22 +157,30 @@ class MedScheduleCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 40.0,
-                        // ignore: deprecated_member_use
-                        child: RaisedButton(
-                          color: primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          onPressed: onCalling,
-                          child: const Center(
-                            child: Icon(
-                              CupertinoIcons.video_camera_solid,
-                              color: Colors.white,
+                      Column(
+                        children: [
+                          FlatButton(
+                            color: Colors.orange,
+                            onPressed: onCalling,
+                            child: const Center(
+                              child: Icon(
+                                CupertinoIcons.video_camera_solid,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
+                          FlatButton(
+                            color: Colors.grey,
+                            onPressed: onCancelled,
+                            child: const Center(
+                              child: Icon(
+                                CupertinoIcons.trash,
+                                color: Colors.white,
+                                size: 16.0,
+                              ),
+                            ),
+                          ),
+                        ],
                       )
                     ],
                   ),
@@ -180,34 +189,6 @@ class MedScheduleCard extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          bottom: 5,
-          right: -5,
-          child: GestureDetector(
-            onTap: onCancelled,
-            child: Container(
-              height: 30.0,
-              width: 30.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.red[200],
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(.4),
-                      blurRadius: 12.0,
-                      offset: const Offset(0, 3))
-                ],
-              ),
-              child: Center(
-                child: Icon(
-                  CupertinoIcons.minus,
-                  color: Colors.red[800],
-                  size: 18.0,
-                ),
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

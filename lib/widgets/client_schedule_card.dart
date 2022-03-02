@@ -30,24 +30,10 @@ class ClientScheduleCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                offset: const Offset(0, 10),
-                blurRadius: 12.0,
-              )
-            ],
           ),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.1),
-                  offset: const Offset(0, 10),
-                  blurRadius: 12.0,
-                )
-              ],
               color: Colors.white.withOpacity(.8),
             ),
             child: Padding(

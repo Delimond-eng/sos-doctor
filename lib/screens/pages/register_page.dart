@@ -179,9 +179,10 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Text(
               "Créer".toUpperCase(),
               style: style1(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 1.5),
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 1.5,
+              ),
             ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),

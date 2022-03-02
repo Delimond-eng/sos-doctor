@@ -5,17 +5,17 @@ class MedDiagnostics {
 
   MedDiagnostics.fromJson(Map<String, dynamic> json) {
     if (json['examens'] != null) {
-      examens = new List<Examens>();
+      examens = <Examens>[];
       json['examens'].forEach((v) {
-        examens.add(new Examens.fromJson(v));
+        examens.add(Examens.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.examens != null) {
-      data['examens'] = this.examens.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    if (examens != null) {
+      data['examens'] = examens.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -33,9 +33,9 @@ class Examens {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['examen_id'] = this.examenId;
-    data['examen_document'] = this.examenDocument;
+    final Map<String, dynamic> data = {};
+    data['examen_id'] = examenId;
+    data['examen_document'] = examenDocument;
     return data;
   }
 }

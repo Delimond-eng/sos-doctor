@@ -407,7 +407,7 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Langues parlées",
+                    "Langues de consultation",
                     style: GoogleFonts.lato(
                         fontSize: 18.0, fontWeight: FontWeight.w800),
                   ),

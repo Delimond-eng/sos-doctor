@@ -5,12 +5,15 @@ import 'package:sos_docteur/constants/style.dart';
 import 'package:sos_docteur/index.dart';
 import 'package:sos_docteur/models/patients/consult_rdv_model.dart';
 import 'package:sos_docteur/screens/auth_screen.dart';
+import 'package:sos_docteur/utilities/pdf_viewer.dart';
 import 'package:sos_docteur/widgets/client_schedule_card.dart';
 import 'package:sos_docteur/widgets/user_session_widget.dart';
 
 import 'page_schedule_detail_view.dart';
 
 class PatientSchedulePage extends StatefulWidget {
+  const PatientSchedulePage({Key key}) : super(key: key);
+
   @override
   _PatientSchedulePageState createState() => _PatientSchedulePageState();
 }
@@ -134,7 +137,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
       height: 50.0,
       decoration: BoxDecoration(
           color: primaryColor.withOpacity(.4),
-          borderRadius: BorderRadius.circular(30.0)),
+          borderRadius: BorderRadius.circular(10.0)),
       margin: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TabBar(
         controller: controller,
@@ -143,7 +146,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
           indicatorHeight: 47.0,
           indicatorColor: primaryColor,
           tabBarIndicatorSize: TabBarIndicatorSize.label,
-          indicatorRadius: 30,
+          indicatorRadius: 10,
         ),
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
@@ -164,15 +167,15 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.calendar_today,
-                      size: 16.0,
+                      size: 12.0,
                     ),
                     SizedBox(
                       width: 8.0,
                     ),
-                    const Text("En cours"),
+                    Text("En cours", style: TextStyle(fontSize: 14)),
                   ],
                 ),
               ],
@@ -186,15 +189,15 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       CupertinoIcons.calendar,
-                      size: 16.0,
+                      size: 12.0,
                     ),
                     SizedBox(
                       width: 8.0,
                     ),
-                    const Text("Antérieures"),
+                    Text("Antérieures", style: TextStyle(fontSize: 14)),
                   ],
                 ),
               ],
@@ -236,9 +239,10 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
             Text(
               "Mes Rendez-vous",
               style: style1(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.0),
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 18.0,
+              ),
             )
           ],
         ),
@@ -252,7 +256,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                 PageTransition(
                   type: PageTransitionType.leftToRightWithFade,
                   alignment: Alignment.topCenter,
-                  child: AuthScreen(),
+                  child: const AuthScreen(),
                 ),
               );
             },
@@ -355,7 +359,8 @@ class _ConsultingsViewerState extends State<ConsultingsViewer> {
                     );
                   },
                   onCancelled: () async {
-                    XDialog.show(
+                    showCancellerPdf(context);
+                    /*XDialog.show(
                         context: context,
                         icon: Icons.help,
                         title: "Annulation rdv!",
@@ -377,7 +382,7 @@ class _ConsultingsViewerState extends State<ConsultingsViewer> {
                                 message:
                                     "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
                           }
-                        });
+                        });*/
                   },
                 );
               },

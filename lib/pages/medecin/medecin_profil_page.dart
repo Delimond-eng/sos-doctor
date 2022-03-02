@@ -579,7 +579,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Langues parlées",
+                      "Langues de consultation",
                       style: GoogleFonts.lato(
                           fontSize: 18.0, fontWeight: FontWeight.w400),
                     ),
@@ -849,9 +849,10 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       if (_formNum.currentState.validate()) {
                         Xloading.showLottieLoading(context);
                         var res = await MedecinApi.enregistrerNumOrdre(
-                            file: selectedAttachmentB64,
-                            pays: selectedCountry.nameLocalized,
-                            numero: textNumOrdre.text);
+                          file: selectedAttachmentB64,
+                          pays: selectedCountry.nameLocalized,
+                          numero: textNumOrdre.text,
+                        );
                         if (res != null) {
                           Xloading.dismiss();
                           if (res["reponse"]["status"] == "success") {
@@ -860,6 +861,22 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                             setState(() {
                               selectedAttachmentB64 = "";
                               selectedAttachmentFile = null;
+                              selectedCountry = Country(
+                                displayNameNoCountryCode:
+                                    "Democratic Republic Congo (CD)",
+                                displayName:
+                                    "Democratic Republic Congo (CD) [+243]",
+                                nameLocalized:
+                                    "République démocratique du Congo",
+                                countryCode: "",
+                                geographic: false,
+                                e164Key: '',
+                                e164Sc: null,
+                                name: '',
+                                example: '',
+                                level: null,
+                                phoneCode: '',
+                              );
                             });
                           }
                         } else {
@@ -902,7 +919,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               border: Border.all(
-                color: Colors.orange[800],
+                color: primaryColor,
               ),
             ),
             child: Material(
@@ -914,7 +931,6 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                     context: context,
                     showPhoneCode: false,
                     onSelect: (Country country) {
-                      print(country.nameLocalized);
                       setState(() {
                         selectedCountry = country;
                       });
@@ -1283,17 +1299,17 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             child: Column(
               children: [
                 CustomFormField(
-                  hintText: "Entrez la formation sanitaire...",
-                  errorMessage: "formation sanitaire requise !",
+                  hintText: "Entrez institution...",
+                  errorMessage: "institution requise !",
                   icon: CupertinoIcons.pencil,
-                  title: "Formation sanitaire",
+                  title: "Institution",
                   controller: textEntite,
                 ),
                 const SizedBox(
                   height: 10.0,
                 ),
                 CustomFormField(
-                  hintText: "Entrez étude...",
+                  hintText: "Domaine d'étude...",
                   errorMessage: "étude requise !",
                   icon: CupertinoIcons.pencil,
                   title: "Etude",
@@ -1430,7 +1446,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     elevation: 10.0,
-                    color: Colors.blue,
+                    color: Colors.green,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -1799,7 +1815,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
     "Angéographie numerisée",
     "Autres"
   ];
-  List<String> medicalList = ["Endoscope", "EEG", "ECG"];
+  List<String> medicalList = ["Endoscopie", "EEG", "ECG"];
   List<String> selectedList = [];
 
   Widget _profilService(context) {
@@ -1839,7 +1855,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       Flexible(
                         child: SelectChoiceCard(
                           hasSelected: selectInterpretation,
-                          title: "Interpretation des résultats",
+                          title: "Interprétation des résultats",
                           onSelected: () {
                             setState(() {
                               selectInterpretation = !selectInterpretation;
@@ -1894,7 +1910,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                               isExpanded: true,
                               items: [
                                 "Examens biologiques",
-                                "Examens d'immagerie médicales",
+                                "Examens d'imagerie médicales",
                                 "Autres examens médicaux",
                               ].map((e) {
                                 return DropdownMenuItem(

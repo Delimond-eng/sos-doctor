@@ -2,6 +2,7 @@ import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sos_docteur/models/medecins/schedule_model.dart';
+import 'package:sos_docteur/utilities/pdf_viewer.dart';
 import 'package:sos_docteur/video_calls/models/call_model.dart';
 import 'package:sos_docteur/video_calls/pages/call_screen.dart';
 import 'package:sos_docteur/video_calls/permissions.dart';
@@ -13,7 +14,7 @@ import 'dart:math' as math;
 import '../../index.dart';
 
 class MedecinScheddulePage extends StatefulWidget {
-  MedecinScheddulePage({Key key}) : super(key: key);
+  const MedecinScheddulePage({Key key}) : super(key: key);
 
   @override
   _MedecinScheddulePageState createState() => _MedecinScheddulePageState();
@@ -153,7 +154,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
       height: 50.0,
       decoration: BoxDecoration(
           color: primaryColor.withOpacity(.4),
-          borderRadius: BorderRadius.circular(30.0)),
+          borderRadius: BorderRadius.circular(10.0)),
       margin: const EdgeInsets.symmetric(horizontal: 15.0),
       child: TabBar(
         controller: controller,
@@ -162,7 +163,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
           indicatorHeight: 47.0,
           indicatorColor: primaryColor,
           tabBarIndicatorSize: TabBarIndicatorSize.label,
-          indicatorRadius: 30,
+          indicatorRadius: 10,
         ),
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
@@ -186,12 +187,12 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                   children: const [
                     Icon(
                       Icons.calendar_today,
-                      size: 16.0,
+                      size: 12.0,
                     ),
                     SizedBox(
                       width: 8.0,
                     ),
-                    Text("En cours"),
+                    Text("En cours", style: TextStyle(fontSize: 14)),
                   ],
                 ),
               ],
@@ -208,12 +209,12 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                   children: const [
                     Icon(
                       CupertinoIcons.calendar,
-                      size: 16.0,
+                      size: 12.0,
                     ),
                     SizedBox(
                       width: 8.0,
                     ),
-                    Text("Antérieurs"),
+                    Text("Antérieurs", style: TextStyle(fontSize: 14)),
                   ],
                 ),
               ],
@@ -358,7 +359,9 @@ class AgendaViewer extends StatelessWidget {
                       }*/
                       });
                     },
-                    onCancelled: () {},
+                    onCancelled: () {
+                      showCancellerPdf(context);
+                    },
                   );
                 },
               ),

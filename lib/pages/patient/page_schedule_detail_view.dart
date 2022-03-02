@@ -17,7 +17,7 @@ import '../../index.dart';
 
 class PageScheduleDetailView extends StatefulWidget {
   final ConsultationsRdv data;
-  PageScheduleDetailView({Key key, this.data}) : super(key: key);
+  const PageScheduleDetailView({Key key, this.data}) : super(key: key);
 
   @override
   _PageScheduleDetailViewState createState() => _PageScheduleDetailViewState();
@@ -158,11 +158,11 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                                 gradient: LinearGradient(
                                   colors: [Colors.cyan, primaryColor],
                                 ),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.black38,
                                     blurRadius: 12.0,
-                                    offset: const Offset(0, 3),
+                                    offset: Offset(0, 3),
                                   )
                                 ],
                               ),
@@ -182,11 +182,11 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                                               widget.data.medecin.photo)),
                                           fit: BoxFit.cover,
                                         ),
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             color: Colors.black38,
                                             blurRadius: 12.0,
-                                            offset: const Offset(0, 3),
+                                            offset: Offset(0, 3),
                                           )
                                         ],
                                       ),

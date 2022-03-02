@@ -6,7 +6,7 @@ import '../../index.dart';
 import 'medecin_agenda_config.dart';
 
 class MedecinAgendaPageView extends StatefulWidget {
-  MedecinAgendaPageView({Key key}) : super(key: key);
+  const MedecinAgendaPageView({Key key}) : super(key: key);
 
   @override
   _MedecinAgendaPageViewState createState() => _MedecinAgendaPageViewState();
@@ -129,7 +129,8 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
                               )
                             : ListView.builder(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
+                                  horizontal: 16.0,
+                                ),
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: medecinController.medecinProfil.value
@@ -239,27 +240,29 @@ class AgendaCard extends StatelessWidget {
                           "${strDateLongFr(date)} ",
                           style: GoogleFonts.lato(
                             color: primaryColor,
-                            fontWeight: FontWeight.w900,
+                            fontWeight: FontWeight.w500,
                             fontSize: 18.0,
                           ),
                         ),
                         const SizedBox(
                           height: 10.0,
                         ),
-                        SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              for (int i = 0; i < heures.length; i++) ...[
-                                TimeCard(
-                                  start: heures.first.heure,
-                                  end: heures.last.heure,
-                                )
-                              ]
-                            ],
-                          ),
-                        )
+                        if (heures != null) ...[
+                          SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                for (int i = 0; i < heures.length; i++) ...[
+                                  TimeCard(
+                                    start: heures.first.heure,
+                                    end: heures.last.heure,
+                                  )
+                                ]
+                              ],
+                            ),
+                          )
+                        ]
                       ],
                     ),
                   ),
@@ -269,7 +272,7 @@ class AgendaCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 8,
+          top: 20,
           right: 8,
           child: GestureDetector(
             onTap: onRemoved,
@@ -277,7 +280,7 @@ class AgendaCard extends StatelessWidget {
               height: 30.0,
               width: 80.0,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(8.0),
                 color: Colors.grey[800],
                 boxShadow: [
                   BoxShadow(

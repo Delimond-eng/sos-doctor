@@ -5,18 +5,18 @@ class ScheduleModel {
 
   ScheduleModel.fromJson(Map<String, dynamic> json) {
     if (json['consultations_rdv'] != null) {
-      consultationsRdv = List<ConsultationsRdv>();
+      consultationsRdv = <ConsultationsRdv>[];
       json['consultations_rdv'].forEach((v) {
-        consultationsRdv.add(new ConsultationsRdv.fromJson(v));
+        consultationsRdv.add(ConsultationsRdv.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.consultationsRdv != null) {
+    final Map<String, dynamic> data = {};
+    if (consultationsRdv != null) {
       data['consultations_rdv'] =
-          this.consultationsRdv.map((v) => v.toJson()).toList();
+          consultationsRdv.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -59,16 +59,16 @@ class ConsultationsRdv {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['consultation_rdv_id'] = this.consultationRdvId;
-    data['patient_id'] = this.patientId;
-    data['nom'] = this.nom;
-    data['telephone'] = this.telephone;
-    data['consultation_date'] = this.consultationDate;
-    data['heure_debut'] = this.heureDebut;
-    data['heure_fin'] = this.heureFin;
-    if (this.consultations != null) {
-      data['consultation'] = this.consultations.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['consultation_rdv_id'] = consultationRdvId;
+    data['patient_id'] = patientId;
+    data['nom'] = nom;
+    data['telephone'] = telephone;
+    data['consultation_date'] = consultationDate;
+    data['heure_debut'] = heureDebut;
+    data['heure_fin'] = heureFin;
+    if (consultations != null) {
+      data['consultation'] = consultations.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -86,9 +86,9 @@ class Consultation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['consultation_id'] = this.consultationId;
-    data['consultation_reference'] = this.consultationReference;
+    final Map<String, dynamic> data = {};
+    data['consultation_id'] = consultationId;
+    data['consultation_reference'] = consultationReference;
     return data;
   }
 }
