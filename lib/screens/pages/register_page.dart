@@ -175,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
           // ignore: deprecated_member_use
           child: RaisedButton(
             onPressed: (allowed) ? registerMedecin : null,
-            color: primaryColor,
+            color: Colors.green,
             child: Text(
               "Créer".toUpperCase(),
               style: style1(
