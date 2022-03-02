@@ -166,11 +166,11 @@ class PatientApi {
       }
       if (response != null) {
         var json = jsonDecode(response);
-        storage.write('$nowTimestamp', json);
 
         if (json["error"] != null) {
           return null;
         }
+        storage.write('$nowTimestamp', json);
         return HomeContent.fromJson(json);
       } else {
         return null;

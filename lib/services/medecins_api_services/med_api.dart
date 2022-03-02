@@ -355,13 +355,16 @@ class MedecinApi {
   }
 
 //en cours
-  static Future enregistrerNumOrdre({String numero}) async {
+  static Future enregistrerNumOrdre(
+      {String numero, String pays, String file}) async {
     String medecinId = storage.read("medecin_id");
     try {
       var response = await DApi.request(
         body: <String, dynamic>{
           "medecin_id": medecinId,
           "numero_ordre": numero,
+          "pays": pays,
+          "document": file,
         },
         method: "post",
         url: "medecins/profile/configuration/ordremedecin",

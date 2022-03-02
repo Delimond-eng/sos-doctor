@@ -5,6 +5,7 @@ INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/an
 INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml:1:1-47:12
 INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml:1:1-47:12
 MERGED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml:1:1-47:12
+MERGED from [:syncfusion_flutter_pdfviewer] /home/delimond/Documents/Development/flutter design/sos_docteur/build/syncfusion_flutter_pdfviewer/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_storage] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:sqflite] /home/delimond/Documents/Development/flutter design/sos_docteur/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker] /home/delimond/Documents/Development/flutter design/sos_docteur/build/image_picker/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-19:12
@@ -200,6 +201,8 @@ uses-sdk
 INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml
 INJECTED from /home/delimond/Documents/Development/flutter design/sos_docteur/android/app/src/main/AndroidManifest.xml
+MERGED from [:syncfusion_flutter_pdfviewer] /home/delimond/Documents/Development/flutter design/sos_docteur/build/syncfusion_flutter_pdfviewer/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:syncfusion_flutter_pdfviewer] /home/delimond/Documents/Development/flutter design/sos_docteur/build/syncfusion_flutter_pdfviewer/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_storage] /home/delimond/Documents/Development/flutter design/sos_docteur/build/firebase_storage/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] /home/delimond/Documents/Development/flutter design/sos_docteur/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44

@@ -6,9 +6,9 @@ import 'dart:io';
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sos_docteur/constants/globals.dart';
 import 'package:sos_docteur/models/configs_model.dart';
 import 'package:sos_docteur/widgets/form_input_field.dart';
+import 'package:country_picker/country_picker.dart';
 
 import '../../index.dart';
 
@@ -66,9 +66,21 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
   void initState() {
     super.initState();
     controller = TabController(vsync: this, length: 5);
-
     setState(() {
       avatar = medPhoto ?? "";
+      selectedCountry = Country(
+        displayNameNoCountryCode: "Democratic Republic Congo (CD)",
+        displayName: "Democratic Republic Congo (CD) [+243]",
+        nameLocalized: "République démocratique du Congo",
+        countryCode: "",
+        geographic: false,
+        e164Key: '',
+        e164Sc: null,
+        name: '',
+        example: '',
+        level: null,
+        phoneCode: '',
+      );
     });
   }
 
@@ -443,6 +455,9 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
   }
 
   final _formNum = GlobalKey<FormState>();
+  Country selectedCountry;
+  PickedFile selectedAttachmentFile;
+  String selectedAttachmentB64;
 
   Widget _profilPhoto(context) {
     return SingleChildScrollView(
@@ -700,6 +715,20 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   ],
                 ),
                 const SizedBox(
+                  height: 20.0,
+                ),
+                Text(
+                  "Numéro d'ordre",
+                  style: GoogleFonts.lato(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                _countryField(context),
+                const SizedBox(
                   height: 10.0,
                 ),
                 CustomFormField(
@@ -712,12 +741,107 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                 const SizedBox(
                   height: 10.0,
                 ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: Container(
+                        height: 55.0,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.blue[200].withOpacity(.4),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            if (selectedAttachmentFile == null) ...[
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                child:
+                                    Text("Attacher un fichier(JPG, PNG, GIF)"),
+                              ),
+                            ] else ...[
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(6.0),
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Colors.green[200].withOpacity(.5),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: const Text("fichier attaché"),
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(
+                                          CupertinoIcons.clear_circled_solid),
+                                      color: Colors.white,
+                                      onPressed: () {
+                                        setState(() {
+                                          selectedAttachmentFile = null;
+                                          selectedAttachmentB64 = "";
+                                        });
+                                      },
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                            Container(
+                              height: 55.0,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.blue,
+                              ),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  onTap: () async {
+                                    var pickedFile = await takePhoto(
+                                        source: ImageSource.gallery);
+                                    if (pickedFile != null) {
+                                      var _bytes = File(pickedFile.path)
+                                          .readAsBytesSync();
+                                      setState(() {
+                                        selectedAttachmentB64 =
+                                            base64Encode(_bytes);
+                                        selectedAttachmentFile = pickedFile;
+                                      });
+                                    }
+                                  },
+                                  child: const Center(
+                                    child: Icon(Icons.attach_file),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
                 Container(
                   width: double.infinity,
                   height: 60.0,
                   child: RaisedButton(
                     elevation: 10.0,
-                    color: Colors.blue,
+                    color: Colors.orange[800],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -725,13 +849,18 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       if (_formNum.currentState.validate()) {
                         Xloading.showLottieLoading(context);
                         var res = await MedecinApi.enregistrerNumOrdre(
+                            file: selectedAttachmentB64,
+                            pays: selectedCountry.nameLocalized,
                             numero: textNumOrdre.text);
                         if (res != null) {
                           Xloading.dismiss();
                           if (res["reponse"]["status"] == "success") {
                             XDialog.showSuccessAnimation(context);
                             await medecinController.refreshProfil();
-                            Get.back();
+                            setState(() {
+                              selectedAttachmentB64 = "";
+                              selectedAttachmentFile = null;
+                            });
                           }
                         } else {
                           Xloading.dismiss();
@@ -749,7 +878,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       }
                     },
                     child: Text(
-                      "Insérer n° Ordre",
+                      "Enregistrer n° Ordre",
                       style: GoogleFonts.lato(color: Colors.white),
                     ),
                   ),
@@ -759,6 +888,110 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
           )
         ],
       ),
+    );
+  }
+
+  Widget _countryField(context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: Container(
+            height: 55.0,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              border: Border.all(
+                color: Colors.orange[800],
+              ),
+            ),
+            child: Material(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () {
+                  showCountryPicker(
+                    context: context,
+                    showPhoneCode: false,
+                    onSelect: (Country country) {
+                      print(country.nameLocalized);
+                      setState(() {
+                        selectedCountry = country;
+                      });
+                    },
+                    countryListTheme: CountryListThemeData(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0),
+                      ),
+                      inputDecoration: InputDecoration(
+                        labelText: 'Recherche',
+                        hintText: 'Entrez le nom du pays...',
+                        prefixIcon: const Icon(CupertinoIcons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          borderSide: BorderSide(
+                            color: primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                borderRadius: BorderRadius.circular(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.flag_rounded,
+                            size: 18.0,
+                            color: Colors.orange[800],
+                          ),
+                          const SizedBox(
+                            width: 10.0,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "Pays : ",
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black87,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: selectedCountry.nameLocalized,
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.orange[800],
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.arrow_drop_down,
+                        color: Colors.blue,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -910,8 +1143,8 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         width: double.infinity,
-                        margin: const EdgeInsets.only(bottom: 5),
-                        height: 50.0,
+                        margin: const EdgeInsets.only(bottom: 8),
+                        height: 55.0,
                         decoration: BoxDecoration(
                           color: Colors.white54,
                           borderRadius: BorderRadius.circular(10.0),
@@ -1165,13 +1398,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                 const SizedBox(
                   height: 10.0,
                 ),
-                CustomFormField(
-                  hintText: "Entrez le pays d'étude, ex. RD Congo...",
-                  errorMessage: "pays d'étude requise !",
-                  icon: CupertinoIcons.pencil,
-                  title: "Pays",
-                  controller: textPays,
-                ),
+                _countryField(context),
                 const SizedBox(
                   height: 10.0,
                 ),
@@ -1269,7 +1496,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                           etude: textEtude.text,
                           periodeDebut: dateStart,
                           periodeFin: dateEnd,
-                          pays: textPays.text,
+                          pays: selectedCountry.nameLocalized,
                           ville: textVille.text,
                           adresse: textAdresse.text,
                         );
@@ -1425,13 +1652,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                 const SizedBox(
                   height: 10.0,
                 ),
-                CustomFormField(
-                  hintText: "Entrez le pays d'étude, ex. RD Congo...",
-                  errorMessage: "pays d'étude requise !",
-                  icon: CupertinoIcons.pencil,
-                  title: "Pays",
-                  controller: textPays,
-                ),
+                _countryField(context),
                 const SizedBox(
                   height: 10.0,
                 ),
@@ -1517,7 +1738,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                           experience: textExperience.text,
                           periodeDebut: dateStart,
                           periodeFin: dateEnd,
-                          pays: textPays.text,
+                          pays: selectedCountry.nameLocalized,
                           ville: textVille.text,
                           adresse: textAdresse.text,
                         );

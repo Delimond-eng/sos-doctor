@@ -123,21 +123,18 @@ class _AuthScreenState extends State<AuthScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.fromLTRB(20, 50, 20, 20),
                           child: Text(
                             (isLoginScreen)
                                 ? "Veuillez vous connecter!"
                                 : "Veuillez créer un compte!",
                             style: style1(
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w900,
                               fontSize: 25.0,
                               letterSpacing: 1.5,
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
                         ),
                         if (isLoginScreen)
                           const LoginPage()
@@ -177,35 +174,36 @@ class AuthButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: isActive ? Colors.white : Colors.transparent,
-                width: 1.0,
-              ),
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: isActive ? Colors.white : Colors.transparent,
+              width: 1.0,
             ),
           ),
-          padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                color: Colors.white,
-                size: 14.0,
+        ),
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: (isActive) ? Colors.orange : Colors.white,
+              size: 14.0,
+            ),
+            const SizedBox(
+              width: 8.0,
+            ),
+            Text(
+              label.toUpperCase(),
+              style: style1(
+                fontWeight: (!isActive) ? FontWeight.w400 : FontWeight.w600,
+                color: (isActive) ? Colors.orange : Colors.white,
+                fontSize: 10.0,
               ),
-              const SizedBox(
-                width: 8.0,
-              ),
-              Text(
-                label,
-                style: style1(
-                  fontWeight: (!isActive) ? FontWeight.w400 : FontWeight.w600,
-                  color: Colors.white,
-                  fontSize: 13.0,
-                ),
-              )
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
