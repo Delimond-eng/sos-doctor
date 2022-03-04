@@ -360,7 +360,20 @@ class AgendaViewer extends StatelessWidget {
                       });
                     },
                     onCancelled: () {
-                      showCancellerPdf(context);
+                      showCancellerPdf(
+                        context,
+                        title: "Annulation du rendez-vous",
+                        onValidated: () async {
+                          var result = await MedecinApi.annulerRdv(
+                              rdvId: data.consultationRdvId);
+                          if (result != null) {
+                            if (result["reponse"]["status"] == "success") {
+                              Get.back();
+                              XDialog.showSuccessAnimation(context);
+                            }
+                          }
+                        },
+                      );
                     },
                   );
                 },

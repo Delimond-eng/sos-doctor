@@ -359,30 +359,36 @@ class _ConsultingsViewerState extends State<ConsultingsViewer> {
                     );
                   },
                   onCancelled: () async {
-                    showCancellerPdf(context);
-                    /*XDialog.show(
-                        context: context,
-                        icon: Icons.help,
-                        title: "Annulation rdv!",
-                        content:
-                            "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
-                        onValidate: () async {
-                          Xloading.showLottieLoading(context);
-                          var res = await PatientApi.annulerRdvEnLigne(
-                              consultId: data.consultationRdvId);
-                          if (res != null) {
-                            Xloading.dismiss();
-                            XDialog.showSuccessAnimation(context);
-                            setState(() {});
-                          } else {
-                            Xloading.dismiss();
-                            XDialog.showErrorMessage(context,
-                                title: "Echec!",
-                                color: Colors.amber[900],
-                                message:
-                                    "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
-                          }
-                        });*/
+                    showCancellerPdf(
+                      context,
+                      title: "Annulation du rendez-vous",
+                      onValidated: () {
+                        XDialog.show(
+                            context: context,
+                            icon: Icons.help,
+                            title: "Annulation rdv!",
+                            content:
+                                "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
+                            onValidate: () async {
+                              Xloading.showLottieLoading(context);
+                              var res = await PatientApi.annulerRdvEnLigne(
+                                  consultId: data.consultationRdvId);
+                              if (res != null) {
+                                Xloading.dismiss();
+                                XDialog.showSuccessAnimation(context);
+                                setState(() {});
+                              } else {
+                                Xloading.dismiss();
+                                XDialog.showErrorMessage(context,
+                                    title: "Echec!",
+                                    color: Colors.amber[900],
+                                    message:
+                                        "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
+                              }
+                            });
+                      },
+                    );
+                    /*;*/
                   },
                 );
               },

@@ -540,4 +540,30 @@ class MedecinApi {
       return null;
     }
   }
+
+  static Future annulerRdv({rdvId}) async {
+    String medecinId = storage.read("medecin_id");
+    var response;
+    try {
+      response = await DApi.request(
+        body: <String, dynamic>{
+          "medecin_id": medecinId,
+          "consultation_rdv_id": rdvId,
+        },
+        method: "post",
+        url: "medecins/consultations/annuler",
+      );
+    } catch (err) {
+      print("error from medecin voir agenda $err");
+    }
+    if (response != null) {
+      var res = jsonDecode(response);
+      if (res["error"] != null) {
+        return null;
+      }
+      return res;
+    } else {
+      return null;
+    }
+  }
 }

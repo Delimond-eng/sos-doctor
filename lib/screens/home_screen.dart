@@ -731,9 +731,11 @@ class _HomeScreenState extends State<HomeScreen> {
               suggestionsCallback: (pattern) async {
                 return getSpecialities(pattern);
               },
-              suggestionsBoxDecoration:
-                  const SuggestionsBoxDecoration(elevation: 0.0),
+              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                elevation: 0.0,
+              ),
               getImmediateSuggestions: false,
+              direction: AxisDirection.up,
               hideOnEmpty: true,
               itemBuilder: (context, suggestion) {
                 return ListTile(
