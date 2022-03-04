@@ -116,13 +116,21 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: ConsultingsViewer(future: viewRdvs("encours")),
+              child: ConsultingsViewer(
+                future: viewRdvs("encours"),
+                onCancelSchedule: () {
+                  viewRdvs("encours");
+                },
+              ),
             ),
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
               child: ConsultingsViewer(
                 future: viewRdvs("anterieur"),
+                onCancelSchedule: () {
+                  viewRdvs("anterieur");
+                },
               ),
             ),
           ],
@@ -303,7 +311,9 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
 
 class ConsultingsViewer extends StatefulWidget {
   final Future<List<ConsultationsRdv>> future;
-  const ConsultingsViewer({Key key, this.future}) : super(key: key);
+  final Function onCancelSchedule;
+  const ConsultingsViewer({Key key, this.future, this.onCancelSchedule})
+      : super(key: key);
 
   @override
   State<ConsultingsViewer> createState() => _ConsultingsViewerState();
@@ -375,8 +385,11 @@ class _ConsultingsViewerState extends State<ConsultingsViewer> {
                                   consultId: data.consultationRdvId);
                               if (res != null) {
                                 Xloading.dismiss();
+                                Get.back();
                                 XDialog.showSuccessAnimation(context);
-                                setState(() {});
+                                setState(() {
+                                  widget.onCancelSchedule();
+                                });
                               } else {
                                 Xloading.dismiss();
                                 XDialog.showErrorMessage(context,

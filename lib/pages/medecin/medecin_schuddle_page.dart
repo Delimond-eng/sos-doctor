@@ -134,12 +134,18 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
               padding: const EdgeInsets.only(top: 10.0),
               child: AgendaViewer(
                 future: rdvs("encours"),
+                onCancelSchedule: () {
+                  rdvs("encours");
+                },
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: AgendaViewer(
                 future: rdvs("anterieur"),
+                onCancelSchedule: () {
+                  rdvs("anterieur");
+                },
               ),
             ),
           ],
@@ -238,7 +244,9 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
 
 class AgendaViewer extends StatelessWidget {
   final Future<List<ConsultationsRdv>> future;
-  const AgendaViewer({Key key, this.future}) : super(key: key);
+  final Function onCancelSchedule;
+  const AgendaViewer({Key key, this.future, this.onCancelSchedule})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -364,13 +372,20 @@ class AgendaViewer extends StatelessWidget {
                         context,
                         title: "Annulation du rendez-vous",
                         onValidated: () async {
-                          var result = await MedecinApi.annulerRdv(
-                              rdvId: data.consultationRdvId);
-                          if (result != null) {
-                            if (result["reponse"]["status"] == "success") {
-                              Get.back();
-                              XDialog.showSuccessAnimation(context);
+                          try {
+                            Xloading.showLottieLoading(context);
+                            var result = await MedecinApi.annulerRdv(
+                                rdvId: data.consultationRdvId);
+                            if (result != null) {
+                              Xloading.dismiss();
+                              if (result["reponse"]["status"] == "success") {
+                                Get.back();
+                                onCancelSchedule();
+                                XDialog.showSuccessAnimation(context);
+                              }
                             }
+                          } catch (err) {
+                            print(err);
                           }
                         },
                       );

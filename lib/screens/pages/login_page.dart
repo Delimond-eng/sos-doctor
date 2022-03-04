@@ -216,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                 }
               }
             },
-            color: Colors.green,
+            color: primaryColor,
             child: Text(
               "Connecter".toUpperCase(),
               style: style1(

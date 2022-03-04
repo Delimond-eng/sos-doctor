@@ -1976,40 +1976,54 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       const SizedBox(
                         height: 10.0,
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 60.0,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          elevation: 10.0,
-                          color: Colors.blue,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                CupertinoIcons.checkmark_alt,
-                                color: Colors.white,
-                                size: 15,
-                              ),
-                              const SizedBox(
-                                width: 8.0,
-                              ),
-                              Text(
-                                "Valider",
-                                style: GoogleFonts.lato(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                          onPressed: () async {
-                            cleanSelected();
-                          },
-                        ),
-                      )
                     ]
-                  ]
+                  ],
+                  if ((selectedList.isNotEmpty) || (selectTeleConsult))
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                  Container(
+                    width: double.infinity,
+                    height: 60.0,
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      elevation: 10.0,
+                      color: Colors.blue,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            CupertinoIcons.checkmark_alt,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "Valider",
+                            style: GoogleFonts.lato(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      onPressed: () async {
+                        Xloading.showLottieLoading(context);
+                        Future.delayed(const Duration(milliseconds: 1000), () {
+                          Xloading.dismiss();
+                          cleanSelected();
+                          setState(() {
+                            selectInterpretation = false;
+                            selectTeleConsult = false;
+                          });
+
+                          XDialog.showSuccessAnimation(context);
+                        });
+                      },
+                    ),
+                  )
                 ],
               ),
             ),
