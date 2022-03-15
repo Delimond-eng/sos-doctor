@@ -5,13 +5,13 @@ class MedecinDataProfilViewModel {
 
   MedecinDataProfilViewModel.fromJson(Map<String, dynamic> json) {
     content =
-        json['content'] != null ? new Content.fromJson(json['content']) : null;
+        json['content'] != null ? Content.fromJson(json['content']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.content != null) {
-      data['content'] = this.content.toJson();
+    final Map<String, dynamic> data = {};
+    if (content != null) {
+      data['content'] = content.toJson();
     }
     return data;
   }
@@ -24,13 +24,13 @@ class Content {
 
   Content.fromJson(Map<String, dynamic> json) {
     profile =
-        json['profile'] != null ? new Profile.fromJson(json['profile']) : null;
+        json['profile'] != null ? Profile.fromJson(json['profile']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.profile != null) {
-      data['profile'] = this.profile.toJson();
+    final Map<String, dynamic> data = {};
+    if (profile != null) {
+      data['profile'] = profile.toJson();
     }
     return data;
   }
@@ -43,67 +43,98 @@ class Profile {
   List<EtudesFaites> etudesFaites;
   List<Agenda> agenda;
   List<Avis> avis;
+  List<OrdreMedecin> medecinOrdres;
 
-  Profile(
-      {this.numeroOrdre,
-      this.langues,
-      this.experiences,
-      this.etudesFaites,
-      this.agenda,
-      this.avis});
+  Profile({
+    this.numeroOrdre,
+    this.langues,
+    this.experiences,
+    this.etudesFaites,
+    this.agenda,
+    this.avis,
+    this.medecinOrdres,
+  });
 
   Profile.fromJson(Map<String, dynamic> json) {
     numeroOrdre = json['numero_ordre'];
+    if (json['ordre_medecin'] != null) {
+      medecinOrdres = <OrdreMedecin>[];
+      json['ordre_medecin'].forEach((v) {
+        medecinOrdres.add(OrdreMedecin.fromJson(v));
+      });
+    }
     if (json['langues'] != null) {
-      langues = new List<Langues>();
+      langues = <Langues>[];
       json['langues'].forEach((v) {
-        langues.add(new Langues.fromJson(v));
+        langues.add(Langues.fromJson(v));
       });
     }
     if (json['experiences'] != null) {
-      experiences = new List<Experiences>();
+      experiences = <Experiences>[];
       json['experiences'].forEach((v) {
-        experiences.add(new Experiences.fromJson(v));
+        experiences.add(Experiences.fromJson(v));
       });
     }
     if (json['etudes_faites'] != null) {
-      etudesFaites = new List<EtudesFaites>();
+      etudesFaites = <EtudesFaites>[];
       json['etudes_faites'].forEach((v) {
-        etudesFaites.add(new EtudesFaites.fromJson(v));
+        etudesFaites.add(EtudesFaites.fromJson(v));
       });
     }
     if (json['agenda'] != null) {
-      agenda = new List<Agenda>();
+      agenda = <Agenda>[];
       json['agenda'].forEach((v) {
-        agenda.add(new Agenda.fromJson(v));
+        agenda.add(Agenda.fromJson(v));
       });
     }
     if (json['avis'] != null) {
-      avis = new List<Avis>();
+      avis = <Avis>[];
       json['avis'].forEach((v) {
-        avis.add(new Avis.fromJson(v));
+        avis.add(Avis.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['numero_ordre'] = this.numeroOrdre;
-    if (this.langues != null) {
-      data['langues'] = this.langues.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['numero_ordre'] = numeroOrdre;
+    if (langues != null) {
+      data['langues'] = langues.map((v) => v.toJson()).toList();
     }
-    if (this.experiences != null) {
-      data['experiences'] = this.experiences.map((v) => v.toJson()).toList();
+    if (experiences != null) {
+      data['experiences'] = experiences.map((v) => v.toJson()).toList();
     }
-    if (this.etudesFaites != null) {
-      data['etudes_faites'] = this.etudesFaites.map((v) => v.toJson()).toList();
+    if (etudesFaites != null) {
+      data['etudes_faites'] = etudesFaites.map((v) => v.toJson()).toList();
     }
-    if (this.agenda != null) {
-      data['agenda'] = this.agenda.map((v) => v.toJson()).toList();
+    if (agenda != null) {
+      data['agenda'] = agenda.map((v) => v.toJson()).toList();
     }
-    if (this.avis != null) {
-      data['avis'] = this.avis.map((v) => v.toJson()).toList();
+    if (avis != null) {
+      data['avis'] = avis.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+}
+
+class OrdreMedecin {
+  String numeroOrdre;
+  String document;
+  String pays;
+
+  OrdreMedecin({this.numeroOrdre, this.document, this.pays});
+
+  OrdreMedecin.fromJson(Map<String, dynamic> json) {
+    numeroOrdre = json['numero_ordre'];
+    document = json['document'];
+    pays = json['pays'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['numero_ordre'] = numeroOrdre;
+    data['document'] = document;
+    data['pays'] = pays;
     return data;
   }
 }
@@ -118,8 +149,8 @@ class Langues {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['langue'] = this.langue;
+    final Map<String, dynamic> data = {};
+    data['langue'] = langue;
     return data;
   }
 }
@@ -147,18 +178,18 @@ class Experiences {
     periodeFin = json['periode_fin'];
     adresseId = json['adresse_id'];
     adresse =
-        json['adresse'] != null ? new Adresse.fromJson(json['adresse']) : null;
+        json['adresse'] != null ? Adresse.fromJson(json['adresse']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['entite'] = this.entite;
-    data['experience'] = this.experience;
-    data['periode_debut'] = this.periodeDebut;
-    data['periode_fin'] = this.periodeFin;
-    data['adresse_id'] = this.adresseId;
-    if (this.adresse != null) {
-      data['adresse'] = this.adresse.toJson();
+    final Map<String, dynamic> data = {};
+    data['entite'] = entite;
+    data['experience'] = experience;
+    data['periode_debut'] = periodeDebut;
+    data['periode_fin'] = periodeFin;
+    data['adresse_id'] = adresseId;
+    if (adresse != null) {
+      data['adresse'] = adresse.toJson();
     }
     return data;
   }
@@ -178,10 +209,10 @@ class Adresse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['pays'] = this.pays;
-    data['ville'] = this.ville;
-    data['adresse'] = this.adresse;
+    final Map<String, dynamic> data = {};
+    data['pays'] = pays;
+    data['ville'] = ville;
+    data['adresse'] = adresse;
     return data;
   }
 }
@@ -195,14 +226,15 @@ class EtudesFaites {
   String adresseId;
   Adresse adresse;
 
-  EtudesFaites(
-      {this.institut,
-      this.etude,
-      this.periodeDebut,
-      this.periodeFin,
-      this.certificat,
-      this.adresseId,
-      this.adresse});
+  EtudesFaites({
+    this.institut,
+    this.etude,
+    this.periodeDebut,
+    this.periodeFin,
+    this.certificat,
+    this.adresseId,
+    this.adresse,
+  });
 
   EtudesFaites.fromJson(Map<String, dynamic> json) {
     institut = json['institut'];
@@ -212,19 +244,19 @@ class EtudesFaites {
     certificat = json['certificat'];
     adresseId = json['adresse_id'];
     adresse =
-        json['adresse'] != null ? new Adresse.fromJson(json['adresse']) : null;
+        json['adresse'] != null ? Adresse.fromJson(json['adresse']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['institut'] = this.institut;
-    data['etude'] = this.etude;
-    data['periode_debut'] = this.periodeDebut;
-    data['periode_fin'] = this.periodeFin;
-    data['certificat'] = this.certificat;
-    data['adresse_id'] = this.adresseId;
-    if (this.adresse != null) {
-      data['adresse'] = this.adresse.toJson();
+    final Map<String, dynamic> data = {};
+    data['institut'] = institut;
+    data['etude'] = etude;
+    data['periode_debut'] = periodeDebut;
+    data['periode_fin'] = periodeFin;
+    data['certificat'] = certificat;
+    data['adresse_id'] = adresseId;
+    if (adresse != null) {
+      data['adresse'] = adresse.toJson();
     }
     return data;
   }
@@ -244,17 +276,17 @@ class Agenda {
     if (json['heures'] != null) {
       heures = <Heures>[];
       json['heures'].forEach((v) {
-        heures.add(new Heures.fromJson(v));
+        heures.add(Heures.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['agenda_id'] = this.agendaId;
-    data['date'] = this.date;
-    if (this.heures != null) {
-      data['heures'] = this.heures.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = {};
+    data['agenda_id'] = agendaId;
+    data['date'] = date;
+    if (heures != null) {
+      data['heures'] = heures.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -273,9 +305,9 @@ class Heures {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['agenda_heure_id'] = this.agendaHeureId;
-    data['heure'] = this.heure;
+    final Map<String, dynamic> data = {};
+    data['agenda_heure_id'] = agendaHeureId;
+    data['heure'] = heure;
     return data;
   }
 }
@@ -294,10 +326,10 @@ class Avis {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['patient'] = this.patient;
-    data['avis'] = this.avis;
-    data['date_enregistrement'] = this.dateEnregistrement;
+    final Map<String, dynamic> data = {};
+    data['patient'] = patient;
+    data['avis'] = avis;
+    data['date_enregistrement'] = dateEnregistrement;
     return data;
   }
 }

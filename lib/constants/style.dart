@@ -6,6 +6,7 @@ var style1 = GoogleFonts.lato;
 var style2 = GoogleFonts.mulish;
 
 var primaryColor = Colors.blue[900];
+var darkBlueColor = const Color(0xff000033);
 var defaultRadius = BorderRadius.circular(20.0);
 
 getShowTimePicker(BuildContext context) {

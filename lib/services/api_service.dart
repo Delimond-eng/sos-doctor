@@ -14,22 +14,23 @@ class DApi {
   static Future request(
       {String url, String method, Map<String, dynamic> body, headers}) async {
     http.Response response;
+    var client = http.Client();
     switch (method) {
       case "post":
-        response = await http.post(
+        response = await client.post(
           Uri.parse('${DApi.baseUrl}/$url'),
           headers: headers,
           body: jsonEncode(body),
         );
         break;
       case "get":
-        response = await http.get(
+        response = await client.get(
           Uri.parse('${DApi.baseUrl}/$url'),
           headers: headers,
         );
         break;
       default:
-        response = await http.get(
+        response = await client.get(
           Uri.parse('${DApi.baseUrl}/$url'),
           headers: headers,
         );

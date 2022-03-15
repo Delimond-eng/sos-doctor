@@ -34,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
     await handleCameraAndMic(Permission.microphone);
 
     /*var connectivityResult = await (Connectivity().checkConnectivity());
-
     if (connectivityResult == ConnectivityResult.none) {
       await Navigator.pushAndRemoveUntil(
           context,
@@ -45,21 +44,22 @@ class _SplashScreenState extends State<SplashScreen> {
           (Route<dynamic> route) => false);
       return;
     }*/
+
     await DBService.initDb();
     if (isMedecin) {
-      await medecinController.refreshDatas();
-      await Navigator.pushAndRemoveUntil(
+      medecinController.refreshDatas();
+      Navigator.pushAndRemoveUntil(
           context,
           PageTransition(
             type: PageTransitionType.leftToRightWithFade,
             alignment: Alignment.topCenter,
-            child: MedecinHomeScreen(),
+            child: const MedecinHomeScreen(),
           ),
           (Route<dynamic> route) => false);
       return;
     } else {
-      await patientController.refreshDatas();
-      await Navigator.pushAndRemoveUntil(
+      patientController.refreshDatas();
+      Navigator.pushAndRemoveUntil(
           context,
           PageTransition(
             type: PageTransitionType.leftToRightWithFade,
@@ -88,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(.4),
+                color: Colors.white.withOpacity(.9),
               ),
               child: Center(
                 child: Column(
@@ -109,11 +109,13 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             bottom: 20.0,
             child: Center(
-              child: CircularProgressIndicator(
-                  strokeWidth: 3, color: Colors.black87),
+              child: SpinKitThreeBounce(
+                color: darkBlueColor,
+                size: 30.0,
+              ),
             ),
           )
         ],

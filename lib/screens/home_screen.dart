@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
@@ -59,16 +60,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   initData() {
     setState(() {
-      langues.addAll(patientController.langues);
-      selectedSpeech = langues[0];
-      selectLangueId = langues[0].langueId;
+      try {
+        if (patientController.langues.isNotEmpty) {
+          langues.addAll(patientController.langues);
+          selectedSpeech = langues.isNotEmpty ? langues.first : null;
+          selectLangueId = langues.first.langueId ?? "";
+        }
+      } catch (err) {
+        print(err);
+      }
     });
-    DBService.deleteAllMedecin();
   }
 
   @override
   Widget build(BuildContext context) {
-    var _size = MediaQuery.of(context).size;
+    //var _size = MediaQuery.of(context).size;
     return PickupLayout(
       uid: uid,
       scaffold: WillPopScope(
@@ -107,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       type: PageTransitionType
                                           .leftToRightWithFade,
                                       alignment: Alignment.topCenter,
-                                      child: AuthScreen(),
+                                      child: const AuthScreen(),
                                     ),
                                   );
                                 },
@@ -119,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeftWithFade,
-                                child: AuthScreen(),
+                                child: const AuthScreen(),
                               ),
                             );
                           },
@@ -188,12 +194,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   BorderRadius.circular(20.0)),
                                           onPressed: () {
                                             setState(() {
-                                              patientController.specialities
-                                                  .forEach((e) {
+                                              for (var e in patientController
+                                                  .specialities) {
                                                 if (e.isActive) {
                                                   e.isActive = false;
                                                 }
-                                              });
+                                              }
                                               searchMedecinsList.clear();
                                             });
                                           },
@@ -324,13 +330,13 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: "assets/icons/filter1.svg",
           isActive: data.isActive,
           onPressed: () async {
-            patientController.specialities.forEach((e) {
+            for (var e in patientController.specialities) {
               if (e.isActive) {
                 setState(() {
                   e.isActive = false;
                 });
               }
-            });
+            }
             Xloading.showLottieLoading(context);
             setState(() {
               data.isActive = true;
@@ -452,12 +458,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   Xloading.showLottieLoading(context);
                   var mDatas =
                       await PatientApi.viewMedecinProfil(medecin.medecinId);
-                  String o = medecin.photo.length > 100 ? medecin.photo : "";
-                  String s = (medecin.specialites != null) &&
+                  //String o = medecin.photo.length > 100 ? medecin.photo : "";
+                  /*String s = (medecin.specialites != null) &&
                           (medecin.specialites.isNotEmpty)
-                      ? medecin.specialites[0].specialite
-                      : "aucune spécialité";
-                  IMedecins current = IMedecins(
+                      ? medecin
+                          .specialites[
+                              Random().nextInt(medecin.specialites.length)]
+                          .specialite
+                      : "aucune spécialité";*/
+                  /*IMedecins current = IMedecins(
                     medecinId: medecin.medecinId,
                     nom: medecin.nom,
                     photo: o,
@@ -467,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   await DBService.insertNewMedecin(
                     medecin: current,
                     where: medecin.medecinId,
-                  );
+                  );*/
                   Xloading.dismiss();
                   Navigator.push(
                     context,
@@ -502,21 +511,21 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () async {
             Xloading.showLottieLoading(context);
             var mDatas = await PatientApi.viewMedecinProfil(medecin.medecinId);
-            String o = medecin.photo.length > 100 ? medecin.photo : "";
-            String s = medecin.specialites != null
-                ? medecin.specialites[0].specialite
-                : "aucune spécialité";
-            IMedecins current = IMedecins(
-              medecinId: medecin.medecinId,
-              nom: medecin.nom,
-              photo: o,
-              specialite: s,
-              cote: medecin.cote.toString(),
-            );
-            await DBService.insertNewMedecin(
-              medecin: current,
-              where: medecin.medecinId,
-            );
+            // String o = medecin.photo.length > 100 ? medecin.photo : "";
+            // String s = medecin.specialites != null
+            //     ? medecin.specialites[0].specialite
+            //     : "aucune spécialité";
+            // IMedecins current = IMedecins(
+            //   medecinId: medecin.medecinId,
+            //   nom: medecin.nom,
+            //   photo: o,
+            //   specialite: s,
+            //   cote: medecin.cote.toString(),
+            // );
+            // await DBService.insertNewMedecin(
+            //   medecin: current,
+            //   where: medecin.medecinId,
+            // );
             Xloading.dismiss();
             Navigator.push(
               context,
