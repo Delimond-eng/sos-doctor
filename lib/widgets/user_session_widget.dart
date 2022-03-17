@@ -9,7 +9,7 @@ class UserSession extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      color: Colors.blue[800],
+      color: darkBlueColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Container(
         decoration: BoxDecoration(
@@ -109,8 +109,8 @@ class UserSession extends StatelessWidget {
           value: 1,
           child: Row(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(2, 2, 8, 2),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(2, 2, 8, 2),
                 child: Icon(
                   Icons.exit_to_app,
                   size: 15,

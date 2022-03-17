@@ -31,12 +31,12 @@ class CustomFormField extends StatelessWidget {
         hintText: hintText,
         prefixIcon: Icon(
           icon,
-          color: Colors.grey[500],
+          color: Colors.orange[900],
           size: 16.0,
         ),
         fillColor: Colors.white,
         border: OutlineInputBorder(
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.black54,
             width: 1.0,
           ),
@@ -44,7 +44,7 @@ class CustomFormField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: Colors.black54, width: 1.0),
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(5.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(

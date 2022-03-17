@@ -20,22 +20,12 @@ class ClientScheduleCard extends StatelessWidget {
     var _size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        Container(
-          height: 160.0,
-          width: _size.width,
+        Card(
+          elevation: 3.0,
           margin: const EdgeInsets.only(bottom: 10.0),
-          decoration: BoxDecoration(
-            image: const DecorationImage(
-              image: AssetImage("assets/images/shapes/bg3.png"),
-              fit: BoxFit.cover,
-            ),
-            borderRadius: BorderRadius.circular(15.0),
-          ),
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              color: Colors.white.withOpacity(.8),
-            ),
+            height: 160.0,
+            width: _size.width,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -202,7 +192,7 @@ class ClientScheduleCard extends StatelessWidget {
                   ),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
+                    borderRadius: BorderRadius.circular(5.0)),
                 onPressed: onCancelled,
                 elevation: 5,
               ),
@@ -210,7 +200,7 @@ class ClientScheduleCard extends StatelessWidget {
                 width: 5.0,
               ),
               RaisedButton(
-                color: Colors.cyan,
+                color: Colors.blue,
                 child: Text(
                   "Détail",
                   style: GoogleFonts.lato(
@@ -218,7 +208,7 @@ class ClientScheduleCard extends StatelessWidget {
                   ),
                 ),
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
+                    borderRadius: BorderRadius.circular(5.0)),
                 onPressed: onPressed,
                 elevation: 5,
               ),

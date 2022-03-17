@@ -132,19 +132,315 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
           children: [
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: AgendaViewer(
-                future: rdvs("encours"),
-                onCancelSchedule: () {
-                  rdvs("encours");
+              child: FutureBuilder(
+                future: rdvEnCours(),
+                builder:
+                    (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
+                  if (snapshot.data == null) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: 100.0,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: SpinKitWave(
+                                color: Colors.black.withOpacity(.8),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            ),
+                          ),
+                          const Text("Chargement en cours ...")
+                        ],
+                      ),
+                    );
+                  } else {
+                    if (snapshot.data.isEmpty) {
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset(
+                                "assets/lotties/5066-meeting-and-stuff.json"),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Aucun rendez-vous !",
+                              style: GoogleFonts.lato(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Scrollbar(
+                        radius: const Radius.circular(5),
+                        thickness: 5.0,
+                        child: ListView.builder(
+                          padding: const EdgeInsets.only(
+                              bottom: 60.0, right: 15.0, left: 15.0, top: 10.0),
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            var data = snapshot.data[index];
+                            return MedScheduleCard(
+                              data: data,
+                              onCalling: () async {
+                                // update input validation
+                                await handleCameraAndMic(Permission.camera);
+                                await handleCameraAndMic(Permission.microphone);
+
+                                String uid = storage.read("medecin_id");
+                                String uName = storage.read('medecin_nom');
+                                String uPic = storage.read('photo');
+
+                                Call call = Call(
+                                  callerId: uid,
+                                  callerName: uName,
+                                  callerPic: uPic,
+                                  callerType: "medecin",
+                                  receiverName: data.nom,
+                                  receiverPic: "",
+                                  receiverType: "medecin",
+                                  receiverId: data.patientId,
+                                  channelId:
+                                      '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                                  consultId: data.consultationRdvId,
+                                );
+                                Xloading.showLottieLoading(context);
+                                await MedecinApi.consulting(
+                                  consultRef:
+                                      '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                                  consultId: data.consultationRdvId,
+                                  key: "start",
+                                ).then((result) async {
+                                  Xloading.dismiss();
+                                  print(result);
+                                  await CallMethods.makeCall(call: call);
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CallScreen(
+                                        role: ClientRole.Broadcaster,
+                                        call: call,
+                                        hasCaller: true,
+                                      ),
+                                    ),
+                                  );
+                                  /*if (result != null) {
+                        
+                      } else {
+                        Get.snackbar(
+                          "Echec de la vidéo conférence !",
+                          "une erreur est survenu lors du traitement de l'opération, veuillez reéssayer ultérieurement !",
+                          snackPosition: SnackPosition.BOTTOM,
+                          colorText: Colors.red[200],
+                          backgroundColor: Colors.black87,
+                          maxWidth: MediaQuery.of(context).size.width - 4,
+                          borderRadius: 10,
+                        );
+                      }*/
+                                });
+                              },
+                              onCancelled: () {
+                                showCancellerPdf(
+                                  context,
+                                  title: "Annulation du rendez-vous",
+                                  onValidated: () async {
+                                    try {
+                                      Xloading.showLottieLoading(context);
+                                      var result = await MedecinApi.annulerRdv(
+                                          rdvId: data.consultationRdvId);
+                                      if (result != null) {
+                                        Xloading.dismiss();
+                                        if (result["reponse"]["status"] ==
+                                            "success") {
+                                          Get.back();
+
+                                          XDialog.showSuccessAnimation(context);
+                                          setState(() {
+                                            rdvEnCours();
+                                          });
+                                        }
+                                      }
+                                    } catch (err) {
+                                      print(err);
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: AgendaViewer(
-                future: rdvs("anterieur"),
-                onCancelSchedule: () {
-                  rdvs("anterieur");
+              child: FutureBuilder(
+                future: rdvAnterieurs(),
+                builder:
+                    (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
+                  if (snapshot.data == null) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: 100.0,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: SpinKitWave(
+                                color: Colors.black.withOpacity(.8),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            ),
+                          ),
+                          const Text("Chargement en cours ...")
+                        ],
+                      ),
+                    );
+                  } else {
+                    if (snapshot.data.isEmpty) {
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset(
+                                "assets/lotties/5066-meeting-and-stuff.json"),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Aucun rendez-vous !",
+                              style: GoogleFonts.lato(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Scrollbar(
+                        radius: const Radius.circular(5),
+                        thickness: 5.0,
+                        child: ListView.builder(
+                          padding: const EdgeInsets.only(
+                              bottom: 60.0, right: 15.0, left: 15.0, top: 10.0),
+                          shrinkWrap: true,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            var data = snapshot.data[index];
+                            return MedScheduleCard(
+                              data: data,
+                              onCalling: () async {
+                                // update input validation
+                                await handleCameraAndMic(Permission.camera);
+                                await handleCameraAndMic(Permission.microphone);
+
+                                String uid = storage.read("medecin_id");
+                                String uName = storage.read('medecin_nom');
+                                String uPic = storage.read('photo');
+
+                                Call call = Call(
+                                  callerId: uid,
+                                  callerName: uName,
+                                  callerPic: uPic,
+                                  callerType: "medecin",
+                                  receiverName: data.nom,
+                                  receiverPic: "",
+                                  receiverType: "medecin",
+                                  receiverId: data.patientId,
+                                  channelId:
+                                      '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                                  consultId: data.consultationRdvId,
+                                );
+                                Xloading.showLottieLoading(context);
+                                await MedecinApi.consulting(
+                                  consultRef:
+                                      '$uid${data.patientId}${math.Random().nextInt(1000).toString()}',
+                                  consultId: data.consultationRdvId,
+                                  key: "start",
+                                ).then((result) async {
+                                  Xloading.dismiss();
+                                  print(result);
+                                  await CallMethods.makeCall(call: call);
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CallScreen(
+                                        role: ClientRole.Broadcaster,
+                                        call: call,
+                                        hasCaller: true,
+                                      ),
+                                    ),
+                                  );
+                                  /*if (result != null) {
+                        
+                      } else {
+                        Get.snackbar(
+                          "Echec de la vidéo conférence !",
+                          "une erreur est survenu lors du traitement de l'opération, veuillez reéssayer ultérieurement !",
+                          snackPosition: SnackPosition.BOTTOM,
+                          colorText: Colors.red[200],
+                          backgroundColor: Colors.black87,
+                          maxWidth: MediaQuery.of(context).size.width - 4,
+                          borderRadius: 10,
+                        );
+                      }*/
+                                });
+                              },
+                              onCancelled: () {
+                                showCancellerPdf(
+                                  context,
+                                  title: "Annulation du rendez-vous",
+                                  onValidated: () async {
+                                    try {
+                                      Xloading.showLottieLoading(context);
+                                      var result = await MedecinApi.annulerRdv(
+                                          rdvId: data.consultationRdvId);
+                                      if (result != null) {
+                                        Xloading.dismiss();
+                                        if (result["reponse"]["status"] ==
+                                            "success") {
+                                          Get.back();
+
+                                          XDialog.showSuccessAnimation(context);
+                                          setState(() {
+                                            rdvAnterieurs();
+                                          });
+                                        }
+                                      }
+                                    } catch (err) {
+                                      print(err);
+                                    }
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ),
@@ -167,7 +463,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BubbleTabIndicator(
           indicatorHeight: 47.0,
-          indicatorColor: primaryColor,
+          indicatorColor: darkBlueColor,
           tabBarIndicatorSize: TabBarIndicatorSize.label,
           indicatorRadius: 10,
         ),
@@ -231,8 +527,18 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
     );
   }
 
-  Future<List<ConsultationsRdv>> rdvs(String type) async {
-    var result = await MedecinApi.voirRdvs(key: type);
+  Future<List<ConsultationsRdv>> rdvEnCours() async {
+    var result = await MedecinApi.voirRdvs(key: "encours");
+    if (result != null) {
+      var data = result.consultationsRdv;
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<ConsultationsRdv>> rdvAnterieurs() async {
+    var result = await MedecinApi.voirRdvs(key: "anterieur");
     if (result != null) {
       var data = result.consultationsRdv;
       return data;

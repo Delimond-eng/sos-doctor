@@ -8,6 +8,8 @@ import 'package:sos_docteur/widgets/user_session_widget.dart';
 import '../../index.dart';
 
 class PatientProfilPage extends StatefulWidget {
+  const PatientProfilPage({Key key}) : super(key: key);
+
   @override
   _PatientProfilPageState createState() => _PatientProfilPageState();
 }
@@ -174,7 +176,7 @@ class _PatientProfilPageState extends State<PatientProfilPage> {
                             color: Colors.white,
                           ),
                         )
-                      : Icon(
+                      : const Icon(
                           CupertinoIcons.person,
                           size: 30,
                           color: Colors.white,

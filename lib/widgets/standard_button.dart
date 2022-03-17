@@ -5,8 +5,10 @@ class StandardBtn extends StatelessWidget {
   final Function onPressed;
   final Color color;
   final String label;
+  final double radius;
 
-  const StandardBtn({Key key, this.onPressed, this.color, this.label})
+  const StandardBtn(
+      {Key key, this.onPressed, this.color, this.label, this.radius})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,9 @@ class StandardBtn extends StatelessWidget {
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
                 letterSpacing: 1.5)),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(radius ?? 30.0),
+        ),
       ),
     );
   }

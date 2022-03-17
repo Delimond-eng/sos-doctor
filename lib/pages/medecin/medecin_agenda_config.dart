@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
   String selectedDate = "";
   String timeStart = "";
   String timeEnd = "";
+  int timestampStart;
+  int timestampEnd;
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +77,7 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                   style: style1(
                     fontWeight: FontWeight.w600,
                     fontSize: 16.0,
+                    color: Colors.pink,
                   ),
                 ),
                 Container(
@@ -119,11 +124,15 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                       onShowTime: () async {
                         TimeOfDay time = await getShowTimePicker(context);
                         if (time != null) {
+                          final now = DateTime.now();
+                          var timeNow = DateTime(now.year, now.month, now.day,
+                              time.hour, time.minute);
                           setState(() {
                             timeStart = time.format(context);
+                            timestampStart = timeNow.microsecondsSinceEpoch;
                           });
                         }
-                        print(timeStart);
+                        print(timestampStart);
                       },
                     )),
                     const SizedBox(
@@ -137,11 +146,14 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                         onShowTime: () async {
                           TimeOfDay time = await getShowTimePicker(context);
                           if (time != null) {
+                            final now = DateTime.now();
+                            var timeNow = DateTime(now.year, now.month, now.day,
+                                time.hour, time.minute);
                             setState(() {
                               timeEnd = time.format(context);
+                              timestampEnd = timeNow.microsecondsSinceEpoch;
                             });
                           }
-                          print(timeEnd);
                         },
                       ),
                     ),
@@ -149,31 +161,32 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                 ),
                 const SizedBox(height: 40.0),
                 StandardBtn(
+                  radius: 5.0,
+                  color: Colors.orange[800],
                   label: "Configurer",
                   onPressed: () async {
-                    if (selectedDate.isEmpty) {
+                    if (timeStart.isEmpty && timeEnd.isEmpty) {
                       Get.snackbar(
-                        "Avertissement !",
-                        "vous devez sélectionner une date pour configurer votre agenda!",
+                        "Champs non remplis !",
+                        "vous devez choisir une heure du début et une heure de la fin!",
                         snackPosition: SnackPosition.TOP,
                         colorText: Colors.white,
-                        backgroundColor: Colors.amber[900],
+                        backgroundColor: Colors.black87,
                         maxWidth: MediaQuery.of(context).size.width - 4,
-                        borderRadius: 2,
+                        borderRadius: 5.0,
                         duration: const Duration(seconds: 3),
                       );
                       return;
                     }
-
-                    if (timeStart.isEmpty || timeEnd.isEmpty) {
+                    if (timestampStart >= timestampEnd) {
                       Get.snackbar(
-                        "Avertissement !",
-                        "vous devez spécifier une heure du début et celle de la fin!",
+                        "Heures invalides !",
+                        "L'heure du début doit être inférieure à l'heure de la fin!",
                         snackPosition: SnackPosition.TOP,
                         colorText: Colors.white,
-                        backgroundColor: Colors.amber[900],
+                        backgroundColor: Colors.black87,
                         maxWidth: MediaQuery.of(context).size.width - 4,
-                        borderRadius: 20,
+                        borderRadius: 5.0,
                         duration: const Duration(seconds: 3),
                       );
                       return;
@@ -242,7 +255,7 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                   width: 35.0,
                   decoration: BoxDecoration(
                     color: Colors.blue.withOpacity(.3),
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: const Center(
                     child: Icon(
@@ -257,9 +270,10 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
             Text(
               "Configuration agenda",
               style: style1(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 14.0),
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+                fontSize: 18.0,
+              ),
             ),
           ],
         )
@@ -297,7 +311,7 @@ class TimePickerBox extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
               border: Border.all(color: primaryColor, width: 1),
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(5.0),
               color: Colors.grey[100].withOpacity(.5),
               boxShadow: [
                 BoxShadow(
@@ -333,7 +347,9 @@ class TimePickerBox extends StatelessWidget {
                     ),
                   Icon(
                     CupertinoIcons.time_solid,
-                    color: primaryColor,
+                    color: Colors
+                        .primaries[Random().nextInt(Colors.primaries.length)]
+                        .shade900,
                   )
                 ],
               ),

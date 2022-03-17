@@ -17,35 +17,12 @@ class MedScheduleCard extends StatelessWidget {
       // ignore: deprecated_member_use
       overflow: Overflow.visible,
       children: [
-        Container(
-          height: 150.0,
-          width: _size.width,
+        Card(
           margin: const EdgeInsets.only(bottom: 15.0),
-          decoration: BoxDecoration(
-            image: const DecorationImage(
-              image: AssetImage("assets/images/shapes/bg5.png"),
-              fit: BoxFit.fill,
-            ),
-            borderRadius: BorderRadius.circular(5.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(.3),
-                offset: const Offset(0, 4),
-                blurRadius: 12.0,
-              )
-            ],
-          ),
+          elevation: 3.0,
           child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(.3),
-                    offset: const Offset(0, 4),
-                    blurRadius: 12.0,
-                  )
-                ],
-                color: Colors.white.withOpacity(.8)),
+            height: 150.0,
+            width: _size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -54,9 +31,16 @@ class MedScheduleCard extends StatelessWidget {
                   child: Container(
                     width: _size.width,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      gradient: LinearGradient(
+                        colors: [
+                          primaryColor,
+                          darkBlueColor,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
                       borderRadius: const BorderRadius.vertical(
-                        top: Radius.circular(5.0),
+                        top: Radius.circular(3.5),
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -160,7 +144,10 @@ class MedScheduleCard extends StatelessWidget {
                       Column(
                         children: [
                           FlatButton(
-                            color: Colors.orange,
+                            color: Colors.orange[800],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
                             onPressed: onCalling,
                             child: const Center(
                               child: Icon(
@@ -172,6 +159,9 @@ class MedScheduleCard extends StatelessWidget {
                           FlatButton(
                             color: Colors.grey,
                             onPressed: onCancelled,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
                             child: const Center(
                               child: Icon(
                                 CupertinoIcons.trash,

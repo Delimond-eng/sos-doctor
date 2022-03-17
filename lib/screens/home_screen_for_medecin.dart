@@ -484,7 +484,7 @@ class SideMenu extends StatelessWidget {
                       type: PageTransitionType.rightToLeftWithFade,
                       alignment: Alignment.topCenter,
                       curve: Curves.easeIn,
-                      child: MedecinProfilPage(),
+                      child: const MedecinProfilPage(),
                     ),
                   );
                 },
@@ -514,20 +514,13 @@ class SideMenu extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: MedecinAgendaConfigPage(),
+                      child: const MedecinAgendaConfigPage(),
                     ),
                   );
                 },
               ),
               MenuItem(
-                icon: Badge(
-                  badgeContent: Text(
-                    "0",
-                    style: style1(color: Colors.white),
-                  ),
-                  child:
-                      const Icon(CupertinoIcons.calendar, color: Colors.cyan),
-                ),
+                icon: const Icon(Icons.task_alt_outlined, color: Colors.cyan),
                 label: 'Mes rendez-vous',
                 onPressed: () {
                   Get.back();
@@ -537,7 +530,7 @@ class SideMenu extends StatelessWidget {
                       type: PageTransitionType.rightToLeftWithFade,
                       alignment: Alignment.topCenter,
                       curve: Curves.easeIn,
-                      child: MedecinScheddulePage(),
+                      child: const MedecinScheddulePage(),
                     ),
                   );
                 },
@@ -549,22 +542,7 @@ class SideMenu extends StatelessWidget {
                 indent: 50.0,
                 endIndent: 50.0,
               ),
-              const SizedBox(height: 20.0),
-              MenuItem(
-                icon: const Icon(CupertinoIcons.lock_open, color: Colors.cyan),
-                label: 'Déconnexion',
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeftWithFade,
-                        alignment: Alignment.topCenter,
-                        curve: Curves.easeIn,
-                        child: AuthScreen(),
-                      ),
-                      (Route<dynamic> route) => false);
-                },
-              ),
+
               /*MenuItem(
                 icon: const Icon(CupertinoIcons.info, color: Colors.cyan),
                 label: 'Aide',

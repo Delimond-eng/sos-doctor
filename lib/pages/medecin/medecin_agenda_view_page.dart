@@ -131,7 +131,6 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 16.0,
                                 ),
-                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: medecinController.medecinProfil.value
                                     .datas.profilAgenda.length,
@@ -182,127 +181,110 @@ class AgendaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      // ignore: deprecated_member_use
-      overflow: Overflow.visible,
-      children: [
-        Container(
-          height: 110.0,
-          margin: const EdgeInsets.only(bottom: 8.0),
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            color: Colors.white.withOpacity(.8),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 12.0,
-                color: Colors.black.withOpacity(.1),
-                offset: const Offset(0, 8),
-              )
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 80.0,
-                  width: 80.0,
-                  decoration: BoxDecoration(
-                    color: primaryColor.withOpacity(.5),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/schedule-svgrepo-com.svg",
-                        color: Colors.white,
-                        height: 50.0,
-                        width: 50.0,
-                      ),
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8.0),
+      elevation: 3.0,
+      child: Container(
+        height: 110.0,
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 80.0,
+                width: 80.0,
+                decoration: BoxDecoration(
+                  color: darkBlueColor.withOpacity(.2),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      "assets/icons/schedule-svgrepo-com.svg",
+                      color: Colors.white,
+                      height: 25.0,
+                      width: 25.0,
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 20.0,
-                ),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              const SizedBox(
+                width: 20.0,
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "${strDateLongFr(date)} ",
                           style: GoogleFonts.lato(
                             color: primaryColor,
                             fontWeight: FontWeight.w500,
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        if (heures != null) ...[
-                          SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children: [
-                                for (int i = 0; i < heures.length; i++) ...[
-                                  TimeCard(
-                                    start: heures.first.heure,
-                                    end: heures.last.heure,
-                                  )
-                                ]
+                        GestureDetector(
+                          onTap: onRemoved,
+                          child: Container(
+                            height: 30.0,
+                            width: 80.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5.0),
+                              color: Colors.grey[800],
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(.4),
+                                  blurRadius: 12.0,
+                                  offset: const Offset(0, 3),
+                                )
                               ],
                             ),
-                          )
-                        ]
+                            child: Center(
+                              child: Text(
+                                "Annuler",
+                                style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
-                  ),
-                )
-              ],
-            ),
+                    if (heures != null) ...[
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            for (int i = 0; i < heures.length; i++) ...[
+                              TimeCard(
+                                start: heures.first.heure,
+                                end: heures.last.heure,
+                              )
+                            ]
+                          ],
+                        ),
+                      )
+                    ]
+                  ],
+                ),
+              )
+            ],
           ),
         ),
-        Positioned(
-          top: 20,
-          right: 8,
-          child: GestureDetector(
-            onTap: onRemoved,
-            child: Container(
-              height: 30.0,
-              width: 80.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: Colors.grey[800],
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(.4),
-                    blurRadius: 12.0,
-                    offset: const Offset(0, 3),
-                  )
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  "Annuler",
-                  style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
@@ -317,69 +299,60 @@ class TimeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+    return Card(
       margin: const EdgeInsets.only(right: 8.0),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.7),
-        borderRadius: BorderRadius.circular(20.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(.3),
-            blurRadius: 12,
-            offset: const Offset(0, 3),
-          )
-        ],
-      ),
-      child: Row(
-        children: [
-          Row(
-            children: [
-              Icon(
-                CupertinoIcons.time_solid,
-                color: primaryColor,
-                size: 16.0,
-              ),
-              const SizedBox(
-                width: 5.0,
-              ),
-              Text(
-                start,
-                style: GoogleFonts.lato(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.0,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
+        child: Row(
+          children: [
+            Row(
+              children: [
+                Icon(
+                  CupertinoIcons.time_solid,
+                  color: primaryColor,
+                  size: 16.0,
                 ),
-              )
-            ],
-          ),
-          Container(
-            width: 15.0,
-            height: 2,
-            color: primaryColor,
-            margin: const EdgeInsets.symmetric(horizontal: 5.0),
-          ),
-          Row(
-            children: [
-              Icon(
-                CupertinoIcons.time_solid,
-                color: Colors.cyan[800],
-                size: 16.0,
-              ),
-              const SizedBox(
-                width: 5.0,
-              ),
-              Text(
-                end,
-                style: GoogleFonts.lato(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.0,
+                const SizedBox(
+                  width: 5.0,
                 ),
-              )
-            ],
-          ),
-        ],
+                Text(
+                  start,
+                  style: GoogleFonts.lato(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.0,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              width: 15.0,
+              height: 2,
+              color: primaryColor,
+              margin: const EdgeInsets.symmetric(horizontal: 5.0),
+            ),
+            Row(
+              children: [
+                Icon(
+                  CupertinoIcons.time_solid,
+                  color: Colors.cyan[800],
+                  size: 16.0,
+                ),
+                const SizedBox(
+                  width: 5.0,
+                ),
+                Text(
+                  end,
+                  style: GoogleFonts.lato(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16.0,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

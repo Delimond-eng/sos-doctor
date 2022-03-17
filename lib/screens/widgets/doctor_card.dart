@@ -56,7 +56,7 @@ class MedCard extends StatelessWidget {
                     width: 100,
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(15.0),
                       gradient:
                           LinearGradient(colors: [darkBlueColor, Colors.cyan]),
                       boxShadow: [
@@ -70,7 +70,7 @@ class MedCard extends StatelessWidget {
                     child: medecin.photo.length > 200
                         ? Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(15.0),
                               image: DecorationImage(
                                 alignment: Alignment.topCenter,
                                 image: MemoryImage(

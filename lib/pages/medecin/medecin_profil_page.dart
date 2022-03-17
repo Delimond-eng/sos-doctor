@@ -11,6 +11,7 @@ import 'package:sos_docteur/widgets/form_input_field.dart';
 import 'package:country_picker/country_picker.dart';
 
 import '../../index.dart';
+import 'medecin_profil_view_page.dart';
 
 class MedecinProfilPage extends StatefulWidget {
   const MedecinProfilPage({Key key}) : super(key: key);
@@ -143,12 +144,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
       width: double.infinity,
       height: 60,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            primaryColor,
-            Colors.black87,
-          ],
-        ),
+        color: darkBlueColor,
       ),
       child: TabBar(
         controller: controller,
@@ -156,9 +152,9 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: const BubbleTabIndicator(
           indicatorHeight: 50.0,
-          indicatorColor: Colors.pink,
+          indicatorColor: Colors.blue,
           tabBarIndicatorSize: TabBarIndicatorSize.tab,
-          indicatorRadius: 50,
+          indicatorRadius: 5,
         ),
         labelColor: Colors.white,
         unselectedLabelColor: Colors.white,
@@ -578,10 +574,9 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Langues de consultation",
-                      style: GoogleFonts.lato(
-                          fontSize: 18.0, fontWeight: FontWeight.w400),
+                    const HeaderTitle(
+                      title: "Langues de consultation",
+                      icon: "assets/icons/speech-svgrepo-com.svg",
                     ),
                     const SizedBox(
                       height: 10.0,
@@ -590,7 +585,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                       height: 60.0,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(5.0),
                         color: Colors.white30,
                         border: Border.all(color: Colors.blue, width: 1),
                       ),
@@ -607,7 +602,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                                     menuMaxHeight: 300,
                                     alignment: Alignment.centerRight,
                                     dropdownColor: Colors.grey[100],
-                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderRadius: BorderRadius.circular(5.0),
                                     style:
                                         GoogleFonts.lato(color: Colors.black54),
                                     value: selectedLangue,
@@ -717,12 +712,9 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                 const SizedBox(
                   height: 20.0,
                 ),
-                Text(
-                  "Numéro d'ordre",
-                  style: GoogleFonts.lato(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w400,
-                  ),
+                const HeaderTitle(
+                  title: "Ordre de médecin",
+                  icon: "assets/icons/medicine-sign.svg",
                 ),
                 const SizedBox(
                   height: 10.0,
@@ -749,7 +741,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                         height: 55.0,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(5.0),
                           color: Colors.blue[200].withOpacity(.4),
                         ),
                         child: Row(
@@ -798,16 +790,16 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                             ],
                             Container(
                               height: 55.0,
-                              width: 50,
+                              width: 70,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(5.0),
                                 color: Colors.blue,
                               ),
                               child: Material(
-                                borderRadius: BorderRadius.circular(10.0),
+                                borderRadius: BorderRadius.circular(5.0),
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderRadius: BorderRadius.circular(5.0),
                                   onTap: () async {
                                     var pickedFile = await takePhoto(
                                         source: ImageSource.gallery);
@@ -843,7 +835,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                     elevation: 10.0,
                     color: Colors.orange[800],
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
                     onPressed: () async {
                       if (_formNum.currentState.validate()) {
@@ -917,13 +909,13 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             height: 55.0,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(5.0),
               border: Border.all(
                 color: primaryColor,
               ),
             ),
             child: Material(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(5.0),
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
@@ -945,7 +937,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                         hintText: 'Entrez le nom du pays...',
                         prefixIcon: const Icon(CupertinoIcons.search),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(5.0),
                           borderSide: BorderSide(
                             color: primaryColor,
                           ),
@@ -954,7 +946,7 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                     ),
                   );
                 },
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(5.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1443,16 +1435,16 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
                   height: 60.0,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(5.0),
                     ),
                     elevation: 10.0,
-                    color: Colors.green,
+                    color: Colors.orange[800],
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Icon(
-                          CupertinoIcons.add,
+                          CupertinoIcons.add_circled,
                           color: Colors.white,
                           size: 15,
                         ),
@@ -1828,204 +1820,199 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
           ),
         ),
         Expanded(
-          child: Container(
-            child: SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-              child: Column(
-                children: [
+          child: SingleChildScrollView(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Flexible(
+                      child: SelectChoiceCard(
+                        hasSelected: selectTeleConsult,
+                        title: "Télé-consultation",
+                        onSelected: () {
+                          setState(() {
+                            selectTeleConsult = !selectTeleConsult;
+                          });
+                          cleanSelected();
+                          selectedList.clear();
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    Flexible(
+                      child: SelectChoiceCard(
+                        hasSelected: selectInterpretation,
+                        title: "Interprétation des résultats",
+                        onSelected: () {
+                          setState(() {
+                            selectInterpretation = !selectInterpretation;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15.0,
+                ),
+                if ((!selectInterpretation) && (!selectTeleConsult)) ...[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(
+                      child: Text(
+                        "Veuillez séléctionner un type de service que vous voudriez proposer !",
+                        style: GoogleFonts.lato(color: Colors.pink),
+                      ),
+                    ),
+                  )
+                ],
+                if (selectInterpretation) ...[
                   Row(
                     children: [
                       Flexible(
-                        child: SelectChoiceCard(
-                          hasSelected: selectTeleConsult,
-                          title: "Télé-consultation",
-                          onSelected: () {
-                            setState(() {
-                              selectTeleConsult = !selectTeleConsult;
-                            });
-                            cleanSelected();
-                            selectedList.clear();
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Flexible(
-                        child: SelectChoiceCard(
-                          hasSelected: selectInterpretation,
-                          title: "Interprétation des résultats",
-                          onSelected: () {
-                            setState(() {
-                              selectInterpretation = !selectInterpretation;
-                            });
-                          },
+                        child: Container(
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5.0),
+                            border: Border.all(color: primaryColor),
+                          ),
+                          padding: const EdgeInsets.all(10.0),
+                          child: DropdownButton(
+                            menuMaxHeight: 300,
+                            alignment: Alignment.bottomCenter,
+                            dropdownColor: Colors.grey[100],
+                            borderRadius: BorderRadius.circular(5.0),
+                            style: GoogleFonts.lato(color: Colors.black54),
+                            value: selectedExamen,
+                            underline: const SizedBox(),
+                            hint: Text(
+                              " Sélectionnez un type d'examen",
+                              style: GoogleFonts.mulish(
+                                color: Colors.grey[700],
+                                fontSize: 15.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            isExpanded: true,
+                            items: [
+                              "Examens biologiques",
+                              "Examens d'imagerie médicales",
+                              "Autres examens médicaux",
+                            ].map((e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Text(
+                                    e,
+                                    style: GoogleFonts.lato(
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.black,
+                                      fontSize: 16.0,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (String value) {
+                              setState(() {
+                                selectedExamen = value;
+                              });
+                              selectedList.clear();
+                              switch (value) {
+                                case "Examens biologiques":
+                                  setState(() {
+                                    selectedList.addAll(biologicList);
+                                  });
+                                  break;
+                                case "Examens d'immagerie médicales":
+                                  setState(() {
+                                    selectedList.addAll(immagerieList);
+                                  });
+                                  break;
+                                case "Autres examens médicaux":
+                                  setState(() {
+                                    selectedList.addAll(medicalList);
+                                  });
+                                  break;
+                                default:
+                                  setState(() {
+                                    selectedList.clear();
+                                  });
+                              }
+                            },
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  if ((!selectInterpretation) && (!selectTeleConsult)) ...[
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Center(
-                        child: Text(
-                          "Veuillez séléctionner un type de service que vous voudriez proposer !",
-                        ),
-                      ),
-                    )
-                  ],
-                  if (selectInterpretation) ...[
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(color: primaryColor),
-                            ),
-                            padding: const EdgeInsets.all(10.0),
-                            child: DropdownButton(
-                              menuMaxHeight: 300,
-                              alignment: Alignment.bottomCenter,
-                              dropdownColor: Colors.grey[100],
-                              borderRadius: BorderRadius.circular(8.0),
-                              style: GoogleFonts.lato(color: Colors.black54),
-                              value: selectedExamen,
-                              underline: const SizedBox(),
-                              hint: Text(
-                                " Sélectionnez un type d'examen",
-                                style: GoogleFonts.mulish(
-                                  color: Colors.grey[700],
-                                  fontSize: 15.0,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              isExpanded: true,
-                              items: [
-                                "Examens biologiques",
-                                "Examens d'imagerie médicales",
-                                "Autres examens médicaux",
-                              ].map((e) {
-                                return DropdownMenuItem(
-                                  value: e,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: Text(
-                                      e,
-                                      style: GoogleFonts.lato(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        fontSize: 16.0,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (String value) {
-                                setState(() {
-                                  selectedExamen = value;
-                                });
-                                selectedList.clear();
-                                switch (value) {
-                                  case "Examens biologiques":
-                                    setState(() {
-                                      selectedList.addAll(biologicList);
-                                    });
-                                    break;
-                                  case "Examens d'immagerie médicales":
-                                    setState(() {
-                                      selectedList.addAll(immagerieList);
-                                    });
-                                    break;
-                                  case "Autres examens médicaux":
-                                    setState(() {
-                                      selectedList.addAll(medicalList);
-                                    });
-                                    break;
-                                  default:
-                                    setState(() {
-                                      selectedList.clear();
-                                    });
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    if (selectedList.isNotEmpty) ...[
-                      const SizedBox(
-                        height: 15.0,
-                      ),
-                      Column(
-                        children: selectedList
-                            .map(
-                              (e) => ExamenCard(
-                                label: e,
-                              ),
-                            )
-                            .toList(),
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                    ]
-                  ],
-                  if ((selectedList.isNotEmpty) || (selectTeleConsult))
+                  if (selectedList.isNotEmpty) ...[
                     const SizedBox(
-                      height: 20.0,
+                      height: 15.0,
                     ),
-                  Container(
-                    width: double.infinity,
-                    height: 60.0,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      elevation: 10.0,
-                      color: Colors.blue,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            CupertinoIcons.checkmark_alt,
-                            color: Colors.white,
-                            size: 15,
-                          ),
-                          const SizedBox(
-                            width: 8.0,
-                          ),
-                          Text(
-                            "Valider",
-                            style: GoogleFonts.lato(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      onPressed: () async {
-                        Xloading.showLottieLoading(context);
-                        Future.delayed(const Duration(milliseconds: 1000), () {
-                          Xloading.dismiss();
-                          cleanSelected();
-                          setState(() {
-                            selectInterpretation = false;
-                            selectTeleConsult = false;
-                          });
+                    Column(
+                      children: selectedList
+                          .map(
+                            (e) => ExamenCard(
+                              label: e,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
+                  if (selectTeleConsult || selectedExamen != null)
+                    Container(
+                      width: double.infinity,
+                      height: 60.0,
+                      margin: const EdgeInsets.only(top: 8.0),
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        elevation: 10.0,
+                        color: Colors.orange[800],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              CupertinoIcons.checkmark_alt,
+                              color: Colors.white,
+                              size: 15,
+                            ),
+                            const SizedBox(
+                              width: 8.0,
+                            ),
+                            Text(
+                              "Valider",
+                              style: GoogleFonts.lato(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        onPressed: () async {
+                          Xloading.showLottieLoading(context);
+                          Future.delayed(const Duration(milliseconds: 1000),
+                              () {
+                            Xloading.dismiss();
+                            cleanSelected();
+                            setState(() {
+                              selectInterpretation = false;
+                              selectTeleConsult = false;
+                            });
 
-                          XDialog.showSuccessAnimation(context);
-                        });
-                      },
+                            XDialog.showSuccessAnimation(context);
+                          });
+                        },
+                      ),
                     ),
-                  )
                 ],
-              ),
+              ],
             ),
           ),
         )
@@ -2055,73 +2042,87 @@ class _ExamenCardState extends State<ExamenCard> {
   bool isActive = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 8.0),
-      height: 50.0,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.white,
-        border: Border.all(
-          color: primaryColor,
-        ),
-      ),
-      child: Material(
-        borderRadius: BorderRadius.circular(8.0),
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(8.0),
-          onTap: () {
-            setState(() {
-              isActive = !isActive;
-            });
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  isActive
-                      ? CupertinoIcons.checkmark_alt_circle_fill
-                      : CupertinoIcons.circle,
-                  size: 18.0,
-                  color: isActive ? Colors.green[700] : Colors.grey,
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Container(
-                  height: 20.0,
-                  width: 1.0,
-                  color: primaryColor,
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Row(
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,
+          margin: const EdgeInsets.only(bottom: 10.0),
+          height: 50.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5.0),
+            color: Colors.white,
+            border: Border.all(
+              color: primaryColor,
+            ),
+          ),
+          child: Material(
+            borderRadius: BorderRadius.circular(8.0),
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(8.0),
+              onTap: () {
+                setState(() {
+                  isActive = !isActive;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Flexible(
-                      child: Text(
-                        widget.label,
-                        style: GoogleFonts.lato(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87,
-                          fontSize: 15.0,
-                        ),
-                      ),
+                    Icon(
+                      isActive
+                          ? CupertinoIcons.checkmark_alt_circle_fill
+                          : CupertinoIcons.circle,
+                      size: 18.0,
+                      color: isActive ? Colors.green[700] : Colors.grey,
                     ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Container(
+                      height: 20.0,
+                      width: 1.0,
+                      color: primaryColor,
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            widget.label,
+                            style: GoogleFonts.lato(
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black87,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
           ),
         ),
-      ),
+        if (isActive && widget.label == "Autres") ...[
+          const CustomFormField(
+            hintText: "Veuillez saisir autre examen...",
+            icon: CupertinoIcons.pencil,
+            title: "Autre",
+          ),
+          const SizedBox(
+            height: 10.0,
+          )
+        ]
+      ],
     );
   }
 }
@@ -2140,64 +2141,56 @@ class SelectChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 55.0,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(.3),
-                blurRadius: 12.0,
-                offset: const Offset(0, 3),
-              )
-            ],
-          ),
-          child: Material(
-            borderRadius: BorderRadius.circular(10.0),
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10.0),
-              onTap: onSelected,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 35.0, right: 10.0),
-                child: Center(
-                  child: Text(
-                    title,
-                    style: GoogleFonts.lato(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w400,
+    return Card(
+      margin: EdgeInsets.zero,
+      elevation: 3.0,
+      child: Container(
+        height: 55.0,
+        child: Material(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(5.0),
+            onTap: onSelected,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 5),
+                    height: 25.0,
+                    width: 25.0,
+                    decoration: BoxDecoration(
+                      color: hasSelected ? Colors.green : Colors.grey,
+                      borderRadius: BorderRadius.circular(3.0),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        hasSelected
+                            ? CupertinoIcons.checkmark_alt
+                            : CupertinoIcons.circle,
+                        size: 20.0,
+                        color: hasSelected ? Colors.white : Colors.transparent,
+                      ),
                     ),
                   ),
-                ),
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: GoogleFonts.lato(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.orange[900],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-        Positioned(
-          top: 15.0,
-          left: 8.0,
-          child: Container(
-            height: 25.0,
-            width: 25.0,
-            decoration: BoxDecoration(
-              color: hasSelected ? Colors.green : Colors.grey,
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            child: Center(
-              child: Icon(
-                hasSelected
-                    ? CupertinoIcons.checkmark_alt
-                    : CupertinoIcons.circle,
-                size: 20.0,
-                color: hasSelected ? Colors.white : Colors.transparent,
-              ),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
@@ -2223,11 +2216,11 @@ class DescCard extends StatelessWidget {
             primaryColor,
           ],
         ),
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
         boxShadow: [
           BoxShadow(
             blurRadius: 10.0,
-            color: Colors.black.withOpacity(.1),
+            color: Colors.black.withOpacity(.2),
             offset: const Offset(0, 3),
           )
         ],

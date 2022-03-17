@@ -30,7 +30,7 @@ class DoctorDetailPage extends StatefulWidget {
 
 class _DoctorDetailPageState extends State<DoctorDetailPage> {
   String selectedDispoId = "";
-  String selectedHoure = "";
+  String selectedHoureId = "";
 
   List<Heures> heures = [];
   @override
@@ -44,17 +44,20 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildStackHeader(context),
-              const SizedBox(
-                height: 45.0,
-              ),
               Expanded(
                 child: Container(
                   child: Scrollbar(
                     child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(top: 30.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: _orderWidget(context),
+                          ),
                           const HeaderTiles(
                             title: "Expériences professionnelles",
                           ),
@@ -309,7 +312,9 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                               heures[i].isSelected = true;
                                             });
                                             if (heures[i].isSelected) {
-                                              selectedHoure = heures[i].heure;
+                                              selectedHoureId =
+                                                  heures[i].agendaHeureId;
+                                              print(heures[i].agendaHeureId);
                                             }
                                           },
                                         )
@@ -336,7 +341,6 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                               ] else ...[
                                 Container(
                                   height: 50.0,
-
                                   margin: const EdgeInsets.symmetric(
                                       horizontal: 10.0),
                                   width: MediaQuery.of(context).size.width,
@@ -461,7 +465,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
       return;
     }
 
-    if (selectedHoure.isEmpty) {
+    if (selectedHoureId.isEmpty) {
       Get.snackbar(
         "Action obligatoire !",
         "vous devez sélectionner une heure de disponibilité du médecin!",
@@ -478,17 +482,20 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
     try {
       Xloading.showLottieLoading(context);
       var result = await PatientApi.prendreRdvEnLigne(
-          dateId: selectedDispoId, heureId: selectedHoure);
+          dateId: selectedDispoId, heureId: selectedHoureId);
       if (result != null) {
         Xloading.dismiss();
         if (result['reponse']['status'] == "success") {
           XDialog.showSuccessAnimation(context);
           setState(() {
             selectedDispoId = "";
-            selectedHoure = "";
+            selectedHoureId = "";
             heures.clear();
           });
-          patientController.refreshDatas();
+          Future.delayed(const Duration(milliseconds: 800), () {
+            patientController.refreshDatas();
+            Get.back();
+          });
         }
       }
     } catch (e) {
@@ -526,30 +533,17 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * .44,
-          decoration: BoxDecoration(
-            image: const DecorationImage(
+          height: MediaQuery.of(context).size.height * .35,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
                 image: AssetImage("assets/images/shapes/bg10.jpg"),
                 fit: BoxFit.cover),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 12.0,
-                color: Colors.grey.withOpacity(.3),
-                offset: const Offset(0, 3),
-              )
-            ],
           ),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [primaryColor.withOpacity(.5), Colors.deepOrange],
               ),
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 12.0,
-                    color: Colors.grey.withOpacity(.3),
-                    offset: const Offset(0, 3))
-              ],
             ),
             child: Center(
               child: Column(
@@ -612,7 +606,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                         fontSize: 20.0,
                         fontWeight: FontWeight.w800),
                   ),
-                  const SizedBox(height: 5.0),
+                  const SizedBox(height: 8.0),
                   Text(
                     widget.supDatas.specialites != null &&
                             widget.supDatas.specialites.isNotEmpty
@@ -622,6 +616,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                         : "aucune spécialité",
                     style: style1(color: Colors.grey[300]),
                   ),
+                  const SizedBox(height: 8.0),
                   Center(
                     child: RatingBar.builder(
                       wrapAlignment: WrapAlignment.center,
@@ -719,177 +714,173 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
             ],
           ),
         ),
-        Positioned(
-          bottom: -35.0,
-          left: 6.0,
-          right: 6.0,
-          child: Stack(
-            children: [
-              Container(
-                padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0.0),
-                height: 80.0,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 12.0,
-                      color: Colors.black.withOpacity(.2),
-                      offset: const Offset(0, 3),
-                    )
-                  ],
-                ),
-                child: Center(
-                  child: (widget.profil.medecinOrdres != null &&
-                          widget.profil.medecinOrdres.isNotEmpty)
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      ],
+    );
+  }
+
+  Widget _orderWidget(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(10.0, 30.0, 10.0, 0.0),
+          height: 80.0,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5.0),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 12.0,
+                color: Colors.black.withOpacity(.2),
+                offset: const Offset(0, 3),
+              )
+            ],
+          ),
+          child: Center(
+            child: (widget.profil.medecinOrdres != null &&
+                    widget.profil.medecinOrdres.isNotEmpty)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
+                            RichText(
+                              text: TextSpan(
+                                text: "Pays : ",
+                                style: GoogleFonts.lato(
+                                  color: primaryColor,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
                                 children: [
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "Pays : ",
-                                      style: GoogleFonts.lato(
-                                        color: primaryColor,
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: truncateString(
-                                            widget.profil.medecinOrdres.first
-                                                .pays,
-                                            22,
-                                            pointed: true,
-                                          ),
-                                          style: GoogleFonts.lato(
-                                            color: darkBlueColor,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                      ],
+                                  TextSpan(
+                                    text: truncateString(
+                                      widget.profil.medecinOrdres.first.pays,
+                                      22,
+                                      pointed: true,
                                     ),
-                                  ),
-                                  const SizedBox(height: 5.0),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: "N° d'ordre : ",
-                                      style: GoogleFonts.lato(
-                                        color: primaryColor,
-                                        fontSize: 15.0,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: widget.profil.medecinOrdres
-                                              .first.numeroOrdre,
-                                          style: GoogleFonts.lato(
-                                            color: darkBlueColor,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                      ],
+                                    style: GoogleFonts.lato(
+                                      color: darkBlueColor,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w900,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            // ignore: deprecated_member_use
-                            FlatButton(
-                              padding: const EdgeInsets.all(8.0),
-                              color: Colors.blue,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0)),
-                              child: Row(
+                            const SizedBox(height: 5.0),
+                            RichText(
+                              text: TextSpan(
+                                text: "N° d'ordre : ",
+                                style: GoogleFonts.lato(
+                                  color: primaryColor,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.w400,
+                                ),
                                 children: [
-                                  const Icon(CupertinoIcons.doc_checkmark_fill,
-                                      size: 15, color: Colors.white),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    "Voir plus",
-                                    style:
-                                        GoogleFonts.lato(color: Colors.white),
+                                  TextSpan(
+                                    text: widget
+                                        .profil.medecinOrdres.first.numeroOrdre,
+                                    style: GoogleFonts.lato(
+                                      color: darkBlueColor,
+                                      fontSize: 15.0,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ],
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type:
-                                        PageTransitionType.leftToRightWithFade,
-                                    alignment: Alignment.topCenter,
-                                    child: OrdreDetailsPage(
-                                      medecinOrdres:
-                                          widget.profil.medecinOrdres,
-                                    ),
-                                  ),
-                                );
-                              },
-                            )
+                            ),
                           ],
-                        )
-                      : Text(
-                          "Non répertorié !",
-                          style: GoogleFonts.lato(color: Colors.pink),
                         ),
-                ),
-              ),
-              Positioned(
-                top: -10.0,
-                left: 10.0,
-                right: 10.0,
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    gradient: LinearGradient(
-                      colors: [
-                        primaryColor,
-                        darkBlueColor,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(.2),
-                        blurRadius: 10.0,
-                        offset: const Offset(0, 3),
+                      ),
+                      // ignore: deprecated_member_use
+                      FlatButton(
+                        padding: const EdgeInsets.all(8.0),
+                        color: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.arrow_right_alt_sharp,
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              width: 5.0,
+                            ),
+                            Text(
+                              "Voir plus",
+                              style: GoogleFonts.lato(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.leftToRightWithFade,
+                              alignment: Alignment.topCenter,
+                              child: OrdreDetailsPage(
+                                medecinOrdres: widget.profil.medecinOrdres,
+                              ),
+                            ),
+                          );
+                        },
                       )
                     ],
+                  )
+                : Text(
+                    "Non répertorié !",
+                    style: GoogleFonts.lato(color: Colors.pink),
                   ),
-                  child: Center(
-                    child: Text(
-                      "Ordres de médecin",
-                      style: GoogleFonts.lato(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: 1.0,
-                      ),
-                    ),
-                  ),
+          ),
+        ),
+        Positioned(
+          top: -10.0,
+          left: 10.0,
+          right: 10.0,
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              gradient: LinearGradient(
+                colors: [
+                  Colors.pink,
+                  darkBlueColor,
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(.2),
+                  blurRadius: 10.0,
+                  offset: const Offset(0, 3),
+                )
+              ],
+            ),
+            child: Center(
+              child: Text(
+                "Ordres de médecin",
+                style: GoogleFonts.lato(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 1.0,
                 ),
-              )
-            ],
-            clipBehavior: Clip.none,
+              ),
+            ),
           ),
         )
       ],
+      clipBehavior: Clip.none,
     );
   }
 }
 
-//TODO
 class SpecCard extends StatelessWidget {
   final HomeSpecialites data;
   const SpecCard({
@@ -952,7 +943,6 @@ class SpecCard extends StatelessWidget {
   }
 }
 
-//TODO
 class SpeechCard extends StatelessWidget {
   final Langues data;
   const SpeechCard({
@@ -1057,7 +1047,7 @@ class HeaderTiles extends StatelessWidget {
               child: Center(
                 child: icon == null
                     ? SvgPicture.asset(
-                        "assets/icons/filter1.svg",
+                        "assets/icons/user-profile-svgrepo-com.svg",
                         color: primaryColor,
                         height: 20.0,
                         width: 20.0,
@@ -1084,7 +1074,6 @@ class HeaderTiles extends StatelessWidget {
   }
 }
 
-//TODO
 class ExpCard extends StatelessWidget {
   final Experiences data;
   const ExpCard({Key key, this.data}) : super(key: key);
@@ -1218,7 +1207,6 @@ class ExpCard extends StatelessWidget {
   }
 }
 
-//TODO
 class ECard extends StatelessWidget {
   final EtudesFaites data;
   const ECard({
@@ -1370,6 +1358,7 @@ class ECard extends StatelessWidget {
           Positioned(
             bottom: 10.0,
             right: 10.0,
+            // ignore: deprecated_member_use
             child: FlatButton(
               padding: const EdgeInsets.all(8.0),
               color: primaryColor,
@@ -1377,8 +1366,11 @@ class ECard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5.0)),
               child: Row(
                 children: [
-                  const Icon(CupertinoIcons.doc_checkmark_fill,
-                      size: 15, color: Colors.white),
+                  const Icon(
+                    Icons.arrow_right_alt_sharp,
+                    size: 15,
+                    color: Colors.white,
+                  ),
                   const SizedBox(
                     width: 5.0,
                   ),

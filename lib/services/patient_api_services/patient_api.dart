@@ -174,7 +174,6 @@ class PatientApi {
 
   static Future evaluerMedecin(
       {String consultId, String evaluation, String key}) async {
-    print(evaluation);
     var patientId = storage.read("patient_id");
     var response;
     try {

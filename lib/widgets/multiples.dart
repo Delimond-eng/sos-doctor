@@ -26,7 +26,7 @@ class FileUploader extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Colors.white30,
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(5.0),
             border: Border.all(color: primaryColor, width: 1),
             boxShadow: [
               BoxShadow(
@@ -44,7 +44,7 @@ class FileUploader extends StatelessWidget {
                           base64Decode(uploadFile),
                         ),
                         fit: BoxFit.cover),
-                    borderRadius: BorderRadius.circular(10.0),
+                    borderRadius: BorderRadius.circular(5.0),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(.3),
@@ -56,9 +56,9 @@ class FileUploader extends StatelessWidget {
                 : null,
             child: Material(
               color: Colors.transparent,
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(5.0),
               child: InkWell(
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(5.0),
                 onTap: onUpload,
                 child: Center(
                     child: Column(
@@ -211,7 +211,7 @@ class DatePicker extends StatelessWidget {
           color: Colors.white30,
           border: Border.all(color: primaryColor, width: 1.0),
           borderRadius: radius == null
-              ? BorderRadius.circular(10.0)
+              ? BorderRadius.circular(5.0)
               : BorderRadius.circular(radius),
           boxShadow: [
             BoxShadow(

@@ -9,11 +9,12 @@ var primaryColor = Colors.blue[900];
 var darkBlueColor = const Color(0xff000033);
 var defaultRadius = BorderRadius.circular(20.0);
 
-getShowTimePicker(BuildContext context) {
+Future<TimeOfDay> getShowTimePicker(BuildContext context) {
   return showTimePicker(
-      context: context,
-      initialEntryMode: TimePickerEntryMode.input,
-      initialTime: const TimeOfDay(hour: 8, minute: 30));
+    context: context,
+    initialEntryMode: TimePickerEntryMode.input,
+    initialTime: const TimeOfDay(hour: 8, minute: 30),
+  );
 }
 
 String dateFromString(DateTime date) {

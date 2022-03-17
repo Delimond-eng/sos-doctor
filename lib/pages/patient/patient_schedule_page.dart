@@ -116,20 +116,236 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: ConsultingsViewer(
-                future: viewRdvs("encours"),
-                onCancelSchedule: () {
-                  viewRdvs("encours");
+              child: FutureBuilder(
+                future: viewRdvsEncours(),
+                builder:
+                    (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
+                  if (snapshot.data != null) {
+                    if (snapshot.data.isEmpty) {
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset(
+                                "assets/lotties/5066-meeting-and-stuff.json"),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Aucun rendez-vous !",
+                              style: GoogleFonts.lato(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return ListView.builder(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          var data = snapshot.data[index];
+                          return ClientScheduleCard(
+                            data: data,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRightWithFade,
+                                  alignment: Alignment.topCenter,
+                                  child: PageScheduleDetailView(
+                                    data: data,
+                                  ),
+                                ),
+                              );
+                            },
+                            onCancelled: () async {
+                              showCancellerPdf(
+                                context,
+                                title: "Annulation du rendez-vous",
+                                onValidated: () {
+                                  XDialog.show(
+                                      context: context,
+                                      icon: Icons.help,
+                                      title: "Annulation rdv!",
+                                      content:
+                                          "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
+                                      onValidate: () async {
+                                        Xloading.showLottieLoading(context);
+                                        var res =
+                                            await PatientApi.annulerRdvEnLigne(
+                                                consultId:
+                                                    data.consultationRdvId);
+                                        if (res != null) {
+                                          Xloading.dismiss();
+                                          Get.back();
+                                          XDialog.showSuccessAnimation(context);
+                                          setState(() {
+                                            viewRdvsEncours();
+                                          });
+                                        } else {
+                                          Xloading.dismiss();
+                                          XDialog.showErrorMessage(context,
+                                              title: "Echec!",
+                                              color: Colors.amber[900],
+                                              message:
+                                                  "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
+                                        }
+                                      });
+                                },
+                              );
+                              /*;*/
+                            },
+                          );
+                        },
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: 100.0,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: SpinKitWave(
+                                color: Colors.black.withOpacity(.8),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            ),
+                          ),
+                          const Text("Chargement en cours ...")
+                        ],
+                      ),
+                    );
+                  }
                 },
               ),
             ),
             Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-              child: ConsultingsViewer(
-                future: viewRdvs("anterieur"),
-                onCancelSchedule: () {
-                  viewRdvs("anterieur");
+              child: FutureBuilder(
+                future: viewRdvsAnterieurs(),
+                builder:
+                    (context, AsyncSnapshot<List<ConsultationsRdv>> snapshot) {
+                  if (snapshot.data != null) {
+                    if (snapshot.data.isEmpty) {
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset(
+                                "assets/lotties/5066-meeting-and-stuff.json"),
+                            const SizedBox(
+                              height: 10.0,
+                            ),
+                            Text(
+                              "Aucun rendez-vous !",
+                              style: GoogleFonts.lato(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return ListView.builder(
+                        padding: const EdgeInsets.only(top: 10.0),
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          var data = snapshot.data[index];
+                          return ClientScheduleCard(
+                            data: data,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.leftToRightWithFade,
+                                  alignment: Alignment.topCenter,
+                                  child: PageScheduleDetailView(
+                                    data: data,
+                                  ),
+                                ),
+                              );
+                            },
+                            onCancelled: () async {
+                              showCancellerPdf(
+                                context,
+                                title: "Annulation du rendez-vous",
+                                onValidated: () {
+                                  XDialog.show(
+                                      context: context,
+                                      icon: Icons.help,
+                                      title: "Annulation rdv!",
+                                      content:
+                                          "Etes-vous sûr de vouloir annuler votre rendez-vous avec le Dr. ${data.medecin.nom} ?",
+                                      onValidate: () async {
+                                        Xloading.showLottieLoading(context);
+                                        var res =
+                                            await PatientApi.annulerRdvEnLigne(
+                                                consultId:
+                                                    data.consultationRdvId);
+                                        if (res != null) {
+                                          Xloading.dismiss();
+                                          Get.back();
+                                          XDialog.showSuccessAnimation(context);
+                                          setState(() {
+                                            viewRdvsAnterieurs();
+                                          });
+                                        } else {
+                                          Xloading.dismiss();
+                                          XDialog.showErrorMessage(context,
+                                              title: "Echec!",
+                                              color: Colors.amber[900],
+                                              message:
+                                                  "Echec de traitement de votre annulation,\nveuillez reéssayer svp!");
+                                        }
+                                      });
+                                },
+                              );
+                              /*;*/
+                            },
+                          );
+                        },
+                      );
+                    }
+                  } else {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.topCenter,
+                            height: 100,
+                            width: 100.0,
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: SpinKitWave(
+                                color: Colors.black.withOpacity(.8),
+                                duration: const Duration(seconds: 1),
+                              ),
+                            ),
+                          ),
+                          const Text("Chargement en cours ...")
+                        ],
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -152,7 +368,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BubbleTabIndicator(
           indicatorHeight: 47.0,
-          indicatorColor: primaryColor,
+          indicatorColor: darkBlueColor,
           tabBarIndicatorSize: TabBarIndicatorSize.label,
           indicatorRadius: 10,
         ),
@@ -183,7 +399,9 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                     SizedBox(
                       width: 8.0,
                     ),
-                    Text("En cours", style: TextStyle(fontSize: 14)),
+                    Text("En cours",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w400)),
                   ],
                 ),
               ],
@@ -205,7 +423,9 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                     SizedBox(
                       width: 8.0,
                     ),
-                    Text("Antérieures", style: TextStyle(fontSize: 14)),
+                    Text("Antérieures",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w400)),
                   ],
                 ),
               ],
@@ -298,8 +518,18 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
     );
   }
 
-  Future<List<ConsultationsRdv>> viewRdvs(String type) async {
-    var rdvs = await PatientApi.voirRdvEnLigne(key: type);
+  Future<List<ConsultationsRdv>> viewRdvsEncours() async {
+    var rdvs = await PatientApi.voirRdvEnLigne(key: "encours");
+    if (rdvs != null) {
+      var data = rdvs.consultationsRdv;
+      return data;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<ConsultationsRdv>> viewRdvsAnterieurs() async {
+    var rdvs = await PatientApi.voirRdvEnLigne(key: "anterieur");
     if (rdvs != null) {
       var data = rdvs.consultationsRdv;
       return data;

@@ -85,7 +85,7 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                             width: 8.0,
                           ),
                           Text(
-                            "Rendez-vous",
+                            "Rendez-vous détails",
                             style: style1(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -107,7 +107,7 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                               PageTransition(
                                 type: PageTransitionType.leftToRightWithFade,
                                 alignment: Alignment.topCenter,
-                                child: AuthScreen(),
+                                child: const AuthScreen(),
                               ),
                             );
                           },
@@ -198,21 +198,31 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                             Text(
                               "Dr. ${widget.data.medecin.nom}",
                               style: GoogleFonts.lato(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w900,
-                                color: primaryColor,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w900,
+                                  color: primaryColor,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.black.withOpacity(.1),
+                                      offset: const Offset(0, 1),
+                                      blurRadius: 10.0,
+                                    )
+                                  ]),
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Text(
+                              "Dr. ${widget.data.medecin.email}",
+                              style: GoogleFonts.lato(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.orange[800],
                               ),
                             ),
                             const SizedBox(
                               height: 10.0,
-                            ),
-                            Container(
-                              height: 1,
-                              width: 200.0,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
                             ),
                             const SizedBox(
                               height: 20.0,
@@ -222,7 +232,8 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                               textAlign: TextAlign.center,
                               style: GoogleFonts.lato(
                                 fontSize: 17.0,
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic,
                                 color: Colors.black87,
                               ),
                             ),
@@ -232,17 +243,14 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Flexible(
-                                  child: CostumIconBtn(
-                                    label: "Avis",
-                                    icon: CupertinoIcons.captions_bubble_fill,
-                                    color: Colors.green[700],
-                                    onPressed: () {
-                                      setState(() {
-                                        hasCommentViewed = !hasCommentViewed;
-                                      });
-                                    },
-                                  ),
+                                CostumIconBtn(
+                                  icon: CupertinoIcons.captions_bubble_fill,
+                                  color: Colors.green[700],
+                                  onPressed: () {
+                                    setState(() {
+                                      hasCommentViewed = !hasCommentViewed;
+                                    });
+                                  },
                                 ),
 
                                 /*CostumIconBtn(
@@ -255,48 +263,45 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                                 const SizedBox(
                                   width: 10.0,
                                 ),
-                                Flexible(
-                                  child: CostumIconBtn(
-                                    label: "Coter",
-                                    onPressed: () async {
-                                      await XDialog.showCotation(
-                                        context,
-                                        consultrdvId:
-                                            widget.data.consultationRdvId,
-                                      );
-                                      /*callCollection
-                                        .where('caller_id',
-                                            isEqualTo: storage.read("patient_id"))
-                                        .snapshots()
-                                        .listen((QuerySnapshot querySnapshot) {
-                                      querySnapshot.docs.forEach((document) => print(
-                                          "query: ${document.get('receiver_name')}"));
-                                    });*/
+                                CostumIconBtn(
+                                  onPressed: () async {
+                                    await XDialog.showCotation(
+                                      context,
+                                      consultrdvId:
+                                          widget.data.consultationRdvId,
+                                    );
+                                    /*callCollection
+                                      .where('caller_id',
+                                          isEqualTo: storage.read("patient_id"))
+                                      .snapshots()
+                                      .listen((QuerySnapshot querySnapshot) {
+                                    querySnapshot.docs.forEach((document) => print(
+                                        "query: ${document.get('receiver_name')}"));
+                                  });*/
 
-                                      //Call call = Call(callerId: "1");
+                                    //Call call = Call(callerId: "1");
 
-                                      /*try {
-                                        callCollection
-                                            .where('caller_id', isEqualTo: "1")
-                                            .snapshots()
-                                            .listen(
-                                                (QuerySnapshot querySnapshot) {
-                                          querySnapshot.docs
-                                              .forEach((document) async {
-                                            print(document.reference);
-                                            await FirebaseFirestore.instance
-                                                .runTransaction((txn) async =>
-                                                    await txn.delete(
-                                                        document.reference));
-                                          });
+                                    /*try {
+                                      callCollection
+                                          .where('caller_id', isEqualTo: "1")
+                                          .snapshots()
+                                          .listen(
+                                              (QuerySnapshot querySnapshot) {
+                                        querySnapshot.docs
+                                            .forEach((document) async {
+                                          print(document.reference);
+                                          await FirebaseFirestore.instance
+                                              .runTransaction((txn) async =>
+                                                  await txn.delete(
+                                                      document.reference));
                                         });
-                                      } catch (err) {
-                                        print("error from $err");
-                                      }*/
-                                    },
-                                    icon: CupertinoIcons.star_fill,
-                                    color: Colors.amber[900],
-                                  ),
+                                      });
+                                    } catch (err) {
+                                      print("error from $err");
+                                    }*/
+                                  },
+                                  icon: CupertinoIcons.hand_thumbsup_fill,
+                                  color: Colors.amber[900],
                                 ),
                               ],
                             ),
@@ -336,11 +341,11 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                                     const EdgeInsets.only(top: 10, bottom: 10),
                                 hintStyle:
                                     const TextStyle(color: Colors.black54),
-                                icon: Container(
-                                  height: 50.0,
-                                  width: 50.0,
+                                icon: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   child: Icon(
-                                    CupertinoIcons.add,
+                                    CupertinoIcons.pencil,
                                     size: 20.0,
                                     color: primaryColor.withOpacity(.7),
                                   ),
@@ -358,7 +363,14 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                           height: 50.0,
                           width: 50.0,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            gradient: LinearGradient(
+                              colors: [
+                                primaryColor,
+                                darkBlueColor,
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(.3),
@@ -397,11 +409,11 @@ class _PageScheduleDetailViewState extends State<PageScheduleDetailView> {
                                 print(res);
                               },
                               borderRadius: BorderRadius.circular(50),
-                              child: Center(
+                              child: const Center(
                                 child: Icon(
-                                  CupertinoIcons.add,
-                                  color: primaryColor,
-                                  size: 16,
+                                  CupertinoIcons.plus_bubble_fill,
+                                  color: Colors.white,
+                                  size: 15,
                                 ),
                               ),
                             ),
@@ -595,23 +607,21 @@ class CostumIconBtn extends StatelessWidget {
   final IconData icon;
   final Color color;
   final Function onPressed;
-  final String label;
   const CostumIconBtn({
     Key key,
     this.icon,
     this.color,
     this.onPressed,
-    this.label,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 50.0,
-      width: double.infinity,
+      width: 50.0,
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(50.0),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(.3),
@@ -621,36 +631,18 @@ class CostumIconBtn extends StatelessWidget {
         ],
       ),
       child: Material(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(50.0),
         color: Colors.transparent,
         elevation: 0,
         child: InkWell(
-          borderRadius: BorderRadius.circular(30.0),
+          borderRadius: BorderRadius.circular(50.0),
           onTap: onPressed,
-          child: Row(
-            children: [
-              Container(
-                height: 40.0,
-                width: 40.0,
-                padding: const EdgeInsets.all(5),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 16.0,
-                ),
-              ),
-              const SizedBox(
-                width: 5.0,
-              ),
-              Text(
-                label,
-                style: GoogleFonts.lato(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-            ],
+          child: Center(
+            child: Icon(
+              icon,
+              color: Colors.white,
+              size: 16.0,
+            ),
           ),
         ),
       ),

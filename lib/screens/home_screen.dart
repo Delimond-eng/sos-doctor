@@ -1200,7 +1200,7 @@ class SideMenu extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: PatientSchedulePage(),
+                      child: const PatientSchedulePage(),
                     ),
                   );
                 },
@@ -1215,7 +1215,7 @@ class SideMenu extends StatelessWidget {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: PatientExamenPage(),
+                      child: const PatientExamenPage(),
                     ),
                   );
                 },
@@ -1274,10 +1274,11 @@ class Banner extends StatelessWidget {
             child: Text(
               "Trouvez les meilleurs spécialistes de santé sur SOs Docteur",
               style: style1(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20.0,
-                  letterSpacing: 2.0),
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                fontSize: 20.0,
+                letterSpacing: 2.0,
+              ),
             ),
           ),
         ),

@@ -1,3 +1,5 @@
+import 'package:sos_docteur/models/patients/medecin_data_profil_view_model.dart';
+
 class MedecinProfil {
   MedecinDatas datas;
 
@@ -33,6 +35,7 @@ class MedecinDatas {
   List<ProfilAgenda> profilAgenda;
   List<ProfilExperiences> profilExperiences;
   List<ProfilLangues> profilLangues;
+  List<OrdreMedecin> medecinOrdres;
 
   MedecinDatas({
     this.medecinId,
@@ -93,6 +96,12 @@ class MedecinDatas {
       profilLangues = <ProfilLangues>[];
       json['langues'].forEach((v) {
         profilLangues.add(ProfilLangues.fromJson(v));
+      });
+    }
+    if (json['ordre_medecin'] != null) {
+      medecinOrdres = <OrdreMedecin>[];
+      json['ordre_medecin'].forEach((v) {
+        medecinOrdres.add(OrdreMedecin.fromJson(v));
       });
     }
   }
