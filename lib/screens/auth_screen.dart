@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:sos_docteur/screens/pages/login_page.dart';
 import 'package:sos_docteur/screens/pages/register_page.dart';
 
@@ -24,22 +23,14 @@ class _AuthScreenState extends State<AuthScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage("assets/images/shapes/bg9.png"),
-            fit: BoxFit.cover,
-          )),
+            image: DecorationImage(
+              image: AssetImage("assets/images/shapes/bg4p.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  tileMode: TileMode.clamp,
-                  colors: [
-                    primaryColor,
-                    primaryColor.withOpacity(.7),
-                    Colors.white.withOpacity(.8),
-                    Colors.white.withOpacity(.4),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter),
+              color: Colors.white.withOpacity(.8),
             ),
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -65,7 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               children: [
                                 AuthButton(
                                   isActive: isLoginScreen,
-                                  icon: CupertinoIcons.lock_fill,
+                                  icon: Icons.login,
                                   label: "Connexion",
                                   onPressed: () {
                                     setState(() {
@@ -75,10 +66,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                   },
                                 ),
                                 const SizedBox(
-                                  width: 20.0,
+                                  width: 10.0,
                                 ),
                                 AuthButton(
-                                  icon: CupertinoIcons.person_circle_fill,
+                                  icon: CupertinoIcons.person_add_solid,
                                   label: "Créer compte",
                                   isActive: isSignUpScreen,
                                   onPressed: () {
@@ -119,7 +110,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       right: 10.0,
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
@@ -128,8 +119,8 @@ class _AuthScreenState extends State<AuthScreen> {
                             (isLoginScreen)
                                 ? "Veuillez vous connecter!"
                                 : "Veuillez créer un compte!",
-                            style: style1(
-                              color: Colors.white,
+                            style: GoogleFonts.lato(
+                              color: Colors.black87,
                               fontWeight: FontWeight.w900,
                               fontSize: 25.0,
                               letterSpacing: 1.5,
@@ -171,37 +162,47 @@ class AuthButton extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isActive ? Colors.white : Colors.transparent,
-              width: 1.0,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: (isActive) ? primaryColor : Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(.2),
+            blurRadius: 10.0,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(25.0),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(25.0),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  color: (isActive) ? Colors.white : primaryColor,
+                  size: 12.0,
+                ),
+                const SizedBox(
+                  width: 8.0,
+                ),
+                Text(
+                  label.toUpperCase(),
+                  style: GoogleFonts.lato(
+                    fontWeight: (!isActive) ? FontWeight.w400 : FontWeight.w600,
+                    color: (isActive) ? Colors.white : primaryColor,
+                    fontSize: 10.0,
+                  ),
+                )
+              ],
             ),
           ),
-        ),
-        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              color: (isActive) ? Colors.orange : Colors.white,
-              size: 14.0,
-            ),
-            const SizedBox(
-              width: 8.0,
-            ),
-            Text(
-              label.toUpperCase(),
-              style: style1(
-                fontWeight: (!isActive) ? FontWeight.w400 : FontWeight.w600,
-                color: (isActive) ? Colors.orange : Colors.white,
-                fontSize: 10.0,
-              ),
-            )
-          ],
         ),
       ),
     );

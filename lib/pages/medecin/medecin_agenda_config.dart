@@ -144,7 +144,8 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                         selectedTime: timeEnd,
                         title: "Heure de la fin",
                         onShowTime: () async {
-                          TimeOfDay time = await getShowTimePicker(context);
+                          TimeOfDay time =
+                              await getShowTimePicker(context, hours: [12, 00]);
                           if (time != null) {
                             final now = DateTime.now();
                             var timeNow = DateTime(now.year, now.month, now.day,
@@ -214,7 +215,8 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                         timeStart = "";
                         timeEnd = "";
                       });
-                      medecinController.refreshDatas();
+                      await medecinController.refreshDatas();
+                      Get.back();
                     } else {
                       Get.snackbar(
                         "Echec !",

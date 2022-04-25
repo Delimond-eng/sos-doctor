@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -17,7 +16,6 @@ import 'package:sos_docteur/pages/medecin/medecin_agenda_view_page.dart';
 import 'package:sos_docteur/pages/medecin/medecin_profil_page.dart';
 import 'package:sos_docteur/pages/medecin/medecin_profil_view_page.dart';
 import 'package:sos_docteur/pages/medecin/medecin_schuddle_page.dart';
-import 'package:sos_docteur/screens/auth_screen.dart';
 import 'package:sos_docteur/video_calls/pages/pickup_layout.dart';
 
 import 'package:sos_docteur/widgets/menu_item_widget.dart';
@@ -62,11 +60,12 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
           ),
           child: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              colors: [Colors.white60, Colors.white54],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )),
+              gradient: LinearGradient(
+                colors: [Colors.white60, Colors.white54],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
             child: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -112,7 +111,7 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
                               ),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.0),
+                                  borderRadius: BorderRadius.circular(10.0),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(.4),
@@ -187,136 +186,83 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
                             ),
                             Column(
                               children: [
-                                Row(
-                                  children: [
-                                    MenuCard(
-                                      color: Colors.blue[900],
-                                      subColor: Colors.blue[50],
-                                      icon: "schedule-calendar-svgrepo-com.svg",
-                                      title: "Mes rendez-vous",
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                            alignment: Alignment.topCenter,
-                                            curve: Curves.easeIn,
-                                            child: MedecinScheddulePage(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    MenuCard(
-                                      color: Colors.cyan[600],
-                                      subColor: Colors.cyan[50],
-                                      icon: "profile-user-svgrepo-com.svg",
-                                      title: "Mon profile",
-                                      onPressed: () async {
-                                        var medecinId =
-                                            storage.read("medecin_id");
-                                        if (medecinId != null) {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .leftToRightWithFade,
-                                              child: MedecinProfilViewPage(),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                    ),
-                                  ],
+                                MenuCard(
+                                  color: Colors.blue[900],
+                                  subColor: Colors.blue[50],
+                                  icon: "schedule-calendar-svgrepo-com.svg",
+                                  title: "Mes rendez-vous",
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade,
+                                        alignment: Alignment.topCenter,
+                                        curve: Curves.easeIn,
+                                        child: const MedecinScheddulePage(),
+                                      ),
+                                    );
+                                  },
                                 ),
                                 const SizedBox(
                                   height: 10.0,
                                 ),
-                                Row(
-                                  children: [
-                                    MenuCard(
-                                      color: Colors.deepPurple,
-                                      icon: "schedule-svgrepo-com2.svg",
-                                      title: "Config. agenda",
-                                      subColor: Colors.deepPurple[50],
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                            child: MedecinAgendaConfigPage(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    MenuCard(
-                                      color: Colors.indigo[900],
-                                      subColor: Colors.indigo[100],
-                                      icon: "schedule-svgrepo-com.svg",
-                                      title: "Mon agenda",
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.bottomToTop,
-                                            child: MedecinAgendaPageView(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
+                                MenuCard(
+                                  color: Colors.cyan[600],
+                                  subColor: Colors.cyan[50],
+                                  icon: "profile-user-svgrepo-com.svg",
+                                  title: "Mon profile",
+                                  onPressed: () async {
+                                    var medecinId = storage.read("medecin_id");
+                                    if (medecinId != null) {
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType
+                                              .leftToRightWithFade,
+                                          child: const MedecinProfilViewPage(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                                 const SizedBox(
                                   height: 10.0,
                                 ),
-                                Row(
-                                  children: [
-                                    MenuCard(
-                                      color: Colors.green[700],
-                                      icon: "user-cog-svgrepo-com.svg",
-                                      title: "Config. profile",
-                                      subColor: Colors.green[50],
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                            alignment: Alignment.topCenter,
-                                            curve: Curves.easeIn,
-                                            child: MedecinProfilPage(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    MenuCard(
-                                      color: Colors.amber[900],
-                                      icon: "ordonnance.svg",
-                                      title: "Diagnostiques & interpretations",
-                                      subColor: Colors.amber[50],
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeftWithFade,
-                                            child: DiagnosticsPage(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ],
+                                MenuCard(
+                                  color: Colors.deepPurple,
+                                  icon: "schedule-calendar-svgrepo-com.svg",
+                                  title: "Mon agenda",
+                                  subColor: Colors.deepPurple[50],
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade,
+                                        child: const MedecinAgendaPageView(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                MenuCard(
+                                  color: Colors.amber[900],
+                                  icon: "ordonnance.svg",
+                                  title: "Diagnostiques & interpretations",
+                                  subColor: Colors.amber[50],
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeftWithFade,
+                                        child: DiagnosticsPage(),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ],
                             )

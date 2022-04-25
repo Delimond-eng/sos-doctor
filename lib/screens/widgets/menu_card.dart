@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../index.dart';
 
 class ACard extends StatelessWidget {
@@ -76,71 +78,55 @@ class MenuCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Container(
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage("assets/images/shapes/bg2.png"),
-            fit: BoxFit.cover,
-            scale: 1.5,
-          ),
-          borderRadius: BorderRadius.circular(5.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(.4),
-              blurRadius: 12.0,
-              offset: const Offset(0, 3),
-            )
-          ],
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: color.withOpacity(.8),
-            borderRadius: BorderRadius.circular(5.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(.4),
-                blurRadius: 12.0,
-                offset: const Offset(0, 3),
-              )
-            ],
-          ),
-          child: Material(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(5.0),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(5.0),
-              onTap: onPressed,
-              child: Container(
-                height: 120.0,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        "assets/images/vector/$icon",
-                        height: 40.0,
-                        width: 40.0,
-                        color: subColor,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10.0,
-                    ),
-                    Text(
-                      title,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.lato(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500,
-                        color: subColor,
-                      ),
-                    ),
-                  ],
+    return Container(
+      margin: const EdgeInsets.fromLTRB(2, 2, 0, 0),
+      height: 80.0,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors
+            .primaries[Random().nextInt(Colors.primaries.length)].shade900,
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(.3),
+            blurRadius: 12.0,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(10.0),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10.0),
+          onTap: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                  child: SvgPicture.asset(
+                    "assets/images/vector/$icon",
+                    height: 25.0,
+                    width: 25.0,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
+                const SizedBox(
+                  width: 10.0,
+                ),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.lato(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

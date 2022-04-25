@@ -36,8 +36,6 @@ class MedScheduleCard extends StatelessWidget {
                           primaryColor,
                           darkBlueColor,
                         ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
                       ),
                       borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(3.5),
@@ -143,30 +141,72 @@ class MedScheduleCard extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          FlatButton(
-                            color: Colors.orange[800],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                          Container(
+                            height: 40.0,
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40.0),
+                              gradient: LinearGradient(colors: [
+                                Colors.orange[800],
+                                Colors.orange[200],
+                              ]),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.3),
+                                  blurRadius: 10.0,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
                             ),
-                            onPressed: onCalling,
-                            child: const Center(
-                              child: Icon(
-                                CupertinoIcons.video_camera_solid,
-                                color: Colors.white,
+                            child: Material(
+                              borderRadius: BorderRadius.circular(40.0),
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: onCalling,
+                                borderRadius: BorderRadius.circular(40.0),
+                                child: const Center(
+                                  child: Icon(
+                                    CupertinoIcons.video_camera,
+                                    color: Colors.white,
+                                    size: 18.0,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                          FlatButton(
-                            color: Colors.grey,
-                            onPressed: onCancelled,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0),
+                          const SizedBox(
+                            height: 8.0,
+                          ),
+                          Container(
+                            height: 40.0,
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40.0),
+                              gradient: LinearGradient(colors: [
+                                Colors.grey[900],
+                                Colors.grey[300],
+                              ]),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.3),
+                                  blurRadius: 10.0,
+                                  offset: const Offset(0, 2),
+                                )
+                              ],
                             ),
-                            child: const Center(
-                              child: Icon(
-                                CupertinoIcons.trash,
-                                color: Colors.white,
-                                size: 16.0,
+                            child: Material(
+                              borderRadius: BorderRadius.circular(40.0),
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: onCancelled,
+                                borderRadius: BorderRadius.circular(40.0),
+                                child: const Center(
+                                  child: Icon(
+                                    CupertinoIcons.trash,
+                                    color: Colors.white,
+                                    size: 15,
+                                  ),
+                                ),
                               ),
                             ),
                           ),

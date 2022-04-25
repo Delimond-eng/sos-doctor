@@ -85,6 +85,12 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                             ],
                           ],
                           const HeaderTiles(
+                            title: "Services",
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          const HeaderTiles(
                             title: "Autres diplômes",
                           ),
                           if ((widget.supDatas.specialites != null) &&
@@ -387,7 +393,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                                         "Les avis des autres patients",
                                         style: GoogleFonts.lato(
                                           color: Colors.white,
-                                          fontSize: 18.0,
+                                          fontSize: 16.0,
                                           fontWeight: FontWeight.w500,
                                           letterSpacing: 1.0,
                                         ),
@@ -536,13 +542,14 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
           height: MediaQuery.of(context).size.height * .35,
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/shapes/bg10.jpg"),
-                fit: BoxFit.cover),
+              image: AssetImage("assets/images/shapes/bg2.png"),
+              fit: BoxFit.cover,
+            ),
           ),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [primaryColor.withOpacity(.5), Colors.deepOrange],
+                colors: [primaryColor.withOpacity(.8), Colors.deepOrange],
               ),
             ),
             child: Center(

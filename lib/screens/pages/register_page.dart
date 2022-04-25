@@ -3,6 +3,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:sos_docteur/models/patients/account_model.dart';
 import 'package:sos_docteur/widgets/custom_checkbox_widget.dart';
 import 'package:sos_docteur/widgets/custom_dropdown.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../index.dart';
 
@@ -152,40 +153,42 @@ class _RegisterPageState extends State<RegisterPage> {
         const SizedBox(
           height: 10.0,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          child: CostumChexkBox(
-            hasColored: false,
-            title: "J'acceptes les politiques de confidentialité !",
-            value: allowed,
-            onChanged: () {
-              setState(() {
-                allowed = !allowed;
-              });
-            },
+        Obx(
+          () => Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+            child: CostumChexkBox(
+              hasColored: false,
+              title: "J'acceptes les politiques de confidentialité !",
+              value: sessionController.allowPrivacyPolicy.value,
+              onChanged: () => showPrivacy(context),
+            ),
           ),
         ),
         const SizedBox(
           height: 10.0,
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          height: 50.0,
-          width: MediaQuery.of(context).size.width,
-          // ignore: deprecated_member_use
-          child: RaisedButton(
-            onPressed: (allowed) ? registerMedecin : null,
-            color: Colors.green,
-            child: Text(
-              "Créer".toUpperCase(),
-              style: style1(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1.5,
+        Obx(
+          () => Container(
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+            height: 50.0,
+            width: MediaQuery.of(context).size.width,
+            // ignore: deprecated_member_use
+            child: RaisedButton(
+              onPressed: (sessionController.allowPrivacyPolicy.value)
+                  ? registerMedecin
+                  : null,
+              color: Colors.green,
+              child: Text(
+                "Créer".toUpperCase(),
+                style: style1(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  letterSpacing: 1.5,
+                ),
               ),
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
             ),
           ),
         )
@@ -380,5 +383,93 @@ class _RegisterPageState extends State<RegisterPage> {
       Future.delayed(const Duration(seconds: 3));
       widget.onBackToLogin();
     }
+  }
+
+  showPrivacy(BuildContext ctx) {
+    showDialog(
+        barrierColor: Colors.black12,
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            insetPadding: const EdgeInsets.fromLTRB(8, 70, 8, 5),
+            alignment: Alignment.center,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ), //this right here
+            child: Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  margin: const EdgeInsets.fromLTRB(0, 50.0, 0, 8.0),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        child: SfPdfViewer.asset(
+                          "assets/docs/docs.pdf",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Obx(
+                        () => Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          child: CostumChexkBox(
+                            hasColored: false,
+                            title:
+                                "J'acceptes les politiques de confidentialité !",
+                            value: sessionController.allowPrivacyPolicy.value,
+                            onChanged: () {
+                              setState(() {
+                                sessionController.allowPrivacyPolicy.value =
+                                    !sessionController.allowPrivacyPolicy.value;
+                              });
+                              Get.back();
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  left: 0,
+                  child: Container(
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(5),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        children: const [
+                          Text(
+                            "Les politiques de confidentialité",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        });
   }
 }

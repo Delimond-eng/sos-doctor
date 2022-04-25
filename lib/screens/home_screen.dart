@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:badges/badges.dart';
@@ -25,7 +24,6 @@ import 'package:sos_docteur/screens/auth_screen.dart';
 import 'package:sos_docteur/screens/widgets/custom_header_widget7.dart';
 import 'package:sos_docteur/screens/widgets/doctor_card.dart';
 import 'package:sos_docteur/screens/widgets/speciality_card_widget.dart';
-import 'package:sos_docteur/services/db_service.dart';
 import 'package:sos_docteur/utilities/utilities.dart';
 import 'package:sos_docteur/widgets/menu_item_widget.dart';
 
@@ -62,9 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       try {
         if (patientController.langues.isNotEmpty) {
-          langues.addAll(patientController.langues);
-          selectedSpeech = langues.isNotEmpty ? langues.first : null;
-          selectLangueId = langues.first.langueId ?? "";
+          setState(() {
+            langues.addAll(patientController.langues);
+            selectedSpeech = langues.isNotEmpty ? langues.first : null;
+            selectLangueId = langues.first.langueId ?? "";
+          });
         }
       } catch (err) {
         print(err);

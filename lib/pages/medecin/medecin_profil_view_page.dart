@@ -7,12 +7,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sos_docteur/constants/globals.dart';
 import 'package:sos_docteur/models/medecins/medecin_profil.dart';
 import 'package:sos_docteur/models/patients/medecin_data_profil_view_model.dart';
-import 'package:sos_docteur/pages/patient/doctor_detail_page.dart';
 import 'package:sos_docteur/widgets/editable_field_widget.dart';
 
 import 'package:sos_docteur/widgets/user_session_widget.dart';
 
 import '../../index.dart';
+import 'medecin_profil_page.dart';
 import 'widgets/photo_viewer_widget.dart';
 
 class MedecinProfilViewPage extends StatefulWidget {
@@ -108,6 +108,26 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
                 ],
               ),
             ),
+          ),
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: FloatingActionButton(
+            tooltip: "Modifier profil",
+            backgroundColor: Colors.amber[800],
+            child: const Center(
+              child: Icon(
+                Icons.edit,
+                color: Colors.white,
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  PageTransition(
+                      child: MedecinProfilPage(),
+                      type: PageTransitionType.rightToLeftWithFade));
+            },
           ),
         ),
       ),

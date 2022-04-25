@@ -12,6 +12,7 @@ import 'package:sos_docteur/widgets/user_session_widget.dart';
 import 'dart:math' as math;
 
 import '../../index.dart';
+import 'medecin_agenda_config.dart';
 
 class MedecinScheddulePage extends StatefulWidget {
   const MedecinScheddulePage({Key key}) : super(key: key);

@@ -18,6 +18,26 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
     return PickupLayout(
       uid: storage.read("medecin_id").toString(),
       scaffold: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          elevation: 10.0,
+          tooltip: "Configuration de l'agenda",
+          backgroundColor: Colors.blue,
+          child: const Center(
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                child: const MedecinAgendaConfigPage(),
+                type: PageTransitionType.rightToLeftWithFade,
+              ),
+            );
+          },
+        ),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -182,7 +202,7 @@ class AgendaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.only(bottom: 8.0),
+      margin: const EdgeInsets.only(bottom: 10.0),
       elevation: 3.0,
       child: Container(
         height: 110.0,
@@ -197,7 +217,10 @@ class AgendaCard extends StatelessWidget {
                 height: 80.0,
                 width: 80.0,
                 decoration: BoxDecoration(
-                  color: darkBlueColor.withOpacity(.2),
+                  gradient: LinearGradient(colors: [
+                    primaryColor,
+                    Colors.blue[300],
+                  ], begin: Alignment.center, end: Alignment.bottomRight),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: Center(
@@ -224,11 +247,11 @@ class AgendaCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${strDateLongFr(date)} ",
+                          "${strDateLongFr(date)} ".toUpperCase(),
                           style: GoogleFonts.lato(
                             color: primaryColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15.0,
                           ),
                         ),
                         GestureDetector(
