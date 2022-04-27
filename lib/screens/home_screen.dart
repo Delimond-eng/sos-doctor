@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       left: 15.0, right: 15.0, bottom: 10.0),
                                   child: _searchBar(), //SearchInput(),
                                 ),
-                                if (patientController
+                                /*if (patientController
                                     .currentMedecins.isNotEmpty) ...[
                                   if (searchMedecinsList.isEmpty) ...[
                                     Container(
@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: currentMedecinsListView(),
                                     ),
                                   ]
-                                ],
+                                ],*/
                                 Padding(
                                   padding: const EdgeInsets.only(
                                     left: 15.0,
@@ -209,11 +209,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .12,
-                                  child: specialitiesListView(),
-                                ),
+
+                                //filter specialities
+                                if (patientController
+                                    .specialities.isNotEmpty) ...[
+                                  // ignore: sized_box_for_whitespace
+                                  Container(
+                                    height: 60,
+                                    child: specialitiesListView(),
+                                  )
+                                ],
                                 if (searchMedecinsList.isNotEmpty) ...[
                                   Padding(
                                     padding: const EdgeInsets.only(
@@ -327,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
         var data = patientController.specialities[index];
         return SpecialityCard(
           title: data.specialite,
-          icon: "assets/icons/filter1.svg",
+          icon: "assets/icons/medicine-sign.svg",
           isActive: data.isActive,
           onPressed: () async {
             for (var e in patientController.specialities) {
@@ -1101,7 +1106,7 @@ class SideMenu extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/shapes/bg10.jpg"),
+          image: AssetImage("assets/images/shapes/bg5.png"),
           fit: BoxFit.cover,
         ),
       ),

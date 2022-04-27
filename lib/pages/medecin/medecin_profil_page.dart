@@ -63,10 +63,22 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
   }
 
   TabController controller;
+  bool isExtendTab = false;
   @override
   void initState() {
     super.initState();
     controller = TabController(vsync: this, length: 5);
+    controller.animation.addListener(() {
+      if (controller.index > 2) {
+        setState(() {
+          isExtendTab = true;
+        });
+      } else {
+        setState(() {
+          isExtendTab = false;
+        });
+      }
+    });
     setState(() {
       avatar = medPhoto ?? "";
       selectedCountry = Country(
@@ -90,6 +102,48 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
     return PickupLayout(
       uid: storage.read("medecin_id").toString(),
       scaffold: Scaffold(
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (isExtendTab) ...[
+                SizedBox(
+                  height: 40.0,
+                  width: 40.0,
+                  child: FittedBox(
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.pink,
+                      onPressed: () {
+                        setState(() {
+                          controller.index =
+                              controller.length - controller.length;
+                        });
+                      },
+                      child: const Icon(CupertinoIcons.arrow_left, size: 15.0),
+                    ),
+                  ),
+                ),
+              ] else ...[
+                SizedBox(
+                  height: 40.0,
+                  width: 40.0,
+                  child: FittedBox(
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.pink,
+                      onPressed: () {
+                        setState(() {
+                          controller.index = controller.length - 1;
+                        });
+                      },
+                      child: const Icon(CupertinoIcons.arrow_right, size: 15.0),
+                    ),
+                  ),
+                ),
+              ]
+            ],
+          ),
+        ),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -1824,194 +1878,203 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Column(
                   children: [
-                    Flexible(
-                      child: SelectChoiceCard(
-                        hasSelected: selectTeleConsult,
-                        title: "Télé-consultation",
-                        onSelected: () {
-                          setState(() {
-                            selectTeleConsult = !selectTeleConsult;
-                          });
-                          cleanSelected();
-                          selectedList.clear();
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10.0,
-                    ),
-                    Flexible(
-                      child: SelectChoiceCard(
-                        hasSelected: selectInterpretation,
-                        title: "Interprétation des résultats",
-                        onSelected: () {
-                          setState(() {
-                            selectInterpretation = !selectInterpretation;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15.0,
-                ),
-                if ((!selectInterpretation) && (!selectTeleConsult)) ...[
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: Text(
-                        "Veuillez séléctionner un type de service que vous voudriez proposer !",
-                        style: GoogleFonts.lato(color: Colors.pink),
-                      ),
-                    ),
-                  )
-                ],
-                if (selectInterpretation) ...[
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Container(
-                          height: 60,
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(color: primaryColor),
-                          ),
-                          padding: const EdgeInsets.all(10.0),
-                          child: DropdownButton(
-                            menuMaxHeight: 300,
-                            alignment: Alignment.bottomCenter,
-                            dropdownColor: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(5.0),
-                            style: GoogleFonts.lato(color: Colors.black54),
-                            value: selectedExamen,
-                            underline: const SizedBox(),
-                            hint: Text(
-                              " Sélectionnez un type d'examen",
-                              style: GoogleFonts.mulish(
-                                color: Colors.grey[700],
-                                fontSize: 15.0,
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                            isExpanded: true,
-                            items: [
-                              "Examens biologiques",
-                              "Examens d'imagerie médicales",
-                              "Autres examens médicaux",
-                            ].map((e) {
-                              return DropdownMenuItem(
-                                value: e,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 10.0),
-                                  child: Text(
-                                    e,
-                                    style: GoogleFonts.lato(
-                                      fontWeight: FontWeight.w400,
-                                      color: Colors.black,
-                                      fontSize: 16.0,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (String value) {
+                    Row(
+                      children: [
+                        Flexible(
+                          child: SelectChoiceCard(
+                            hasSelected: selectTeleConsult,
+                            title: "Télé-consultation",
+                            onSelected: () {
                               setState(() {
-                                selectedExamen = value;
+                                selectTeleConsult = !selectTeleConsult;
                               });
-                              selectedList.clear();
-                              switch (value) {
-                                case "Examens biologiques":
-                                  setState(() {
-                                    selectedList.addAll(biologicList);
-                                  });
-                                  break;
-                                case "Examens d'immagerie médicales":
-                                  setState(() {
-                                    selectedList.addAll(immagerieList);
-                                  });
-                                  break;
-                                case "Autres examens médicaux":
-                                  setState(() {
-                                    selectedList.addAll(medicalList);
-                                  });
-                                  break;
-                                default:
-                                  setState(() {
-                                    selectedList.clear();
-                                  });
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Flexible(
+                          child: SelectChoiceCard(
+                            hasSelected: selectInterpretation,
+                            title: "Interprétation des résultats",
+                            onSelected: () {
+                              setState(() {
+                                selectInterpretation = !selectInterpretation;
+                              });
+                              if (selectInterpretation == false) {
+                                cleanSelected();
+                                selectedList.clear();
                               }
                             },
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  if (selectedList.isNotEmpty) ...[
+                      ],
+                    ),
                     const SizedBox(
                       height: 15.0,
                     ),
-                    Column(
-                      children: selectedList
-                          .map(
-                            (e) => ExamenCard(
-                              label: e,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
-                  if (selectTeleConsult || selectedExamen != null)
-                    Container(
-                      width: double.infinity,
-                      height: 60.0,
-                      margin: const EdgeInsets.only(top: 8.0),
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0),
+                    if ((!selectInterpretation) && (!selectTeleConsult)) ...[
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Center(
+                          child: Text(
+                            "Veuillez séléctionner un type de service que vous voudriez proposer !",
+                            style: GoogleFonts.lato(color: Colors.pink),
+                          ),
                         ),
-                        elevation: 10.0,
-                        color: Colors.orange[800],
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              CupertinoIcons.checkmark_alt,
-                              color: Colors.white,
-                              size: 15,
+                      )
+                    ],
+                    if (selectInterpretation) ...[
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              height: 60,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(5.0),
+                                border: Border.all(color: primaryColor),
+                              ),
+                              padding: const EdgeInsets.all(10.0),
+                              child: DropdownButton(
+                                menuMaxHeight: 300,
+                                alignment: Alignment.bottomCenter,
+                                dropdownColor: Colors.grey[100],
+                                borderRadius: BorderRadius.circular(5.0),
+                                style: GoogleFonts.lato(color: Colors.black54),
+                                value: selectedExamen,
+                                underline: const SizedBox(),
+                                hint: Text(
+                                  " Sélectionnez un type d'examen",
+                                  style: GoogleFonts.mulish(
+                                    color: Colors.grey[700],
+                                    fontSize: 15.0,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                                isExpanded: true,
+                                items: [
+                                  "Examens biologiques",
+                                  "Examens d'imagerie médicales",
+                                  "Autres examens médicaux",
+                                ].map((e) {
+                                  return DropdownMenuItem(
+                                    value: e,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Text(
+                                        e,
+                                        style: GoogleFonts.lato(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                          fontSize: 16.0,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (String value) {
+                                  setState(() {
+                                    selectedExamen = value;
+                                  });
+                                  selectedList.clear();
+                                  switch (value) {
+                                    case "Examens biologiques":
+                                      setState(() {
+                                        selectedList.addAll(biologicList);
+                                      });
+                                      break;
+                                    case "Examens d'immagerie médicales":
+                                      setState(() {
+                                        selectedList.addAll(immagerieList);
+                                      });
+                                      break;
+                                    case "Autres examens médicaux":
+                                      setState(() {
+                                        selectedList.addAll(medicalList);
+                                      });
+                                      break;
+                                    default:
+                                      setState(() {
+                                        selectedList.clear();
+                                      });
+                                  }
+                                },
+                              ),
                             ),
-                            const SizedBox(
-                              width: 8.0,
-                            ),
-                            Text(
-                              "Valider",
-                              style: GoogleFonts.lato(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        onPressed: () async {
-                          Xloading.showLottieLoading(context);
-                          Future.delayed(const Duration(milliseconds: 1000),
-                              () {
-                            Xloading.dismiss();
-                            cleanSelected();
-                            setState(() {
-                              selectInterpretation = false;
-                              selectTeleConsult = false;
-                            });
-
-                            XDialog.showSuccessAnimation(context);
-                          });
-                        },
+                          ),
+                        ],
                       ),
+                      if (selectedList.isNotEmpty) ...[
+                        const SizedBox(
+                          height: 15.0,
+                        ),
+                        Column(
+                          children: selectedList
+                              .map(
+                                (e) => ExamenCard(
+                                  label: e,
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ],
+                    ],
+                  ],
+                ),
+                if (selectTeleConsult ||
+                    (selectInterpretation && selectedExamen != null)) ...[
+                  Container(
+                    width: double.infinity,
+                    height: 60.0,
+                    margin: const EdgeInsets.only(top: 8.0),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      elevation: 10.0,
+                      color: Colors.orange[800],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            CupertinoIcons.checkmark_alt,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "Valider",
+                            style: GoogleFonts.lato(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      onPressed: () async {
+                        Xloading.showLottieLoading(context);
+                        Future.delayed(const Duration(milliseconds: 1000), () {
+                          Xloading.dismiss();
+                          cleanSelected();
+                          setState(() {
+                            selectInterpretation = false;
+                            selectTeleConsult = false;
+                          });
+
+                          XDialog.showSuccessAnimation(context);
+                        });
+                      },
                     ),
-                ],
+                  ),
+                ]
               ],
             ),
           ),

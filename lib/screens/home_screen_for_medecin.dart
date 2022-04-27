@@ -343,11 +343,15 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg10.jpg"),
-              fit: BoxFit.cover)),
+        image: DecorationImage(
+          image: AssetImage("assets/images/shapes/bg5.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Container(
-        decoration: BoxDecoration(color: Colors.black.withOpacity(.8)),
+        decoration: const BoxDecoration(
+          color: Colors.black87,
+        ),
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 30.0),
           physics: const ScrollPhysics(),
@@ -421,7 +425,7 @@ class SideMenu extends StatelessWidget {
               MenuItem(
                 icon:
                     const Icon(CupertinoIcons.person_fill, color: Colors.cyan),
-                label: 'Configuration profile',
+                label: 'Mon profile',
                 onPressed: () {
                   Get.back();
                   Navigator.push(
@@ -430,43 +434,28 @@ class SideMenu extends StatelessWidget {
                       type: PageTransitionType.rightToLeftWithFade,
                       alignment: Alignment.topCenter,
                       curve: Curves.easeIn,
-                      child: const MedecinProfilPage(),
-                    ),
-                  );
-                },
-              ),
-              MenuItem(
-                icon: const Icon(CupertinoIcons.person_circle_fill,
-                    color: Colors.cyan),
-                label: 'Mon profile',
-                onPressed: () async {
-                  Get.back();
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.leftToRightWithFade,
                       child: const MedecinProfilViewPage(),
                     ),
                   );
                 },
               ),
               MenuItem(
-                icon: const Icon(CupertinoIcons.calendar_badge_plus,
+                icon: const Icon(CupertinoIcons.calendar_circle_fill,
                     color: Colors.cyan),
-                label: 'Configuration agenda',
+                label: 'Mon agenda',
                 onPressed: () {
                   Get.back();
                   Navigator.push(
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeftWithFade,
-                      child: const MedecinAgendaConfigPage(),
+                      child: const MedecinAgendaPageView(),
                     ),
                   );
                 },
               ),
               MenuItem(
-                icon: const Icon(Icons.task_alt_outlined, color: Colors.cyan),
+                icon: const Icon(Icons.task_alt, color: Colors.cyan),
                 label: 'Mes rendez-vous',
                 onPressed: () {
                   Get.back();
@@ -487,6 +476,22 @@ class SideMenu extends StatelessWidget {
                 thickness: 0.5,
                 indent: 50.0,
                 endIndent: 50.0,
+              ),
+              MenuItem(
+                icon: const Icon(Icons.biotech_outlined, color: Colors.cyan),
+                label: 'Diagnostiques',
+                onPressed: () {
+                  Get.back();
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeftWithFade,
+                      alignment: Alignment.topCenter,
+                      curve: Curves.easeIn,
+                      child: const DiagnosticsPage(),
+                    ),
+                  );
+                },
               ),
 
               /*MenuItem(

@@ -68,7 +68,6 @@ class Modal {
         builder: (BuildContext context) {
           return Dialog(
             insetPadding: const EdgeInsets.fromLTRB(5, 70, 5, 5),
-            alignment: Alignment.center,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(radius ?? 5),
             ), //this right here

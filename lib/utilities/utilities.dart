@@ -71,11 +71,12 @@ class Xloading {
                   width: 10,
                 ),
               Container(
-                  margin: EdgeInsets.only(left: 5),
-                  child: Text(
-                    title,
-                    style: TextStyle(color: Colors.white, fontSize: 18.0),
-                  )),
+                margin: const EdgeInsets.only(left: 5),
+                child: Text(
+                  title,
+                  style: const TextStyle(color: Colors.white, fontSize: 18.0),
+                ),
+              ),
             ],
           ),
         );

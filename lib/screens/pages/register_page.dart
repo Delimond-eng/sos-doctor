@@ -392,7 +392,6 @@ class _RegisterPageState extends State<RegisterPage> {
         builder: (BuildContext context) {
           return Dialog(
             insetPadding: const EdgeInsets.fromLTRB(8, 70, 8, 5),
-            alignment: Alignment.center,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ), //this right here

@@ -14,7 +14,6 @@ class SpecialityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.0,
       margin: const EdgeInsets.only(right: 10.0),
       decoration: BoxDecoration(
         color: isActive ? primaryColor.withOpacity(.6) : Colors.white,
@@ -34,13 +33,13 @@ class SpecialityCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(30.0),
           onTap: onPressed,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 50.0,
+                  height: 65.0,
                   width: 40.0,
                   margin: const EdgeInsets.only(right: 8.0),
                   decoration: BoxDecoration(

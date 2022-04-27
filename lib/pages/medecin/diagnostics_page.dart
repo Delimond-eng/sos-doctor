@@ -9,7 +9,7 @@ import 'diagnostic_make_page.dart';
 import 'widgets/photo_viewer_widget.dart';
 
 class DiagnosticsPage extends StatefulWidget {
-  DiagnosticsPage({Key key}) : super(key: key);
+  const DiagnosticsPage({Key key}) : super(key: key);
 
   @override
   _DiagnosticsPageState createState() => _DiagnosticsPageState();
@@ -62,8 +62,8 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
                                       horizontal: 16.0, vertical: 10.0),
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 1.50,
-                                    crossAxisCount: 1,
+                                    childAspectRatio: .8,
+                                    crossAxisCount: 2,
                                     crossAxisSpacing: 8.0,
                                     mainAxisSpacing: 8.0,
                                   ),
@@ -177,8 +177,8 @@ class MedDiagnosticCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(.9),
-      ),
+          color: Colors.white.withOpacity(.9),
+          borderRadius: BorderRadius.circular(5.0)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -187,6 +187,8 @@ class MedDiagnosticCard extends StatelessWidget {
               tag: examen.examenId,
               child: Container(
                 decoration: BoxDecoration(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(5.0)),
                   image: examen.examenDocument != null &&
                           examen.examenDocument.length > 200
                       ? DecorationImage(
@@ -202,21 +204,22 @@ class MedDiagnosticCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Container(
-                    color: Colors.blue[900].withOpacity(.6),
+                    height: 40.0,
+                    width: 40.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(40.0),
+                      color: Colors.blue[900].withOpacity(.6),
+                    ),
                     child: Material(
+                      borderRadius: BorderRadius.circular(40.0),
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.zero,
                       child: InkWell(
                         onTap: onZoomed,
-                        borderRadius: BorderRadius.zero,
-                        child: Container(
-                          height: 40.0,
-                          width: 40.0,
-                          child: Icon(
-                            CupertinoIcons.eye_solid,
-                            size: 15.0,
-                            color: Colors.white,
-                          ),
+                        borderRadius: BorderRadius.circular(40.0),
+                        child: const Icon(
+                          CupertinoIcons.eye_solid,
+                          size: 15.0,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -226,40 +229,43 @@ class MedDiagnosticCard extends StatelessWidget {
             ),
           ),
           Container(
-            color: Colors.blue[900],
+            height: 40.0,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                borderRadius:
+                    const BorderRadius.vertical(bottom: Radius.circular(5.0)),
+                color: Colors.yellow[800]),
             child: Material(
               color: Colors.transparent,
-              borderRadius: BorderRadius.zero,
+              borderRadius:
+                  const BorderRadius.vertical(bottom: Radius.circular(5.0)),
               child: InkWell(
                 onTap: onDiagnostic,
-                borderRadius: BorderRadius.zero,
-                child: Container(
-                  height: 40.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: const Icon(
-                          CupertinoIcons.add_circled_solid,
-                          size: 15.0,
-                          color: Colors.white,
-                        ),
+                borderRadius:
+                    const BorderRadius.vertical(bottom: Radius.circular(5.0)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Center(
+                      child: Icon(
+                        CupertinoIcons.add_circled_solid,
+                        size: 15.0,
+                        color: Colors.white,
                       ),
-                      const SizedBox(
-                        width: 5.0,
+                    ),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
+                    Text(
+                      "Diagnostiquer",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        fontSize: 14.0,
+                        color: Colors.white,
                       ),
-                      Text(
-                        "Diagnostiquer",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.lato(
-                          fontSize: 14.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

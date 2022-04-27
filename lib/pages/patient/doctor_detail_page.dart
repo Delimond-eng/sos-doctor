@@ -60,6 +60,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           ),
                           const HeaderTiles(
                             title: "Expériences professionnelles",
+                            iconPath: "assets/icons/medical-svgrepo-com.svg",
                           ),
                           if ((widget.profil.experiences != null) &&
                               (widget.profil.experiences.isNotEmpty)) ...[
@@ -73,6 +74,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                           ],
                           const HeaderTiles(
                             title: "Etudes faites",
+                            iconPath: "assets/icons/study.svg",
                           ),
                           if ((widget.profil.etudesFaites != null) &&
                               (widget.profil.etudesFaites.isNotEmpty)) ...[
@@ -84,14 +86,27 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                               )
                             ],
                           ],
+
+                          //services section
                           const HeaderTiles(
                             title: "Services",
+                            iconPath:
+                                "assets/icons/microscope-medical-svgrepo-com.svg",
                           ),
-                          const SizedBox(
-                            height: 20.0,
+                          const ServiceCard(
+                            label: "Interprétation des résultats",
+                            icon: CupertinoIcons.doc_plaintext,
                           ),
+                          const ServiceCard(
+                            label: "Télé-consultation",
+                            icon: CupertinoIcons.videocam,
+                          ),
+
+                          //end services section
+
                           const HeaderTiles(
                             title: "Autres diplômes",
+                            iconPath: "assets/icons/medicine-sign.svg",
                           ),
                           if ((widget.supDatas.specialites != null) &&
                               (widget.supDatas.specialites.isNotEmpty)) ...[
@@ -107,6 +122,7 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
                               (widget.profil.langues.isNotEmpty)) ...[
                             const HeaderTiles(
                               title: "Langues de consultation",
+                              iconPath: "assets/icons/speech-svgrepo-com.svg",
                             ),
                             GridView.builder(
                               shrinkWrap: true,
@@ -542,14 +558,17 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
           height: MediaQuery.of(context).size.height * .35,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg2.png"),
+              image:
+                  AssetImage("assets/images/vector/undraw_medicine_b1ol.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [primaryColor.withOpacity(.8), Colors.deepOrange],
+                colors: [darkBlueColor.withOpacity(.9), Colors.cyan],
+                begin: Alignment.center,
+                end: Alignment.bottomRight,
               ),
             ),
             child: Center(
@@ -888,6 +907,67 @@ class _DoctorDetailPageState extends State<DoctorDetailPage> {
   }
 }
 
+class ServiceCard extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  const ServiceCard({
+    Key key,
+    this.label,
+    this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 50.0,
+        margin: const EdgeInsets.symmetric(horizontal: 10.0),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.grey.withOpacity(.3),
+            ),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(.3),
+              blurRadius: 10,
+              offset: const Offset(0, 2),
+            )
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    icon,
+                    size: 18.0,
+                    color: darkBlueColor,
+                  ),
+                  const SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    label,
+                    style: GoogleFonts.lato(color: Colors.black),
+                  ),
+                ],
+              ),
+              Icon(
+                CupertinoIcons.arrow_right_circle,
+                color: Colors.grey[400],
+              )
+            ],
+          ),
+        ));
+  }
+}
+
 class SpecCard extends StatelessWidget {
   final HomeSpecialites data;
   const SpecCard({
@@ -1015,11 +1095,11 @@ class SpeechCard extends StatelessWidget {
 
 class HeaderTiles extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String iconPath;
   const HeaderTiles({
     Key key,
     this.title,
-    this.icon,
+    this.iconPath,
   }) : super(key: key);
 
   @override
@@ -1052,15 +1132,13 @@ class HeaderTiles extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: icon == null
-                    ? SvgPicture.asset(
-                        "assets/icons/user-profile-svgrepo-com.svg",
-                        color: primaryColor,
-                        height: 20.0,
-                        width: 20.0,
-                        fit: BoxFit.scaleDown,
-                      )
-                    : Icon(icon, color: Colors.white, size: 15.0),
+                child: SvgPicture.asset(
+                  iconPath,
+                  color: primaryColor,
+                  height: 20.0,
+                  width: 20.0,
+                  fit: BoxFit.scaleDown,
+                ),
               ),
             ),
             const SizedBox(
@@ -1132,20 +1210,28 @@ class ExpCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 25.0,
-                      width: 25.0,
-                      decoration: BoxDecoration(
-                        color: primaryColor.withOpacity(.5),
-                        shape: BoxShape.circle,
-                      ),
-                      padding: const EdgeInsets.all(5.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/medical-svgrepo-com.svg",
-                        height: 20.0,
-                        width: 20.0,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 25.0,
+                          width: 25.0,
+                          decoration: BoxDecoration(
+                            color: primaryColor.withOpacity(.5),
+                            shape: BoxShape.circle,
+                          ),
+                          padding: const EdgeInsets.all(5.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/medical-svgrepo-com.svg",
+                            height: 20.0,
+                            width: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8.0,
+                        ),
+                        const Text("A travailler à "),
+                      ],
                     ),
                     const SizedBox(
                       height: 8.0,
