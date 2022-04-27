@@ -7,12 +7,14 @@ class CostumChexkBox extends StatelessWidget {
   final Function onChanged;
   final String title;
   final bool hasColored;
+  final Color color;
   const CostumChexkBox({
     Key key,
     this.value = false,
     this.onChanged,
     this.title,
     this.hasColored = false,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -51,7 +53,7 @@ class CostumChexkBox extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(
                   width: 2.0,
-                  color: Colors.blue[800],
+                  color: color ?? Colors.blue[800],
                 ),
                 color: Colors.white,
                 boxShadow: [
@@ -98,7 +100,7 @@ class CostumChexkBox extends StatelessWidget {
                       )
                     : GoogleFonts.lato(
                         letterSpacing: 1.0,
-                        color: primaryColor,
+                        color: color ?? primaryColor,
                         fontSize: 15.0,
                         fontWeight: FontWeight.w400,
                       ),

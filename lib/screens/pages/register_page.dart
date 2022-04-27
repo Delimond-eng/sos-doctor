@@ -160,7 +160,13 @@ class _RegisterPageState extends State<RegisterPage> {
               hasColored: false,
               title: "J'acceptes les politiques de confidentialité !",
               value: sessionController.allowPrivacyPolicy.value,
-              onChanged: () => showPrivacy(context),
+              color: typeUser == null ? Colors.grey : null,
+              onChanged: typeUser != null
+                  ? () => showPrivacy(context,
+                      privacyPath: typeUser == "Patient"
+                          ? "assets/docs/patientprivacy.pdf"
+                          : "assets/docs/medprivacy.pdf")
+                  : null,
             ),
           ),
         ),
@@ -385,7 +391,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  showPrivacy(BuildContext ctx) {
+  showPrivacy(BuildContext ctx, {String privacyPath}) {
     showDialog(
         barrierColor: Colors.black12,
         context: context,
@@ -409,7 +415,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Expanded(
                         child: SfPdfViewer.asset(
-                          "assets/docs/docs.pdf",
+                          privacyPath,
                         ),
                       ),
                       const SizedBox(

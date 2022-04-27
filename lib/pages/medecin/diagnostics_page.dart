@@ -234,7 +234,7 @@ class MedDiagnosticCard extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius:
                     const BorderRadius.vertical(bottom: Radius.circular(5.0)),
-                color: Colors.yellow[800]),
+                color: Colors.yellow[900]),
             child: Material(
               color: Colors.transparent,
               borderRadius:

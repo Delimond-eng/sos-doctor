@@ -94,16 +94,13 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                  children: const [
                     Center(
-                      child: Image.asset(
-                        "assets/icons/ic_icon_transparent.png",
-                        height: 130.0,
-                        width: 130.0,
-                        alignment: Alignment.center,
-                        fit: BoxFit.cover,
+                      child: SpinKitChasingDots(
+                        color: Colors.black,
+                        size: 30.0,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -112,9 +109,12 @@ class _SplashScreenState extends State<SplashScreen> {
           Positioned(
             bottom: 20.0,
             child: Center(
-              child: SpinKitThreeBounce(
-                color: darkBlueColor,
-                size: 30.0,
+              child: Image.asset(
+                "assets/icons/ic_icon_transparent.png",
+                height: 100.0,
+                width: 100.0,
+                alignment: Alignment.center,
+                fit: BoxFit.cover,
               ),
             ),
           )
