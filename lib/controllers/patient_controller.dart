@@ -18,6 +18,8 @@ class PatientController extends GetxController {
   var specialities = <Specialites>[].obs;
   var langues = <Langues>[].obs;
 
+  var searchMedecinsList = <HomeMedecins>[].obs;
+
   var currentMedecins = <IMedecins>[].obs;
 
   var diagnostics = <ExamensPatient>[].obs;

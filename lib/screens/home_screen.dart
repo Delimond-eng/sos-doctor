@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:shimmer/shimmer.dart';
@@ -46,32 +45,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    initData();
   }
 
   String uid = storage.read('patient_id').toString();
-  Langues selectedSpeech;
-  String selectSpecialiteId = "";
-  String selectLangueId = "";
-  List<HomeMedecins> searchMedecinsList = [];
-  List<Langues> langues = [];
-
-  initData() {
-    setState(() {
-      try {
-        if (patientController.langues.isNotEmpty) {
-          setState(() {
-            langues.addAll(patientController.langues);
-            selectedSpeech = langues.isNotEmpty ? langues.first : null;
-            selectLangueId = langues.first.langueId ?? "";
-          });
-        }
-      } catch (err) {
-        print(err);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     //var _size = MediaQuery.of(context).size;
@@ -179,7 +155,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: primaryColor,
                                         ),
                                       ),
-                                      if (searchMedecinsList.isNotEmpty) ...[
+                                      if (patientController
+                                          .searchMedecinsList.isNotEmpty) ...[
                                         // ignore: deprecated_member_use
                                         RaisedButton(
                                           color: Colors.orange,
@@ -200,7 +177,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   e.isActive = false;
                                                 }
                                               }
-                                              searchMedecinsList.clear();
+                                              patientController
+                                                  .searchMedecinsList
+                                                  .clear();
                                             });
                                           },
                                           elevation: 5,
@@ -219,7 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: specialitiesListView(),
                                   )
                                 ],
-                                if (searchMedecinsList.isNotEmpty) ...[
+                                if (patientController
+                                    .searchMedecinsList.isNotEmpty) ...[
                                   Padding(
                                     padding: const EdgeInsets.only(
                                       left: 15.0,
@@ -232,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       position: const BadgePosition(
                                           start: -5, top: -18),
                                       badgeContent: Text(
-                                        "${searchMedecinsList.length}",
+                                        "${patientController.searchMedecinsList.length}",
                                         style: GoogleFonts.lato(
                                             color: Colors.white,
                                             fontSize: 12.0),
@@ -248,7 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ],
-                                if (searchMedecinsList.isEmpty) ...[
+                                if (patientController
+                                    .searchMedecinsList.isEmpty) ...[
                                   medecinsListView()
                                 ] else ...[
                                   foundSearchMedecins()
@@ -353,8 +334,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Xloading.dismiss();
                 if (res != null) {
                   setState(() {
-                    searchMedecinsList.clear();
-                    searchMedecinsList.addAll(res.content.medecins);
+                    patientController.searchMedecinsList.clear();
+                    patientController.searchMedecinsList
+                        .addAll(res.content.medecins);
                   });
                 } else {
                   Get.snackbar(
@@ -508,9 +490,9 @@ class _HomeScreenState extends State<HomeScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      itemCount: searchMedecinsList.length,
+      itemCount: patientController.searchMedecinsList.length,
       itemBuilder: (context, index) {
-        var medecin = searchMedecinsList[index];
+        var medecin = patientController.searchMedecinsList[index];
         return MedCard(
           medecin: medecin,
           onPressed: () async {
@@ -606,7 +588,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'SOS',
+                        text: 'Allô',
                         style: GoogleFonts.lato(
                           letterSpacing: 1.20,
                           fontWeight: FontWeight.w900,
@@ -646,7 +628,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _searchBar() {
     return Container(
-      padding: const EdgeInsets.only(left: 10.0),
       height: 50.0,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -658,192 +639,67 @@ class _HomeScreenState extends State<HomeScreen> {
             offset: const Offset(0, 10),
           )
         ],
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
-      child: Row(
-        children: [
-          Flexible(
-            child: TypeAheadField<dynamic>(
-              debounceDuration: const Duration(milliseconds: 500),
-              textFieldConfiguration: TextFieldConfiguration(
-                autofocus: false,
-                controller: _searchController,
-                decoration: InputDecoration(
-                  contentPadding:
-                      const EdgeInsets.only(top: 14, bottom: 10, left: 10),
-                  hintText: "Recherche...",
-                  hintStyle:
-                      GoogleFonts.lato(color: Colors.grey[400], fontSize: 16),
-                  suffixIcon: Container(
-                    height: 50,
-                    width: 120.0,
-                    padding: const EdgeInsets.only(right: 5),
-                    child: DropdownButton(
-                      menuMaxHeight: 300,
-                      dropdownColor: Colors.white,
-                      alignment: Alignment.centerRight,
-                      borderRadius: BorderRadius.circular(4.0),
-                      style: GoogleFonts.lato(color: Colors.black),
-                      value: selectedSpeech,
-                      underline: const SizedBox(),
-                      hint: Text(
-                        "Langue",
-                        style: GoogleFonts.mulish(
-                            color: Colors.grey[600],
-                            fontSize: 15.0,
-                            fontStyle: FontStyle.italic),
+      child: Material(
+        borderRadius: BorderRadius.circular(15.0),
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(15.0),
+          onTap: () => showFilterBox(context, onPressed: () {
+            setState(() {});
+          }),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      CupertinoIcons.search,
+                      color: Colors.grey[500],
+                    ),
+                    const SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(
+                      "Recherche médecin...",
+                      style: GoogleFonts.lato(
+                        color: Colors.grey[500],
                       ),
-                      isExpanded: true,
-                      items: langues.map((e) {
-                        return DropdownMenuItem(
-                          value: e,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.all(5),
-                                  height: 20.0,
-                                  width: 20.0,
-                                  decoration: BoxDecoration(
-                                    color: primaryColor.withOpacity(.8),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Icon(
-                                    CupertinoIcons.location,
-                                    size: 12,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text(
-                                  truncateString(e.langue, 10),
-                                  style: GoogleFonts.lato(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedSpeech = value;
-                          selectLangueId = selectedSpeech.langueId;
-                        });
-                      },
-                    ),
-                  ),
-                  border: InputBorder.none,
-                  counterText: '',
+                    )
+                  ],
                 ),
               ),
-              suggestionsCallback: (pattern) async {
-                return getSpecialities(pattern);
-              },
-              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
-                elevation: 0.0,
-              ),
-              getImmediateSuggestions: false,
-              direction: AxisDirection.up,
-              hideOnEmpty: true,
-              itemBuilder: (context, suggestion) {
-                return ListTile(
-                  focusColor: Colors.blue[200],
-                  leading: Container(
-                    height: 40.0,
-                    width: 40.0,
-                    padding: const EdgeInsets.all(10.0),
-                    child: SvgPicture.asset(
-                      "assets/icons/filter1.svg",
-                      color: primaryColor,
-                    ),
+              Container(
+                height: 50.0,
+                width: 60.0,
+                margin: const EdgeInsets.all(5.0),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.orange[900],
+                      Colors.orange[300],
+                    ],
                   ),
-                  title: Text(
-                    suggestion.specialite,
-                    style: GoogleFonts.lato(fontWeight: FontWeight.w400),
+                  borderRadius: const BorderRadius.horizontal(
+                    right: Radius.circular(12.0),
+                    left: Radius.circular(12.0),
                   ),
-                );
-              },
-              onSuggestionSelected: (suggestion) async {
-                _searchController.text = suggestion.specialite;
-                setState(() {
-                  selectSpecialiteId = suggestion.specialiteId;
-                });
-              },
-              hideOnLoading: true,
-              hideOnError: true,
-              loadingBuilder: (context) {
-                return const Text("Chargement...");
-              },
-              noItemsFoundBuilder: (context) {
-                return Container(
-                  height: 120.0,
-                  child: Center(
-                    child: Text(
-                      "Pas trouvé !",
-                      style: style1(
-                          color: Colors.red,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20.0),
-                    ),
+                ),
+                child: Center(
+                  child: SvgPicture.asset(
+                    "assets/icons/filter.svg",
+                    color: Colors.white,
+                    height: 20.0,
+                    width: 20.0,
                   ),
-                );
-              },
-            ),
+                ),
+              )
+            ],
           ),
-          Container(
-            height: 50.0,
-            width: 60.0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.orange[900],
-                  Colors.orange[300],
-                ],
-              ),
-              borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(30.0), left: Radius.circular(30.0)),
-            ),
-            child: Material(
-              borderRadius: const BorderRadius.horizontal(
-                  right: Radius.circular(30.0), left: Radius.circular(30.0)),
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: const BorderRadius.horizontal(
-                    right: Radius.circular(30.0), left: Radius.circular(30.0)),
-                onTap: () async {
-                  Xloading.showLottieLoading(context);
-                  try {
-                    await PatientApi.searchContents(
-                      langueId: selectLangueId,
-                      specialiteId: selectSpecialiteId,
-                    ).then((res) {
-                      Xloading.dismiss();
-                      if (res != null) {
-                        setState(() {
-                          searchMedecinsList.clear();
-                          searchMedecinsList.addAll(res.content.medecins);
-                        });
-                      }
-                    });
-                  } catch (err) {
-                    print(err);
-                  }
-
-                  //patientController.platformMedecins.value =found.content.medecins;
-                },
-                child: const Center(
-                  child: Icon(CupertinoIcons.search, color: Colors.white),
-                ),
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -851,10 +707,287 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Specialites> getSpecialities(String query) {
     List<Specialites> matches = <Specialites>[];
     matches.addAll(patientController.specialities);
-    matches.retainWhere((s) => removeAccent(s.specialite)
-        .toLowerCase()
-        .contains(removeAccent(query).toLowerCase()));
+    if (query != null) {
+      matches.retainWhere((s) => removeAccent(s.specialite)
+          .toLowerCase()
+          .contains(removeAccent(query).toLowerCase()));
+    }
     return matches;
+  }
+
+  Future<void> showFilterBox(BuildContext context, {Function onPressed}) async {
+    Specialites selectedSpeciality;
+    Langues selectedLang;
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      isDismissible: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.4,
+        minChildSize: 0.2,
+        maxChildSize: 0.75,
+        expand: false,
+        builder: (_, controller) => Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              height: 3.0,
+              width: 50.0,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10.0),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    darkBlueColor,
+                    Colors.yellow[900],
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/filter.svg",
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    const Flexible(
+                      child: Text(
+                        "Veuillez Filtrer le médecin par spécialité ou/et par langue de consultation",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            StatefulBuilder(
+              builder: (context, setter) {
+                return Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10.0,
+                      vertical: 15.0,
+                    ),
+                    controller: controller,
+                    children: [
+                      Text(
+                        "Langue de consultation",
+                        style: GoogleFonts.lato(fontSize: 16.0),
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      Container(
+                        height: 50.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: DropdownButton(
+                            menuMaxHeight: 300,
+                            dropdownColor: Colors.white,
+                            alignment: Alignment.centerRight,
+                            borderRadius: BorderRadius.circular(4.0),
+                            style: GoogleFonts.lato(color: Colors.black),
+                            value: selectedLang,
+                            underline: const SizedBox(),
+                            hint: Text(
+                              "Sélectionnez une langue...",
+                              style: GoogleFonts.mulish(
+                                color: Colors.grey[600],
+                                fontSize: 15.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            isExpanded: true,
+                            items: patientController.langues.map((e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(10.0),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.grey[300],
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    e.langue,
+                                    style: GoogleFonts.lato(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setter(() {
+                                selectedLang = value;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      const LineSperator(),
+                      Text(
+                        "Spécialité ",
+                        style: GoogleFonts.lato(fontSize: 16.0),
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      Container(
+                        height: 50.0,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: DropdownButton(
+                            menuMaxHeight: 300,
+                            dropdownColor: Colors.white,
+                            alignment: Alignment.centerRight,
+                            borderRadius: BorderRadius.circular(4.0),
+                            style: GoogleFonts.lato(color: Colors.black),
+                            value: selectedSpeciality,
+                            underline: const SizedBox(),
+                            hint: Text(
+                              "Sélectionnez une spécialité...",
+                              style: GoogleFonts.mulish(
+                                color: Colors.grey[600],
+                                fontSize: 15.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                            isExpanded: true,
+                            items: patientController.specialities.map((e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: const EdgeInsets.all(10.0),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: Colors.grey[300],
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    e.specialite,
+                                    style: GoogleFonts.lato(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              selectedSpeciality = value;
+                            },
+                          ),
+                        ),
+                      ),
+                      const LineSperator(),
+                      StandardBtn(
+                        radius: 10.0,
+                        color: Colors.yellow[900],
+                        label: "Rechercher",
+                        onPressed: () async {
+                          Xloading.showLottieLoading(context);
+                          try {
+                            await PatientApi.searchContents(
+                              langueId: selectedLang.langueId,
+                              specialiteId: selectedSpeciality.specialiteId,
+                            ).then((res) {
+                              Xloading.dismiss();
+                              Get.back();
+                              if (res != null) {
+                                setState(() {
+                                  patientController.searchMedecinsList.clear();
+                                  patientController.searchMedecinsList
+                                      .addAll(res.content.medecins);
+                                });
+                              }
+                            });
+                          } catch (err) {
+                            print(err);
+                          }
+                        },
+                      )
+                    ],
+                  ),
+                );
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LineSperator extends StatelessWidget {
+  const LineSperator({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: Row(
+        children: [
+          Container(
+            height: 10.0,
+            width: 10.0,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
+          Flexible(
+            child: Container(
+              height: 1,
+              width: double.infinity,
+              color: Colors.black,
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -977,9 +1110,10 @@ class CurrentMedCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20.0),
               boxShadow: [
                 BoxShadow(
-                    blurRadius: 12.0,
-                    color: Colors.grey.withOpacity(.3),
-                    offset: const Offset(0, 3))
+                  blurRadius: 12.0,
+                  color: Colors.grey.withOpacity(.3),
+                  offset: const Offset(0, 3),
+                )
               ],
             ),
             width: 200.0,
@@ -1243,6 +1377,163 @@ class SideMenu extends StatelessWidget {
       ),
     );
   }
+
+  /*
+  
+  Flexible(
+            child: TypeAheadField<dynamic>(
+              debounceDuration: const Duration(milliseconds: 500),
+              textFieldConfiguration: TextFieldConfiguration(
+                autofocus: false,
+                controller: _searchController,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.only(top: 14, bottom: 10, left: 10),
+                  hintText: "Recherche...",
+                  hintStyle:
+                      GoogleFonts.lato(color: Colors.grey[400], fontSize: 16),
+                  suffixIcon: Container(
+                    height: 50,
+                    width: 120.0,
+                    padding: const EdgeInsets.only(right: 5),
+                    child: DropdownButton(
+                      menuMaxHeight: 300,
+                      dropdownColor: Colors.white,
+                      alignment: Alignment.centerRight,
+                      borderRadius: BorderRadius.circular(4.0),
+                      style: GoogleFonts.lato(color: Colors.black),
+                      value: selectedSpeech,
+                      underline: const SizedBox(),
+                      hint: Text(
+                        "Langue",
+                        style: GoogleFonts.mulish(
+                            color: Colors.grey[600],
+                            fontSize: 15.0,
+                            fontStyle: FontStyle.italic),
+                      ),
+                      isExpanded: true,
+                      items: langues.map((e) {
+                        return DropdownMenuItem(
+                          value: e,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(5),
+                                  height: 20.0,
+                                  width: 20.0,
+                                  decoration: BoxDecoration(
+                                    color: primaryColor.withOpacity(.8),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    CupertinoIcons.location,
+                                    size: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 5.0,
+                                ),
+                                Text(
+                                  truncateString(e.langue, 10),
+                                  style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedSpeech = value;
+                          selectLangueId = selectedSpeech.langueId;
+                        });
+                      },
+                    ),
+                  ),
+                  border: InputBorder.none,
+                  counterText: '',
+                ),
+              ),
+              suggestionsCallback: (pattern) async {
+                return getSpecialities(pattern);
+              },
+              suggestionsBoxDecoration: const SuggestionsBoxDecoration(
+                elevation: 0.0,
+              ),
+              getImmediateSuggestions: false,
+              direction: AxisDirection.up,
+              hideOnEmpty: true,
+              itemBuilder: (context, suggestion) {
+                return ListTile(
+                  focusColor: Colors.blue[200],
+                  leading: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    padding: const EdgeInsets.all(10.0),
+                    child: SvgPicture.asset(
+                      "assets/icons/filter1.svg",
+                      color: primaryColor,
+                    ),
+                  ),
+                  title: Text(
+                    suggestion.specialite,
+                    style: GoogleFonts.lato(fontWeight: FontWeight.w400),
+                  ),
+                );
+              },
+              onSuggestionSelected: (suggestion) async {
+                _searchController.text = suggestion.specialite;
+                setState(() {
+                  selectSpecialiteId = suggestion.specialiteId;
+                });
+              },
+              hideOnLoading: true,
+              hideOnError: true,
+              loadingBuilder: (context) {
+                return const Text("Chargement...");
+              },
+              noItemsFoundBuilder: (context) {
+                return Container(
+                  height: 120.0,
+                  child: Center(
+                    child: Text(
+                      "Pas trouvé !",
+                      style: style1(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20.0),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          Xloading.showLottieLoading(context);
+                  try {
+                    await PatientApi.searchContents(
+                      langueId: selectLangueId,
+                      specialiteId: selectSpecialiteId,
+                    ).then((res) {
+                      Xloading.dismiss();
+                      if (res != null) {
+                        setState(() {
+                          searchMedecinsList.clear();
+                          searchMedecinsList.addAll(res.content.medecins);
+                        });
+                      }
+                    });
+                  } catch (err) {
+                    print(err);
+                  }
+  */
+
 }
 
 class Banner extends StatelessWidget {

@@ -151,7 +151,7 @@ class _MedecinHomeScreenState extends State<MedecinHomeScreen> {
                                           ),
                                           children: <TextSpan>[
                                             TextSpan(
-                                              text: 'SOS',
+                                              text: 'Allô',
                                               style: GoogleFonts.lato(
                                                 letterSpacing: 1.20,
                                                 fontWeight: FontWeight.w900,

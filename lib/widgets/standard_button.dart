@@ -19,11 +19,13 @@ class StandardBtn extends StatelessWidget {
       child: RaisedButton(
         onPressed: onPressed,
         color: color ?? primaryColor,
-        child: Text(label.toUpperCase(),
-            style: style1(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1.5)),
+        child: Text(
+          label.toUpperCase(),
+          style: style1(
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              letterSpacing: 1.5,),
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius ?? 30.0),
         ),

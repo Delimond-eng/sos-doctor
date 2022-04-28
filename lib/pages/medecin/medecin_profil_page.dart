@@ -147,23 +147,12 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg5p.png"),
+              image: AssetImage("assets/images/shapes/bg4p.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  primaryColor.withOpacity(.8),
-                  primaryColor.withOpacity(.5),
-                  Colors.white10,
-                  Colors.white10,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.8)),
             child: SafeArea(
               child: Column(
                 children: [
@@ -491,13 +480,11 @@ class _MedecinProfilPageState extends State<MedecinProfilPage>
               width: 10,
             ),
             Flexible(
-                child: Text(
-              "Configuration & Personnalisation Profil",
-              style: style1(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 14.0),
-            ))
+              child: Text(
+                "Configuration & Personnalisation Profil",
+                style: style1(fontWeight: FontWeight.w800, fontSize: 14.0),
+              ),
+            )
           ],
         ),
       ],

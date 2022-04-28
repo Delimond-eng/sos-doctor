@@ -216,8 +216,6 @@ class PatientApi {
 
 //recherche et filtrage de données du médecin
   static Future<HomeContent> searchContents({specialiteId, langueId}) async {
-    print("langue $langueId");
-    print("specialite $specialiteId");
     var response;
     try {
       response = await DApi.request(

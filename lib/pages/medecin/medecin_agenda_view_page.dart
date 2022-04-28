@@ -41,22 +41,13 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg5p.png"),
+              image: AssetImage("assets/images/shapes/bg4p.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  primaryColor,
-                  primaryColor.withOpacity(.5),
-                  Colors.white.withOpacity(.8),
-                  Colors.white.withOpacity(.8),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
+              color: Colors.white.withOpacity(.8),
             ),
             child: SafeArea(
               child: Column(
@@ -94,7 +85,6 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
                             Text(
                               "Mon agenda",
                               style: GoogleFonts.lato(
-                                color: Colors.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
                               ),
@@ -148,9 +138,6 @@ class _MedecinAgendaPageViewState extends State<MedecinAgendaPageView> {
                                 ),
                               )
                             : ListView.builder(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
-                                ),
                                 shrinkWrap: true,
                                 itemCount: medecinController.medecinProfil.value
                                     .datas.profilAgenda.length,
@@ -201,7 +188,195 @@ class AgendaCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Column(
+      children: [
+        Container(
+          height: 120.0,
+          width: MediaQuery.of(context).size.width,
+          margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+          decoration: BoxDecoration(
+            color: Colors.blue[100],
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 10.0,
+                offset: const Offset(0, 3),
+                color: Colors.grey.withOpacity(.3),
+              )
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                height: 118,
+                width: 6.0,
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.horizontal(
+                    left: Radius.circular(8.0),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Agenda date & heure de disponibilité",
+                            style: GoogleFonts.lato(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 15.0,
+                            ),
+                          ),
+                          Container(
+                            height: 25.0,
+                            width: 25.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              gradient: const LinearGradient(
+                                colors: [Colors.pink, Colors.black],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomRight,
+                              ),
+                            ),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(25.0),
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: onRemoved,
+                                borderRadius: BorderRadius.circular(25.0),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 14.0,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.calendar_today_outlined,
+                            size: 15.0,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            "${strDateLongFr(date)} ".capitalize,
+                            style: GoogleFonts.lato(
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.access_time_outlined,
+                            size: 15.0,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          if (heures != null) ...[
+                            Flexible(
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children: [
+                                    for (int i = 0; i < heures.length; i++) ...[
+                                      Container(
+                                        padding: const EdgeInsets.all(8.0),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white30,
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                        child: Text(
+                                          "${heures.first.heure} à ${heures.last.heure}",
+                                          style: GoogleFonts.lato(
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        margin:
+                                            const EdgeInsets.only(right: 8.0),
+                                      ),
+                                    ]
+                                  ],
+                                ),
+                              ),
+                            )
+                          ] else ...[
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white30,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              child: Text(
+                                "Aucune heure répertoriée !",
+                                style: GoogleFonts.lato(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.pink,
+                                ),
+                              ),
+                              margin: const EdgeInsets.only(right: 8.0),
+                            ),
+                          ]
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 12.0, bottom: 10.0),
+          child: Row(
+            children: [
+              Container(
+                height: 10.0,
+                width: 10.0,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              Flexible(
+                child: Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: Colors.black,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+    /*Card(
       margin: const EdgeInsets.only(bottom: 10.0),
       elevation: 3.0,
       child: Container(
@@ -308,7 +483,7 @@ class AgendaCard extends StatelessWidget {
           ),
         ),
       ),
-    );
+    );*/
   }
 }
 

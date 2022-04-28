@@ -162,10 +162,12 @@ class _RegisterPageState extends State<RegisterPage> {
               value: sessionController.allowPrivacyPolicy.value,
               color: typeUser == null ? Colors.grey : null,
               onChanged: typeUser != null
-                  ? () => showPrivacy(context,
-                      privacyPath: typeUser == "Patient"
-                          ? "assets/docs/patientprivacy.pdf"
-                          : "assets/docs/medprivacy.pdf")
+                  ? () => showPrivacy(
+                        context,
+                        privacyPath: typeUser == "Patient"
+                            ? "assets/docs/patientprivacy.pdf"
+                            : "assets/docs/medprivacy.pdf",
+                      )
                   : null,
             ),
           ),

@@ -29,6 +29,19 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
   int timestampEnd;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  initDate() {
+    var dateNow =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    setState(() {
+      selectedDate = dateFromString(dateNow);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PickupLayout(
       uid: storage.read("medecin_id").toString(),
@@ -36,16 +49,10 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
         body: Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/shapes/bg3p.png"),
+                  image: AssetImage("assets/images/shapes/bg4p.png"),
                   fit: BoxFit.cover)),
           child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [primaryColor.withOpacity(.8), Colors.white10],
-              stops: const [0.1, 0.9],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.8)),
             child: SafeArea(
                 child: ListView(
               padding:
@@ -57,14 +64,6 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
                 Text(
                   "Veuillez configurer votre agenda en spécifiant vos heures de disponibilité !",
                   style: GoogleFonts.lato(
-                    color: Colors.white,
-                    shadows: [
-                      const Shadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 2),
-                      )
-                    ],
                     fontSize: 18.5,
                     fontWeight: FontWeight.w600,
                   ),
@@ -272,7 +271,6 @@ class _MedecinAgendaConfigPageState extends State<MedecinAgendaConfigPage> {
             Text(
               "Configuration agenda",
               style: style1(
-                color: Colors.white,
                 fontWeight: FontWeight.w800,
                 fontSize: 18.0,
               ),

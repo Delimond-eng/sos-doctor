@@ -25,23 +25,12 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg5p.png"),
+              image: AssetImage("assets/images/shapes/bg4p.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  primaryColor,
-                  primaryColor.withOpacity(.5),
-                  Colors.white.withOpacity(.8),
-                  Colors.white.withOpacity(.8)
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.8)),
             child: SafeArea(
               child: Column(
                 children: [
@@ -149,7 +138,6 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
             Text(
               "Diagnostiques",
               style: style1(
-                color: Colors.white,
                 fontWeight: FontWeight.w600,
                 fontSize: 16.0,
               ),

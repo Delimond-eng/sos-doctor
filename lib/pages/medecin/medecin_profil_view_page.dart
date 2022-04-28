@@ -66,23 +66,12 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/shapes/bg5p.png"),
+              image: AssetImage("assets/images/shapes/bg4p.png"),
               fit: BoxFit.cover,
             ),
           ),
           child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  primaryColor,
-                  primaryColor.withOpacity(.5),
-                  Colors.white10,
-                  Colors.white10,
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
+            decoration: BoxDecoration(color: Colors.white.withOpacity(.8)),
             child: SafeArea(
               child: Column(
                 children: [
@@ -712,7 +701,6 @@ class _MedecinProfilViewPageState extends State<MedecinProfilViewPage>
               child: Text(
                 "Mon profil",
                 style: style1(
-                  color: Colors.white,
                   fontWeight: FontWeight.w800,
                   fontSize: 18.0,
                 ),
