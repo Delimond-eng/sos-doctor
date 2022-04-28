@@ -4,7 +4,12 @@ import 'package:get/get.dart';
 import 'package:sos_docteur/index.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-showCancellerPdf(BuildContext ctx, {Function onValidated, String title}) async {
+showCancellerPdf(
+  BuildContext ctx,
+  String filePath, {
+  Function onValidated,
+  String title,
+}) async {
   Modal.show(
     ctx,
     height: MediaQuery.of(ctx).size.height,
@@ -16,7 +21,7 @@ showCancellerPdf(BuildContext ctx, {Function onValidated, String title}) async {
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
-          child: SfPdfViewer.asset("assets/docs/docs.pdf"),
+          child: SfPdfViewer.asset(filePath),
         ),
         const SizedBox(
           height: 5.0,

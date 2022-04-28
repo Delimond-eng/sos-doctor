@@ -167,6 +167,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                             onCancelled: () async {
                               showCancellerPdf(
                                 context,
+                                "assets/docs/patientcancelrdv.pdf",
                                 title: "Annulation du rendez-vous",
                                 onValidated: () {
                                   XDialog.show(
@@ -285,6 +286,7 @@ class _PatientSchedulePageState extends State<PatientSchedulePage>
                             onCancelled: () async {
                               showCancellerPdf(
                                 context,
+                                "assets/docs/patientcancelrdv.pdf",
                                 title: "Annulation du rendez-vous",
                                 onValidated: () {
                                   XDialog.show(
@@ -601,6 +603,7 @@ class _ConsultingsViewerState extends State<ConsultingsViewer> {
                   onCancelled: () async {
                     showCancellerPdf(
                       context,
+                      "assets/docs/patientcancelrdv.pdf",
                       title: "Annulation du rendez-vous",
                       onValidated: () {
                         XDialog.show(

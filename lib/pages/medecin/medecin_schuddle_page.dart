@@ -255,6 +255,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                               onCancelled: () {
                                 showCancellerPdf(
                                   context,
+                                  "assets/docs/medcancelrdv.pdf",
                                   title: "Annulation du rendez-vous",
                                   onValidated: () async {
                                     try {
@@ -412,6 +413,7 @@ class _MedecinScheddulePageState extends State<MedecinScheddulePage>
                               onCancelled: () {
                                 showCancellerPdf(
                                   context,
+                                  "assets/docs/medcancelrdv.pdf",
                                   title: "Annulation du rendez-vous",
                                   onValidated: () async {
                                     try {
@@ -677,6 +679,7 @@ class AgendaViewer extends StatelessWidget {
                     onCancelled: () {
                       showCancellerPdf(
                         context,
+                        "assets/docs/medcancelrdv.pdf",
                         title: "Annulation du rendez-vous",
                         onValidated: () async {
                           try {
